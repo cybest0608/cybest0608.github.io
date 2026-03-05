@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="What should a ChatApp looks like?">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081a3a"/>
+      <stop offset="60%" stop-color="#0b2b66"/>
+      <stop offset="100%" stop-color="#0e3a86"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#4fa3ff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#4fa3ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+
+  <g opacity="0.18" stroke="#8ec5ff" stroke-width="2" fill="none">
+    <path d="M140 210 C 430 120, 740 140, 1020 220"/>
+    <path d="M900 780 C 1180 680, 1460 690, 1770 790"/>
+    <circle cx="520" cy="560" r="180"/>
+    <circle cx="1440" cy="360" r="220"/>
+  </g>
+
+  <text x="960" y="560" text-anchor="middle"
+        font-family="Inter, Segoe UI, Arial, sans-serif"
+        font-size="74" font-weight="700" fill="#e8f2ff"
+        letter-spacing="0.5">
+    What should a ChatApp looks like?
+  </text>
+</svg>
