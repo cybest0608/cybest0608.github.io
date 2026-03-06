@@ -52,29 +52,6 @@ main.content {
 	color: #fff !important;
 }
 
-.brand .hero-logo-wrap {
-	margin: 0 0 22px;
-}
-
-.brand .hero-logo {
-	width: clamp(72px, 8vw, 120px);
-	height: auto;
-	opacity: 0.9;
-}
-
-.index-cover .brand {
-	padding-top: 72px;
-}
-
-.index-cover .brand .title {
-	margin-bottom: 14px;
-}
-
-.index-cover .brand .description {
-	min-height: 2.2em;
-	line-height: 1.5em;
-}
-
 body.DarkMode,
 body.DarkMode p,
 body.DarkMode li,
