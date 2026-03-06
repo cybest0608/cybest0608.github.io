@@ -27,28 +27,70 @@
         <script>
             (function () {
                 try {
-                    var path = window.location.pathname || '/';
-                    var normalizedPath = path.replace(/\/+$/, '') || '/';
-                    var localeFromPath = normalizedPath.match(/^\/(ja|zh-cn|zh-tw)(\/|$)/i);
-                    if (localeFromPath) {
-                        localStorage.setItem('preferredLang', localeFromPath[1].toLowerCase());
-                        return;
+                    var SUPPORTED_LANGS = ['en', 'ja', 'zh-cn', 'zh-tw'];
+
+                    function detectLang(rawLang) {
+                        var detected = (rawLang || 'en').toLowerCase();
+                        if (detected.indexOf('ja') === 0) {
+                            return 'ja';
+                        }
+                        if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
+                            return 'zh-tw';
+                        }
+                        if (detected.indexOf('zh') === 0) {
+                            return 'zh-cn';
+                        }
+                        return 'en';
                     }
-                    if (normalizedPath !== '/') {
-                        return;
+
+                    function normalizePath(pathname) {
+                        var normalized = (pathname || '/').replace(/\/+/g, '/');
+                        normalized = normalized.replace(/\/$/, '');
+                        return normalized || '/';
                     }
-                    var preferred = localStorage.getItem('preferredLang');
-                    var detected = (preferred || (navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase();
-                    var target = '/';
-                    if (detected.indexOf('ja') === 0) {
-                        target = '/ja/';
-                    } else if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
-                        target = '/zh-tw/';
-                    } else if (detected.indexOf('zh') === 0) {
-                        target = '/zh-cn/';
+
+                    function getLocaleFromPath(pathname) {
+                        var match = normalizePath(pathname).match(/^\/(ja|zh-cn|zh-tw)(\/|$)/i);
+                        return match ? match[1].toLowerCase() : 'en';
                     }
-                    if (target !== path) {
-                        window.location.replace(target);
+
+                    function removeLocalePrefix(pathname) {
+                        var normalized = normalizePath(pathname);
+                        var withoutPrefix = normalized.replace(/^\/(ja|zh-cn|zh-tw)(?=\/|$)/i, '');
+                        return withoutPrefix || '/';
+                    }
+
+                    function withLocale(pathname, lang) {
+                        var targetLang = SUPPORTED_LANGS.indexOf(lang) >= 0 ? lang : 'en';
+                        var purePath = removeLocalePrefix(pathname);
+                        if (targetLang === 'en') {
+                            return purePath;
+                        }
+                        if (purePath === '/') {
+                            return '/' + targetLang + '/';
+                        }
+                        return '/' + targetLang + purePath;
+                    }
+
+                    window.switchLang = function (lang) {
+                        var targetLang = SUPPORTED_LANGS.indexOf(lang) >= 0 ? lang : 'en';
+                        localStorage.setItem('preferredLang', targetLang);
+                        var nextPath = withLocale(window.location.pathname, targetLang) + (window.location.search || '') + (window.location.hash || '');
+                        window.location.assign(nextPath);
+                    };
+
+                    var currentPath = normalizePath(window.location.pathname || '/');
+                    var localeFromPath = getLocaleFromPath(currentPath);
+                    localStorage.setItem('preferredLang', localeFromPath);
+
+                    if (currentPath === '/') {
+                        var preferred = localStorage.getItem('preferredLang');
+                        var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+                        var targetLang = detectLang(preferred || browserLang);
+                        var targetPath = withLocale('/', targetLang);
+                        if (targetPath !== (window.location.pathname || '/')) {
+                            window.location.replace(targetPath);
+                        }
                     }
                 } catch (e) {}
             })();
@@ -177,10 +219,10 @@
       <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
     <ul class="sub-nav menus_item_child ">
-      <li><a href="/" onclick="localStorage.setItem('preferredLang','en')"><span>English</span></a></li>
-      <li><a href="/ja/" onclick="localStorage.setItem('preferredLang','ja')"><span>日本語</span></a></li>
-      <li><a href="/zh-cn/" onclick="localStorage.setItem('preferredLang','zh-cn')"><span>简体中文</span></a></li>
-      <li><a href="/zh-tw/" onclick="localStorage.setItem('preferredLang','zh-tw')"><span>繁體中文</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('en')"><span>English</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('ja')"><span>日本語</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('zh-cn')"><span>简体中文</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('zh-tw')"><span>繁體中文</span></a></li>
     </ul>
   </li>
   <li>
@@ -273,10 +315,10 @@
             Language
           </a>
           <ul>
-            <li><a href="/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','en')"><span>English</span></a></li>
-            <li><a href="/ja/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','ja')"><span>日本語</span></a></li>
-            <li><a href="/zh-cn/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','zh-cn')"><span>简体中文</span></a></li>
-            <li><a href="/zh-tw/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','zh-tw')"><span>繁體中文</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('en')"><span>English</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('ja')"><span>日本語</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('zh-cn')"><span>简体中文</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('zh-tw')"><span>繁體中文</span></a></li>
           </ul>
         </li>
         
@@ -479,8 +521,8 @@
 <h2 id="8-未成年人隐私"><a href="#8-未成年人隐私" class="headerlink" title="8. 未成年人隐私"></a>8. 未成年人隐私</h2><p>本应用不面向法律意义上的儿童用户。</p>
 <h2 id="9-您的权利"><a href="#9-您的权利" class="headerlink" title="9. 您的权利"></a>9. 您的权利</h2><p>根据适用法律，您可能享有访问、更正、删除、限制处理等权利。</p>
 <h2 id="10-联系方式"><a href="#10-联系方式" class="headerlink" title="10. 联系方式"></a>10. 联系方式</h2><ul>
-<li>Privacy Contact: <a href="mailto:&#112;&#114;&#105;&#118;&#97;&#99;&#121;&#x40;&#121;&#x6f;&#x75;&#114;&#45;&#x64;&#x6f;&#109;&#97;&#x69;&#110;&#x2e;&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#101;">privacy@your-domain.example</a></li>
-<li>Support Contact: <a href="mailto:&#115;&#x75;&#112;&#x70;&#x6f;&#x72;&#116;&#x40;&#121;&#x6f;&#117;&#x72;&#x2d;&#100;&#x6f;&#x6d;&#97;&#x69;&#110;&#x2e;&#x65;&#120;&#x61;&#x6d;&#112;&#x6c;&#101;">support@your-domain.example</a></li>
+<li>Privacy Contact: <a href="mailto:&#112;&#x72;&#x69;&#x76;&#97;&#99;&#121;&#64;&#x79;&#111;&#x75;&#114;&#x2d;&#100;&#111;&#109;&#x61;&#x69;&#x6e;&#x2e;&#x65;&#x78;&#x61;&#109;&#112;&#x6c;&#101;">privacy@your-domain.example</a></li>
+<li>Support Contact: <a href="mailto:&#x73;&#x75;&#x70;&#x70;&#x6f;&#114;&#x74;&#x40;&#x79;&#111;&#x75;&#114;&#x2d;&#100;&#x6f;&#x6d;&#x61;&#105;&#x6e;&#46;&#x65;&#x78;&#97;&#x6d;&#x70;&#108;&#x65;">support@your-domain.example</a></li>
 </ul>
 <h2 id="11-政策更新"><a href="#11-政策更新" class="headerlink" title="11. 政策更新"></a>11. 政策更新</h2><p>本政策可能因产品、法律或运营变化而更新。</p>
 

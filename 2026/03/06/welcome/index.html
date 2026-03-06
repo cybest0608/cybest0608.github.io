@@ -35,28 +35,70 @@ Privacy Policy
         <script>
             (function () {
                 try {
-                    var path = window.location.pathname || '/';
-                    var normalizedPath = path.replace(/\/+$/, '') || '/';
-                    var localeFromPath = normalizedPath.match(/^\/(ja|zh-cn|zh-tw)(\/|$)/i);
-                    if (localeFromPath) {
-                        localStorage.setItem('preferredLang', localeFromPath[1].toLowerCase());
-                        return;
+                    var SUPPORTED_LANGS = ['en', 'ja', 'zh-cn', 'zh-tw'];
+
+                    function detectLang(rawLang) {
+                        var detected = (rawLang || 'en').toLowerCase();
+                        if (detected.indexOf('ja') === 0) {
+                            return 'ja';
+                        }
+                        if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
+                            return 'zh-tw';
+                        }
+                        if (detected.indexOf('zh') === 0) {
+                            return 'zh-cn';
+                        }
+                        return 'en';
                     }
-                    if (normalizedPath !== '/') {
-                        return;
+
+                    function normalizePath(pathname) {
+                        var normalized = (pathname || '/').replace(/\/+/g, '/');
+                        normalized = normalized.replace(/\/$/, '');
+                        return normalized || '/';
                     }
-                    var preferred = localStorage.getItem('preferredLang');
-                    var detected = (preferred || (navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase();
-                    var target = '/';
-                    if (detected.indexOf('ja') === 0) {
-                        target = '/ja/';
-                    } else if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
-                        target = '/zh-tw/';
-                    } else if (detected.indexOf('zh') === 0) {
-                        target = '/zh-cn/';
+
+                    function getLocaleFromPath(pathname) {
+                        var match = normalizePath(pathname).match(/^\/(ja|zh-cn|zh-tw)(\/|$)/i);
+                        return match ? match[1].toLowerCase() : 'en';
                     }
-                    if (target !== path) {
-                        window.location.replace(target);
+
+                    function removeLocalePrefix(pathname) {
+                        var normalized = normalizePath(pathname);
+                        var withoutPrefix = normalized.replace(/^\/(ja|zh-cn|zh-tw)(?=\/|$)/i, '');
+                        return withoutPrefix || '/';
+                    }
+
+                    function withLocale(pathname, lang) {
+                        var targetLang = SUPPORTED_LANGS.indexOf(lang) >= 0 ? lang : 'en';
+                        var purePath = removeLocalePrefix(pathname);
+                        if (targetLang === 'en') {
+                            return purePath;
+                        }
+                        if (purePath === '/') {
+                            return '/' + targetLang + '/';
+                        }
+                        return '/' + targetLang + purePath;
+                    }
+
+                    window.switchLang = function (lang) {
+                        var targetLang = SUPPORTED_LANGS.indexOf(lang) >= 0 ? lang : 'en';
+                        localStorage.setItem('preferredLang', targetLang);
+                        var nextPath = withLocale(window.location.pathname, targetLang) + (window.location.search || '') + (window.location.hash || '');
+                        window.location.assign(nextPath);
+                    };
+
+                    var currentPath = normalizePath(window.location.pathname || '/');
+                    var localeFromPath = getLocaleFromPath(currentPath);
+                    localStorage.setItem('preferredLang', localeFromPath);
+
+                    if (currentPath === '/') {
+                        var preferred = localStorage.getItem('preferredLang');
+                        var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+                        var targetLang = detectLang(preferred || browserLang);
+                        var targetPath = withLocale('/', targetLang);
+                        if (targetPath !== (window.location.pathname || '/')) {
+                            window.location.replace(targetPath);
+                        }
                     }
                 } catch (e) {}
             })();
@@ -185,10 +227,10 @@ Privacy Policy
       <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
     <ul class="sub-nav menus_item_child ">
-      <li><a href="/" onclick="localStorage.setItem('preferredLang','en')"><span>English</span></a></li>
-      <li><a href="/ja/" onclick="localStorage.setItem('preferredLang','ja')"><span>日本語</span></a></li>
-      <li><a href="/zh-cn/" onclick="localStorage.setItem('preferredLang','zh-cn')"><span>简体中文</span></a></li>
-      <li><a href="/zh-tw/" onclick="localStorage.setItem('preferredLang','zh-tw')"><span>繁體中文</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('en')"><span>English</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('ja')"><span>日本語</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('zh-cn')"><span>简体中文</span></a></li>
+      <li><a href="javascript:;" onclick="switchLang('zh-tw')"><span>繁體中文</span></a></li>
     </ul>
   </li>
   <li>
@@ -281,10 +323,10 @@ Privacy Policy
             Language
           </a>
           <ul>
-            <li><a href="/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','en')"><span>English</span></a></li>
-            <li><a href="/ja/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','ja')"><span>日本語</span></a></li>
-            <li><a href="/zh-cn/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','zh-cn')"><span>简体中文</span></a></li>
-            <li><a href="/zh-tw/" style="margin-left:75px" onclick="localStorage.setItem('preferredLang','zh-tw')"><span>繁體中文</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('en')"><span>English</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('ja')"><span>日本語</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('zh-cn')"><span>简体中文</span></a></li>
+            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('zh-tw')"><span>繁體中文</span></a></li>
           </ul>
         </li>
         
