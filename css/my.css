@@ -19,3 +19,30 @@ body.DarkMode footer.page-footer {
 	background-color: #000 !important;
 	background-image: none !important;
 }
+
+body.DarkMode,
+body.DarkMode p,
+body.DarkMode li,
+body.DarkMode td,
+body.DarkMode span,
+body.DarkMode a,
+body.DarkMode h1,
+body.DarkMode h2,
+body.DarkMode h3,
+body.DarkMode h4,
+body.DarkMode h5,
+body.DarkMode h6,
+body.DarkMode .copy-right,
+body.DarkMode .publish-info .post-category,
+body.DarkMode .publish-info .publish-date,
+body.DarkMode .nav-menu li a,
+body.DarkMode .menu-list a,
+body.DarkMode .card .card-content p,
+body.DarkMode .card .card-image .card-title,
+body.DarkMode article .article-content .summary,
+body.DarkMode footer a,
+body.DarkMode .fas,
+body.DarkMode .far,
+body.DarkMode .fab {
+	color: #fff !important;
+}
