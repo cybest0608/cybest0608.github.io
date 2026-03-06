@@ -20,6 +20,34 @@ body.DarkMode footer.page-footer {
 	background-image: none !important;
 }
 
+body:not(.DarkMode) {
+	background-color: #000 !important;
+	background-image: url('/medias/background/mirai-tech-1024.svg') !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-attachment: fixed !important;
+	background-position: center top !important;
+}
+
+main.content {
+	background: transparent !important;
+}
+
+.index-card .card,
+#articles article .card {
+	background-color: rgba(45, 42, 52, 0.88) !important;
+}
+
+.index-card .card .card-content,
+#articles article .card .card-content,
+#articles article .card .card-action,
+#articles article .card .card-title,
+#articles article .article-content .summary,
+#articles article .publish-info,
+#articles article a {
+	color: #fff !important;
+}
+
 body.DarkMode,
 body.DarkMode p,
 body.DarkMode li,

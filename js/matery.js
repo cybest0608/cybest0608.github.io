@@ -179,12 +179,8 @@ setTimeout(function () {
     }
 }, 2200);
 
-//黑夜模式判断（默认开启深色模式，用户可手动切换后记忆）
-if (localStorage.getItem('isDark') === null) {
-    localStorage.setItem('isDark', '1');
-}
-
-if (localStorage.getItem('isDark') !== '0') {
+//黑夜模式判断
+if (localStorage.getItem('isDark') === '1') {
     document.body.classList.add('DarkMode');
     $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
 } else {
