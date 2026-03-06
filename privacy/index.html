@@ -29,18 +29,28 @@
                 try {
                     var SUPPORTED_LANGS = ['en', 'ja', 'zh-cn', 'zh-tw'];
 
-                    function detectLang(rawLang) {
-                        var detected = (rawLang || 'en').toLowerCase();
+                    function normalizeLang(rawLang) {
+                        var detected = (rawLang || '').toLowerCase();
+                        if (!detected) {
+                            return '';
+                        }
                         if (detected.indexOf('ja') === 0) {
                             return 'ja';
                         }
-                        if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
+                        if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hant') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
                             return 'zh-tw';
                         }
-                        if (detected.indexOf('zh') === 0) {
+                        if (detected.indexOf('zh-cn') === 0 || detected.indexOf('zh-hans') === 0 || detected.indexOf('zh-sg') === 0 || detected.indexOf('zh') === 0) {
                             return 'zh-cn';
                         }
+                        if (detected.indexOf('en') === 0) {
+                            return 'en';
+                        }
                         return 'en';
+                    }
+
+                    function detectLang(rawLang) {
+                        return normalizeLang(rawLang || 'en');
                     }
 
                     function normalizePath(pathname) {
@@ -73,7 +83,10 @@
                     }
 
                     window.switchLang = function (lang) {
-                        var targetLang = SUPPORTED_LANGS.indexOf(lang) >= 0 ? lang : 'en';
+                        var targetLang = normalizeLang(lang);
+                        if (SUPPORTED_LANGS.indexOf(targetLang) < 0) {
+                            targetLang = 'en';
+                        }
                         localStorage.setItem('preferredLang', targetLang);
                         var nextPath = withLocale(window.location.pathname, targetLang) + (window.location.search || '') + (window.location.hash || '');
                         window.location.assign(nextPath);
@@ -81,12 +94,15 @@
 
                     var currentPath = normalizePath(window.location.pathname || '/');
                     var localeFromPath = getLocaleFromPath(currentPath);
-                    localStorage.setItem('preferredLang', localeFromPath);
+                    var hasLocalePrefix = /^\/(ja|zh-cn|zh-tw)(\/|$)/i.test(currentPath);
+                    if (hasLocalePrefix) {
+                        localStorage.setItem('preferredLang', localeFromPath);
+                    }
 
-                    if (currentPath === '/') {
-                        var preferred = localStorage.getItem('preferredLang');
+                    if (currentPath === '/' || currentPath === '/index.html') {
+                        var preferred = normalizeLang(localStorage.getItem('preferredLang'));
                         var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-                        var targetLang = detectLang(preferred || browserLang);
+                        var targetLang = preferred || detectLang(browserLang);
                         var targetPath = withLocale('/', targetLang);
                         if (targetPath !== (window.location.pathname || '/')) {
                             window.location.replace(targetPath);
@@ -500,8 +516,8 @@
 <h2 id="4-Data-Storage-and-Retention"><a href="#4-Data-Storage-and-Retention" class="headerlink" title="4. Data Storage and Retention"></a>4. Data Storage and Retention</h2><p>MiraiChat stores required data in secure device storage and app-local databases, and retention is tied to usage, local settings, and deletion workflows.</p>
 <h2 id="5-Data-Deletion"><a href="#5-Data-Deletion" class="headerlink" title="5. Data Deletion"></a>5. Data Deletion</h2><p>Deletion can be triggered via logout&#x2F;reset&#x2F;deregister flows and remote file deletion APIs where available.</p>
 <h2 id="6-Contact-Information"><a href="#6-Contact-Information" class="headerlink" title="6. Contact Information"></a>6. Contact Information</h2><ul>
-<li><strong>Privacy Contact:</strong> <a href="mailto:&#x70;&#x72;&#105;&#118;&#97;&#99;&#121;&#x40;&#x79;&#x6f;&#x75;&#114;&#45;&#100;&#111;&#109;&#x61;&#105;&#x6e;&#x2e;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#101;">privacy@your-domain.example</a></li>
-<li><strong>Support Contact:</strong> <a href="mailto:&#x73;&#x75;&#x70;&#112;&#111;&#114;&#x74;&#64;&#121;&#x6f;&#x75;&#114;&#x2d;&#100;&#111;&#109;&#x61;&#105;&#x6e;&#x2e;&#101;&#120;&#97;&#109;&#112;&#x6c;&#x65;">support@your-domain.example</a></li>
+<li><strong>Privacy Contact:</strong> <a href="mailto:&#x70;&#114;&#105;&#x76;&#x61;&#99;&#121;&#64;&#x79;&#x6f;&#x75;&#114;&#45;&#x64;&#111;&#x6d;&#x61;&#x69;&#x6e;&#x2e;&#101;&#120;&#x61;&#x6d;&#112;&#x6c;&#x65;">privacy@your-domain.example</a></li>
+<li><strong>Support Contact:</strong> <a href="mailto:&#115;&#x75;&#112;&#x70;&#x6f;&#114;&#116;&#64;&#121;&#x6f;&#x75;&#x72;&#x2d;&#100;&#x6f;&#109;&#x61;&#x69;&#110;&#46;&#x65;&#x78;&#97;&#109;&#x70;&#108;&#101;">support@your-domain.example</a></li>
 </ul>
 <p>For the complete policy wording, use this page as the canonical source.</p>
 

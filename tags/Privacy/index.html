@@ -29,18 +29,28 @@
                 try {
                     var SUPPORTED_LANGS = ['en', 'ja', 'zh-cn', 'zh-tw'];
 
-                    function detectLang(rawLang) {
-                        var detected = (rawLang || 'en').toLowerCase();
+                    function normalizeLang(rawLang) {
+                        var detected = (rawLang || '').toLowerCase();
+                        if (!detected) {
+                            return '';
+                        }
                         if (detected.indexOf('ja') === 0) {
                             return 'ja';
                         }
-                        if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
+                        if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hant') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
                             return 'zh-tw';
                         }
-                        if (detected.indexOf('zh') === 0) {
+                        if (detected.indexOf('zh-cn') === 0 || detected.indexOf('zh-hans') === 0 || detected.indexOf('zh-sg') === 0 || detected.indexOf('zh') === 0) {
                             return 'zh-cn';
                         }
+                        if (detected.indexOf('en') === 0) {
+                            return 'en';
+                        }
                         return 'en';
+                    }
+
+                    function detectLang(rawLang) {
+                        return normalizeLang(rawLang || 'en');
                     }
 
                     function normalizePath(pathname) {
@@ -73,7 +83,10 @@
                     }
 
                     window.switchLang = function (lang) {
-                        var targetLang = SUPPORTED_LANGS.indexOf(lang) >= 0 ? lang : 'en';
+                        var targetLang = normalizeLang(lang);
+                        if (SUPPORTED_LANGS.indexOf(targetLang) < 0) {
+                            targetLang = 'en';
+                        }
                         localStorage.setItem('preferredLang', targetLang);
                         var nextPath = withLocale(window.location.pathname, targetLang) + (window.location.search || '') + (window.location.hash || '');
                         window.location.assign(nextPath);
@@ -81,12 +94,15 @@
 
                     var currentPath = normalizePath(window.location.pathname || '/');
                     var localeFromPath = getLocaleFromPath(currentPath);
-                    localStorage.setItem('preferredLang', localeFromPath);
+                    var hasLocalePrefix = /^\/(ja|zh-cn|zh-tw)(\/|$)/i.test(currentPath);
+                    if (hasLocalePrefix) {
+                        localStorage.setItem('preferredLang', localeFromPath);
+                    }
 
-                    if (currentPath === '/') {
-                        var preferred = localStorage.getItem('preferredLang');
+                    if (currentPath === '/' || currentPath === '/index.html') {
+                        var preferred = normalizeLang(localStorage.getItem('preferredLang'));
                         var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-                        var targetLang = detectLang(preferred || browserLang);
+                        var targetLang = preferred || detectLang(browserLang);
                         var targetPath = withLocale('/', targetLang);
                         if (targetPath !== (window.location.pathname || '/')) {
                             window.location.replace(targetPath);
@@ -478,19 +494,19 @@
                 </a>
                 
                 
-                <a href="/tags/Privacy/" title="Privacy: 1">
+                <a href="/tags/Welcome/" title="Welcome: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="Privacy" style="background-color: #D5F5E3;">Privacy
+                             chip-default "
+                            data-tagname="Welcome" style="background-color: #D5F5E3;">Welcome
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/Welcome/" title="Welcome: 1">
+                <a href="/tags/Privacy/" title="Privacy: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Welcome" style="background-color: #E8F8F5;">Welcome
+                             chip-active "
+                            data-tagname="Privacy" style="background-color: #E8F8F5;">Privacy
                         <span class="tag-length">1</span>
                     </span>
                 </a>
