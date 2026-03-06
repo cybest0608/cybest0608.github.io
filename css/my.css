@@ -42,6 +42,10 @@ main.content {
 	background-color: rgba(92, 92, 104, 0.8) !important;
 }
 
+.index-cover .carousel-item:first-child .brand {
+	margin-top: 64px;
+}
+
 .index-card .card .card-content,
 #articles article .card .card-content,
 #articles article .card .card-action,
