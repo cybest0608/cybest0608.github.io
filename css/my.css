@@ -53,13 +53,26 @@ main.content {
 }
 
 .brand .hero-logo-wrap {
-	margin: 22px 0 18px;
+	margin: 0 0 22px;
 }
 
 .brand .hero-logo {
-	width: clamp(70px, 10vw, 130px);
+	width: clamp(72px, 8vw, 120px);
 	height: auto;
 	opacity: 0.9;
+}
+
+.index-cover .brand {
+	padding-top: 72px;
+}
+
+.index-cover .brand .title {
+	margin-bottom: 14px;
+}
+
+.index-cover .brand .description {
+	min-height: 2.2em;
+	line-height: 1.5em;
 }
 
 body.DarkMode,
