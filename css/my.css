@@ -35,7 +35,11 @@ main.content {
 
 .index-card .card,
 #articles article .card {
-	background-color: rgba(45, 42, 52, 0.88) !important;
+	background-color: rgba(92, 92, 104, 0.8) !important;
+}
+
+#articles article .card .card-action {
+	background-color: rgba(92, 92, 104, 0.8) !important;
 }
 
 .index-card .card .card-content,
@@ -46,6 +50,16 @@ main.content {
 #articles article .publish-info,
 #articles article a {
 	color: #fff !important;
+}
+
+.brand .hero-logo-wrap {
+	margin: 22px 0 18px;
+}
+
+.brand .hero-logo {
+	width: clamp(70px, 10vw, 130px);
+	height: auto;
+	opacity: 0.9;
 }
 
 body.DarkMode,
