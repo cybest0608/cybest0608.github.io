@@ -1,1 +1,21 @@
 /* Here is your custom css styles. */
+
+#headNav {
+	background-color: #000 !important;
+	background-image: none !important;
+}
+
+footer.page-footer {
+	background-color: #000 !important;
+	background-image: none !important;
+}
+
+body.DarkMode #headNav {
+	background-color: #000 !important;
+	background-image: none !important;
+}
+
+body.DarkMode footer.page-footer {
+	background-color: #000 !important;
+	background-image: none !important;
+}
