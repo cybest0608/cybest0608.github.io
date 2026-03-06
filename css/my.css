@@ -46,6 +46,12 @@ main.content {
 	margin-top: 64px;
 }
 
+@media only screen and (max-width: 992px), (orientation: portrait) {
+	.index-cover .carousel-item:first-child .brand {
+		margin-top: 0;
+	}
+}
+
 .index-card .card .card-content,
 #articles article .card .card-content,
 #articles article .card .card-action,
