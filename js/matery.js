@@ -192,32 +192,61 @@ if (localStorage.getItem('isDark') === '1') {
  * Switch Language
  */
 function switchLang(lang) {
-    var path = window.location.pathname;
+    var pathname = window.location.pathname;
     var hash = window.location.hash;
 
-    // Split the path into segments and remove empty ones
-    var segments = path.split('/').filter(Boolean);
+    // Supported language prefixes
+    var prefixes = ['/ja/', '/zh-cn/', '/zh-tw/'];
+    var currentPrefix = '';
 
-    // Check if the first segment is a language code we support
-    var supportedLangs = ['ja', 'zh-cn', 'zh-tw'];
-    if (segments.length > 0 && supportedLangs.indexOf(segments[0].toLowerCase()) !== -1) {
-        segments.shift(); // Remove the language segment
+    // Check if the current path starts with any of the language prefixes
+    for (var i = 0; i < prefixes.length; i++) {
+        if (pathname.indexOf(prefixes[i]) === 0) {
+            currentPrefix = prefixes[i];
+            break;
+        }
     }
 
-    var newPath = segments.join('/');
-    var newUrl = '/';
-
-    if (lang !== 'en') {
-        newUrl += lang + '/';
+    // Also check for exact matches without the trailing slash (e.g., /ja)
+    if (!currentPrefix) {
+        var exactLangs = ['/ja', '/zh-cn', '/zh-tw'];
+        for (var i = 0; i < exactLangs.length; i++) {
+            if (pathname === exactLangs[i]) {
+                currentPrefix = exactLangs[i];
+                break;
+            }
+        }
     }
-    newUrl += newPath;
 
-    // Final cleanup of double slashes
+    // Extract the base path by removing the language prefix
+    var basePath = pathname;
+    if (currentPrefix) {
+        // If it was an exact match like /ja, basePath becomes empty.
+        // If it was /ja/, basePath becomes empty as well.
+        // If it was /ja/encryption, basePath becomes encryption.
+        basePath = pathname.substring(currentPrefix.length);
+    }
+
+    // Ensure basePath starts with a slash or is just a slash
+    if (!basePath || basePath === '') {
+        basePath = '/';
+    } else if (basePath.charAt(0) !== '/') {
+        basePath = '/' + basePath;
+    }
+
+    var newUrl = '';
+    if (lang === 'en') {
+        // English is the root
+        newUrl = basePath;
+    } else {
+        // Other languages use the prefix
+        newUrl = '/' + lang + basePath;
+    }
+
+    // Final clean up: remove any resulting double slashes
     newUrl = newUrl.replace(/\/+/g, '/');
 
-    // Ensure it ends with a slash if it's a directory-like path
-    if (newUrl === '' || newUrl === 'en') newUrl = '/';
-
+    // Update the location
     window.location.href = newUrl + hash;
 }
 
