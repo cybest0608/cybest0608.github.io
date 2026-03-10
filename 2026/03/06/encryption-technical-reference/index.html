@@ -5,12 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Encryption Technical Reference, app,introduction,privacy">
-    <meta name="description" content="
-(function() {
-  var url = window.location.pathname;
-  var lang = &#39;en&#39;;
-  if (url.indexOf(&#39;/ja/&#39;) &gt; -1) lang = &#39;ja&#39;;
-  e">
+    <meta name="description" content="Detailed technical overview of MiraiChat&#39;s cryptographic design, including X25519, Ed25519, and AES-GCM-256 implementations.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -496,27 +491,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <script>
-(function() {
-  var url = window.location.pathname;
-  var lang = 'en';
-  if (url.indexOf('/ja/') > -1) lang = 'ja';
-  else if (url.indexOf('/zh-cn/') > -1) lang = 'zh-cn';
-  else if (url.indexOf('/zh-tw/') > -1) lang = 'zh-tw';
-
-  var target = '/encryption/';
-  if (lang === 'ja') target = '/ja/encryption/';
-  else if (lang === 'zh-cn') target = '/zh-cn/encryption/';
-  else if (lang === 'zh-tw') target = '/zh-tw/encryption/';
-
-  window.location.replace(target);
-})();
-</script>
-
-<p>Redirecting to the technical reference…</p>
-<p>If you are not redirected, click here:</p>
+                <p>MiraiChat cryptography technical reference is available here:</p>
 <ul>
-<li><a href="/encryption/">English</a></li>
+<li><a href="/encryption/">Open Encryption Reference</a></li>
 <li><a href="/ja/encryption/">日本語</a></li>
 <li><a href="/zh-cn/encryption/">简体中文</a></li>
 <li><a href="/zh-tw/encryption/">繁體中文</a></li>
@@ -689,7 +666,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Detailed technical overview of MiraiChat's cryptographic design, including X25519, Ed25519, and AES-GCM-256 implementations.
                         
                     </div>
                     <div class="publish-info">
@@ -742,7 +719,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Professional-grade private messaging for modern mobile and desktop environments. Learn about our core capabilities and secure architecture.
                         
                     </div>
                     <div class="publish-info">
@@ -760,12 +737,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Introduction/">
-                        <span class="chip bg-color">Introduction</span>
-                    </a>
-                    
                     <a href="/tags/MiraiChat/">
                         <span class="chip bg-color">MiraiChat</span>
+                    </a>
+                    
+                    <a href="/tags/Introduction/">
+                        <span class="chip bg-color">Introduction</span>
                     </a>
                     
                 </div>
