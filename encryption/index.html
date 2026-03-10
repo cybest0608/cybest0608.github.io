@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Tags, app,introduction,privacy">
+    <meta name="keywords" content="Encryption Technical Reference, app,introduction,privacy">
     <meta name="description" content="MiraiChat website">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Tags | MiraiChat</title>
+    <title>Encryption Technical Reference | MiraiChat</title>
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png">
@@ -435,136 +435,572 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/background/mirai-tech-1024.svg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Encryption Technical Reference</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
     <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                Mirai, Chat Freedomly
-                
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
             </div>
 
-            <div class="description center-align">
+            <div class="post-info">
                 
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "你值得拥有未来的聊天",
-                            
-                                "You deserve the chat of Mirai",
-                            
-                                "あなたはみらいのチャットを手にする価値がある",
-                            
-                                "你值得擁有未來的聊天",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2026-03-04
+                </div>
                 
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="MiraiChat-Cryptography-Technical-Reference"><a href="#MiraiChat-Cryptography-Technical-Reference" class="headerlink" title="MiraiChat Cryptography Technical Reference"></a>MiraiChat Cryptography Technical Reference</h1><p><strong>Language &#x2F; 言語 &#x2F; 语言 &#x2F; 語言:</strong> <a href="/encryption/">English</a> · <a href="/ja/encryption/">日本語</a> · <a href="/zh-cn/encryption/">简体中文</a> · <a href="/zh-tw/encryption/">繁體中文</a></p>
+<h2 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h2><p>This document summarizes the cryptographic design currently implemented in the client codebase.</p>
+<h2 id="1-Core-Primitives"><a href="#1-Core-Primitives" class="headerlink" title="1. Core Primitives"></a>1. Core Primitives</h2><ul>
+<li>Asymmetric key agreement: <code>X25519</code></li>
+<li>Asymmetric signatures: <code>Ed25519</code></li>
+<li>Symmetric AEAD: <code>AES-GCM-256</code></li>
+<li>PIN KDF: <code>PBKDF2(HMAC-SHA256, iterations=600000, bits=256)</code></li>
+<li>Ratchet KDF components: <code>HMAC-SHA256</code></li>
+</ul>
+<p>Relevant implementation:</p>
+<ul>
+<li><code>lib/key_manager.dart</code></li>
+</ul>
+<h2 id="2-Identity-and-Device-Key-Material"><a href="#2-Identity-and-Device-Key-Material" class="headerlink" title="2. Identity and Device Key Material"></a>2. Identity and Device Key Material</h2><p><code>KeyManager.init(username, pin)</code> derives a deterministic base seed from user PIN + username salt using PBKDF2. Two deterministic seeds are then split for:</p>
+<ul>
+<li>encryption keypair seed (<code>X25519</code>)</li>
+<li>identity signing keypair seed (<code>Ed25519</code>)</li>
+</ul>
+<p>Implications:</p>
+<ul>
+<li>Keypairs are reproducible from the same username&#x2F;PIN input.</li>
+<li>Security strength is tied to PIN entropy + PBKDF2 work factor.</li>
+</ul>
+<h2 id="3-1-1-Message-Encryption-Flow"><a href="#3-1-1-Message-Encryption-Flow" class="headerlink" title="3. 1:1 Message Encryption Flow"></a>3. 1:1 Message Encryption Flow</h2><p>For direct messages:</p>
+<ol>
+<li>Client derives shared secret with peer public key (<code>X25519</code>).</li>
+<li>Primary path (main device): per-message ratchet key is derived and advanced.</li>
+<li>Compatibility path (secondary&#x2F;non-ratchet mode): stable shared secret is used.</li>
+<li>Message payload is encrypted as <code>enc:&lt;base64-aesgcm-box&gt;</code>.</li>
+</ol>
+<p>Ratchet behavior:</p>
+<ul>
+<li>Ratchet state: <code>ratchet</code> + <code>counter</code> per conversation.</li>
+<li>Message key and next ratchet state derived via HMAC-SHA256 domain-separated labels.</li>
+<li>State is persisted after advancement to secure storage.</li>
+</ul>
+<p>Relevant implementation:</p>
+<ul>
+<li><code>lib/outgoing_message_queue.dart</code></li>
+<li><code>lib/incoming_message_handler.dart</code></li>
+<li><code>lib/key_manager.dart</code></li>
+</ul>
+<h2 id="4-Group-Message-Encryption"><a href="#4-Group-Message-Encryption" class="headerlink" title="4. Group Message Encryption"></a>4. Group Message Encryption</h2><ul>
+<li>Group key is symmetric and generated via AES-GCM secret key generator.</li>
+<li>Group content encrypted under group key (<code>AES-GCM-256</code>).</li>
+<li>Group key refresh&#x2F;rotation can be triggered on membership changes.</li>
+<li>Distribution to members is wrapped using per-member shared secret encryption.</li>
+</ul>
+<p>Relevant implementation:</p>
+<ul>
+<li><code>lib/incoming_message_handler.dart</code> (<code>_rotateGroupKeyAfterMembershipChange</code>)</li>
+<li><code>lib/key_manager.dart</code> (<code>generateGroupKey</code>)</li>
+</ul>
+<h2 id="5-Sealed-Sender-Path"><a href="#5-Sealed-Sender-Path" class="headerlink" title="5. Sealed Sender Path"></a>5. Sealed Sender Path</h2><p>Outgoing 1:1 messages may be wrapped in a sealed envelope with:</p>
+<ul>
+<li><code>sealed_payload</code> &#x3D; encrypted inner envelope</li>
+<li><code>sender_certificate</code> from server</li>
+<li><code>protocol_version = 1</code></li>
+</ul>
+<p>Receiver verifies:</p>
+<ol>
+<li>Certificate format and signature (<code>Ed25519</code>) with server signing key.</li>
+<li>Certificate expiry.</li>
+<li>Sealed payload decryption with shared secret.</li>
+</ol>
+<p>Relevant implementation:</p>
+<ul>
+<li><code>lib/outgoing_message_queue.dart</code> (sealed sender construction)</li>
+<li><code>lib/incoming_message_handler.dart</code> (<code>_handleSealedSender</code>)</li>
+<li><code>lib/certificate_pinning_manager.dart</code> (server signing key + pin-list verification)</li>
+</ul>
+<h2 id="6-Transport-and-Trust-Model"><a href="#6-Transport-and-Trust-Model" class="headerlink" title="6. Transport and Trust Model"></a>6. Transport and Trust Model</h2><ul>
+<li>HTTPS&#x2F;WSS transport for API&#x2F;WebSocket communication.</li>
+<li>Certificate pinning manager supports:<ul>
+<li>hardcoded official pins</li>
+<li>bounded custom pin trust history</li>
+<li>signed pin-list import with Ed25519 verification</li>
+</ul>
+</li>
+<li>Trust audit events and rotation metadata are recorded in preferences.</li>
+</ul>
+<p>Relevant implementation:</p>
+<ul>
+<li><code>lib/chat_api.dart</code></li>
+<li><code>lib/websocket_connection_manager.dart</code></li>
+<li><code>lib/certificate_pinning_manager.dart</code></li>
+</ul>
+<h2 id="7-Local-Secret-Storage"><a href="#7-Local-Secret-Storage" class="headerlink" title="7. Local Secret Storage"></a>7. Local Secret Storage</h2><p>Secrets are stored via platform secure storage:</p>
+<ul>
+<li>iOS Keychain</li>
+<li>Android encrypted secure storage</li>
+</ul>
+<p>Stored sensitive items include session secret, credential secret, recovery seed, and ratchet state.</p>
+<p>Relevant implementation:</p>
+<ul>
+<li><code>lib/secure_storage.dart</code></li>
+</ul>
+<h2 id="8-Important-Current-Security-Notes"><a href="#8-Important-Current-Security-Notes" class="headerlink" title="8. Important Current Security Notes"></a>8. Important Current Security Notes</h2><ul>
+<li><code>LocalMessageStore.decryptContent</code> currently returns input directly; local message DB protection is not full-content encrypted by this function (<code>lib/local_message_store.dart</code>).</li>
+<li>Username API hash uses many SHA-256 rounds with a global constant salt; this is obfuscation&#x2F;derivation behavior for lookup protocol, not a password KDF replacement.</li>
+<li>Deterministic key generation from PIN is operationally convenient but requires strong PIN policy for best security.</li>
+</ul>
+<h2 id="9-Threat-Coverage-Current"><a href="#9-Threat-Coverage-Current" class="headerlink" title="9. Threat Coverage (Current)"></a>9. Threat Coverage (Current)</h2><p>Covered:</p>
+<ul>
+<li>Passive network interception (TLS + E2EE payload)</li>
+<li>Server cert mismatch&#x2F;tamper detection (pinning)</li>
+<li>Sender certificate tampering (signature verification)</li>
+<li>Message confidentiality&#x2F;integrity in transit (AES-GCM)</li>
+</ul>
+<p>Partially covered &#x2F; design-dependent:</p>
+<ul>
+<li>Device compromise (depends on OS hardening and app lock policies)</li>
+<li>Weak user PIN choices (PBKDF2 slows brute-force but cannot fix low entropy)</li>
+<li>Metadata privacy (routing metadata still exists by protocol necessity)</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">MiraiChat Team</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://cybest0608.github.io/encryption/index.html">https://cybest0608.github.io/encryption/index.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">MiraiChat Team</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-        var bannerUrl = "/medias/background/mirai-tech-1024.svg";
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-        $('.bg-cover.about-cover').css('background-image', 'url(' + bannerUrl + ')');
+    $(function () {
+        $('.tabs').tabs();
+    });
 </script>
 
+            
+        </div>
     </div>
-</div>
-
-<main class="content">
 
     
 
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;Post Tags
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/Privacy/" title="Privacy: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Privacy" style="background-color: #F9EBEA;">Privacy
-                        <span class="tag-length">1</span>
-                    </span>
+            <div class="card">
+                <a href="/encryption/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/background/mirai-tech-1024.svg" class="responsive-img" alt="Encryption Technical Reference">
+                        
+                        <span class="card-title">Encryption Technical Reference</span>
+                    </div>
                 </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            MiraiChat Team
+                            
+                        </span>
+                    </div>
+                </div>
+
                 
-                
-                <a href="/tags/MiraiChat/" title="MiraiChat: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="MiraiChat" style="background-color: #F5EEF8;">MiraiChat
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Welcome/" title="Welcome: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Welcome" style="background-color: #D5F5E3;">Welcome
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Introduction/" title="Introduction: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Introduction" style="background-color: #E8F8F5;">Introduction
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
+                <div class="card-action article-tags">
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                </div>
                 
             </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Current&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/encryption/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/background/mirai-tech-1024.svg" class="responsive-img" alt="Encryption Technical Reference">
+                        
+                        <span class="card-title">Encryption Technical Reference</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            MiraiChat Team
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
         </div>
     </div>
 </div>
 
-    
-    <link rel="stylesheet" type="text/css" href="/libs/jqcloud/jqcloud.css">
-<style type="text/css">
-    #tag-wordcloud {
-        width: 100%;
-        height: 300px;
-    }
-</style>
+<!-- TOC 悬浮按钮. -->
 
-<div class="container" data-aos="fade-up">
-    <div class="card">
-        <div id="tag-wordcloud" class="card-content"></div>
-    </div>
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
 </div>
 
-<script type="text/javascript" src="/libs/jqcloud/jqcloud-1.0.4.min.js"></script>
-<script type="text/javascript">
-    
 
-    $('#tag-wordcloud').jQCloud([{"text":"Privacy","weight":1,"link":"/tags/Privacy/"},{"text":"MiraiChat","weight":3,"link":"/tags/MiraiChat/"},{"text":"Welcome","weight":1,"link":"/tags/Welcome/"},{"text":"Introduction","weight":1,"link":"/tags/Introduction/"}], {
-        autoResize: true
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
     });
 </script>
 
     
 
 </main>
+
+
 
 
     <footer class="page-footer bg-color">
