@@ -187,3 +187,27 @@ if (localStorage.getItem('isDark') === '1') {
     document.body.classList.remove('DarkMode');
     $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')
 }
+
+/**
+ * Switch Language
+ */
+function switchLang(lang) {
+    var url = window.location.pathname;
+    var hash = window.location.hash;
+
+    // Remove current language prefix
+    var path = url.replace(/^\/(ja|zh-cn|zh-tw)\//i, '/');
+    if (path === '/ja' || path === '/zh-cn' || path === '/zh-tw') path = '/';
+
+    var newUrl = '/';
+    if (lang === 'en') {
+        newUrl = path;
+    } else {
+        newUrl = '/' + lang + path;
+    }
+
+    // Clean up double slashes
+    newUrl = newUrl.replace(/\/+/g, '/');
+
+    window.location.href = newUrl + hash;
+}
