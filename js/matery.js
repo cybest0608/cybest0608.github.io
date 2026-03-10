@@ -192,23 +192,31 @@ if (localStorage.getItem('isDark') === '1') {
  * Switch Language
  */
 function switchLang(lang) {
-    var url = window.location.pathname;
+    var path = window.location.pathname;
     var hash = window.location.hash;
 
-    // Detect if we are in a sub-path (like /ja/ or /zh-cn/)
-    // This regex matches /ja/, /zh-cn/, /zh-tw/ at the start of the path
-    var langPattern = /^\/(ja|zh-cn|zh-tw)(\/|$)/i;
-    var path = url.replace(langPattern, '/');
+    // Split the path into segments and remove empty ones
+    var segments = path.split('/').filter(Boolean);
 
-    var newUrl = '/';
-    if (lang === 'en') {
-        newUrl = path;
-    } else {
-        newUrl = '/' + lang + '/' + path;
+    // Check if the first segment is a language code we support
+    var supportedLangs = ['ja', 'zh-cn', 'zh-tw'];
+    if (segments.length > 0 && supportedLangs.indexOf(segments[0].toLowerCase()) !== -1) {
+        segments.shift(); // Remove the language segment
     }
 
-    // Clean up double slashes: replace // with /
+    var newPath = segments.join('/');
+    var newUrl = '/';
+
+    if (lang !== 'en') {
+        newUrl += lang + '/';
+    }
+    newUrl += newPath;
+
+    // Final cleanup of double slashes
     newUrl = newUrl.replace(/\/+/g, '/');
+
+    // Ensure it ends with a slash if it's a directory-like path
+    if (newUrl === '' || newUrl === 'en') newUrl = '/';
 
     window.location.href = newUrl + hash;
 }
@@ -217,9 +225,9 @@ function switchNightMode() {
     document.body.classList.toggle('DarkMode');
     if (document.body.classList.contains('DarkMode')) {
         localStorage.setItem('isDark', '1');
-        $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
+        $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon');
     } else {
         localStorage.setItem('isDark', '0');
-        $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')
+        $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon');
     }
 }
