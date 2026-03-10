@@ -90,6 +90,19 @@ Privacy Policy
                         return '/' + targetLang + purePath;
                     }
 
+                    function getLangFromSearch(search) {
+                        var query = search || '';
+                        var match = query.match(/[?&]lang=([^&]+)/i);
+                        if (!match || !match[1]) {
+                            return '';
+                        }
+                        try {
+                            return normalizeLang(decodeURIComponent(match[1]));
+                        } catch (e) {
+                            return normalizeLang(match[1]);
+                        }
+                    }
+
                     window.switchLang = function (lang) {
                         var targetLang = normalizeLang(lang);
                         if (SUPPORTED_LANGS.indexOf(targetLang) < 0) {
@@ -97,6 +110,9 @@ Privacy Policy
                         }
                         localStorage.setItem('preferredLang', targetLang);
                         var nextPath = withLocale(window.location.pathname, targetLang) + (window.location.search || '') + (window.location.hash || '');
+                        if (targetLang === 'en' && removeLocalePrefix(window.location.pathname || '/') === '/') {
+                            nextPath = '/?lang=en' + (window.location.hash || '');
+                        }
                         window.location.assign(nextPath);
                     };
 
@@ -108,9 +124,16 @@ Privacy Policy
                     }
 
                     if (currentPath === '/' || currentPath === '/index.html') {
+                        var explicitLang = getLangFromSearch(window.location.search || '');
+                        if (explicitLang === 'en') {
+                            localStorage.setItem('preferredLang', 'en');
+                            if (window.history && typeof window.history.replaceState === 'function') {
+                                window.history.replaceState(null, '', window.location.pathname + (window.location.hash || ''));
+                            }
+                        }
                         var preferred = normalizeLang(localStorage.getItem('preferredLang'));
                         var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-                        var targetLang = preferred || detectLang(browserLang);
+                        var targetLang = explicitLang || preferred || detectLang(browserLang);
                         var targetPath = withLocale('/', targetLang);
                         if (targetPath !== (window.location.pathname || '/')) {
                             window.location.replace(targetPath);

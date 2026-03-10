@@ -82,6 +82,19 @@
                         return '/' + targetLang + purePath;
                     }
 
+                    function getLangFromSearch(search) {
+                        var query = search || '';
+                        var match = query.match(/[?&]lang=([^&]+)/i);
+                        if (!match || !match[1]) {
+                            return '';
+                        }
+                        try {
+                            return normalizeLang(decodeURIComponent(match[1]));
+                        } catch (e) {
+                            return normalizeLang(match[1]);
+                        }
+                    }
+
                     window.switchLang = function (lang) {
                         var targetLang = normalizeLang(lang);
                         if (SUPPORTED_LANGS.indexOf(targetLang) < 0) {
@@ -89,6 +102,9 @@
                         }
                         localStorage.setItem('preferredLang', targetLang);
                         var nextPath = withLocale(window.location.pathname, targetLang) + (window.location.search || '') + (window.location.hash || '');
+                        if (targetLang === 'en' && removeLocalePrefix(window.location.pathname || '/') === '/') {
+                            nextPath = '/?lang=en' + (window.location.hash || '');
+                        }
                         window.location.assign(nextPath);
                     };
 
@@ -100,9 +116,16 @@
                     }
 
                     if (currentPath === '/' || currentPath === '/index.html') {
+                        var explicitLang = getLangFromSearch(window.location.search || '');
+                        if (explicitLang === 'en') {
+                            localStorage.setItem('preferredLang', 'en');
+                            if (window.history && typeof window.history.replaceState === 'function') {
+                                window.history.replaceState(null, '', window.location.pathname + (window.location.hash || ''));
+                            }
+                        }
                         var preferred = normalizeLang(localStorage.getItem('preferredLang'));
                         var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-                        var targetLang = preferred || detectLang(browserLang);
+                        var targetLang = explicitLang || preferred || detectLang(browserLang);
                         var targetPath = withLocale('/', targetLang);
                         if (targetPath !== (window.location.pathname || '/')) {
                             window.location.replace(targetPath);
@@ -538,8 +561,8 @@
 <h2 id="8-未成年人隐私"><a href="#8-未成年人隐私" class="headerlink" title="8. 未成年人隐私"></a>8. 未成年人隐私</h2><p>本应用不面向法律意义上的儿童用户。</p>
 <h2 id="9-您的权利"><a href="#9-您的权利" class="headerlink" title="9. 您的权利"></a>9. 您的权利</h2><p>根据适用法律，您可能享有访问、更正、删除、限制处理等权利。</p>
 <h2 id="10-联系方式"><a href="#10-联系方式" class="headerlink" title="10. 联系方式"></a>10. 联系方式</h2><ul>
-<li>Privacy Contact: <a href="mailto:&#x70;&#114;&#x69;&#x76;&#97;&#99;&#121;&#64;&#x79;&#x6f;&#117;&#114;&#45;&#x64;&#111;&#109;&#x61;&#x69;&#x6e;&#x2e;&#101;&#120;&#97;&#x6d;&#112;&#108;&#101;">privacy@your-domain.example</a></li>
-<li>Support Contact: <a href="mailto:&#x73;&#117;&#112;&#x70;&#x6f;&#x72;&#116;&#64;&#x79;&#x6f;&#117;&#x72;&#x2d;&#x64;&#x6f;&#109;&#x61;&#105;&#x6e;&#x2e;&#x65;&#x78;&#97;&#109;&#x70;&#x6c;&#x65;">support@your-domain.example</a></li>
+<li>Privacy Contact: <a href="mailto:&#112;&#114;&#105;&#x76;&#x61;&#x63;&#121;&#x40;&#121;&#x6f;&#117;&#x72;&#x2d;&#100;&#111;&#x6d;&#97;&#x69;&#x6e;&#x2e;&#101;&#120;&#97;&#109;&#x70;&#x6c;&#x65;">privacy@your-domain.example</a></li>
+<li>Support Contact: <a href="mailto:&#115;&#117;&#x70;&#x70;&#111;&#114;&#x74;&#64;&#x79;&#x6f;&#x75;&#114;&#x2d;&#100;&#x6f;&#109;&#97;&#x69;&#110;&#x2e;&#101;&#120;&#97;&#x6d;&#112;&#108;&#101;">support@your-domain.example</a></li>
 </ul>
 <h2 id="11-政策更新"><a href="#11-政策更新" class="headerlink" title="11. 政策更新"></a>11. 政策更新</h2><p>本政策可能因产品、法律或运营变化而更新。</p>
 

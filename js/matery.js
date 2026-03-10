@@ -188,68 +188,6 @@ if (localStorage.getItem('isDark') === '1') {
     $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')
 }
 
-/**
- * Switch Language
- */
-function switchLang(lang) {
-    var pathname = window.location.pathname;
-    var hash = window.location.hash;
-
-    // Supported language prefixes
-    var prefixes = ['/ja/', '/zh-cn/', '/zh-tw/'];
-    var currentPrefix = '';
-
-    // Check if the current path starts with any of the language prefixes
-    for (var i = 0; i < prefixes.length; i++) {
-        if (pathname.indexOf(prefixes[i]) === 0) {
-            currentPrefix = prefixes[i];
-            break;
-        }
-    }
-
-    // Also check for exact matches without the trailing slash (e.g., /ja)
-    if (!currentPrefix) {
-        var exactLangs = ['/ja', '/zh-cn', '/zh-tw'];
-        for (var i = 0; i < exactLangs.length; i++) {
-            if (pathname === exactLangs[i]) {
-                currentPrefix = exactLangs[i];
-                break;
-            }
-        }
-    }
-
-    // Extract the base path by removing the language prefix
-    var basePath = pathname;
-    if (currentPrefix) {
-        // If it was an exact match like /ja, basePath becomes empty.
-        // If it was /ja/, basePath becomes empty as well.
-        // If it was /ja/encryption, basePath becomes encryption.
-        basePath = pathname.substring(currentPrefix.length);
-    }
-
-    // Ensure basePath starts with a slash or is just a slash
-    if (!basePath || basePath === '') {
-        basePath = '/';
-    } else if (basePath.charAt(0) !== '/') {
-        basePath = '/' + basePath;
-    }
-
-    var newUrl = '';
-    if (lang === 'en') {
-        // English is the root
-        newUrl = basePath;
-    } else {
-        // Other languages use the prefix
-        newUrl = '/' + lang + basePath;
-    }
-
-    // Final clean up: remove any resulting double slashes
-    newUrl = newUrl.replace(/\/+/g, '/');
-
-    // Update the location
-    window.location.href = newUrl + hash;
-}
-
 function switchNightMode() {
     document.body.classList.toggle('DarkMode');
     if (document.body.classList.contains('DarkMode')) {
