@@ -195,19 +195,31 @@ function switchLang(lang) {
     var url = window.location.pathname;
     var hash = window.location.hash;
 
-    // Remove current language prefix
-    var path = url.replace(/^\/(ja|zh-cn|zh-tw)\//i, '/');
-    if (path === '/ja' || path === '/zh-cn' || path === '/zh-tw') path = '/';
+    // Detect if we are in a sub-path (like /ja/ or /zh-cn/)
+    // This regex matches /ja/, /zh-cn/, /zh-tw/ at the start of the path
+    var langPattern = /^\/(ja|zh-cn|zh-tw)(\/|$)/i;
+    var path = url.replace(langPattern, '/');
 
     var newUrl = '/';
     if (lang === 'en') {
         newUrl = path;
     } else {
-        newUrl = '/' + lang + path;
+        newUrl = '/' + lang + '/' + path;
     }
 
-    // Clean up double slashes
+    // Clean up double slashes: replace // with /
     newUrl = newUrl.replace(/\/+/g, '/');
 
     window.location.href = newUrl + hash;
+}
+
+function switchNightMode() {
+    document.body.classList.toggle('DarkMode');
+    if (document.body.classList.contains('DarkMode')) {
+        localStorage.setItem('isDark', '1');
+        $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
+    } else {
+        localStorage.setItem('isDark', '0');
+        $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')
+    }
 }
