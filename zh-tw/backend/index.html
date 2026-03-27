@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Privacy Policy, app,introduction,privacy">
-    <meta name="description" content="Review how MiraiChat handles your data, ensures end-to-end encryption, and maintains our commitment to user privacy and security.">
+    <meta name="keywords" content="MiraiChat 後端自訂指南, app,introduction,privacy">
+    <meta name="description" content="MiraiChat website">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Privacy Policy | MiraiChat</title>
+    <title>MiraiChat 後端自訂指南 | MiraiChat</title>
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png">
@@ -440,12 +440,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/background/mirai-tech-1024.svg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Privacy Policy</h1>
+                    <h1 class="description center-align post-title">MiraiChat 後端自訂指南</h1>
                 </div>
             </div>
         </div>
@@ -469,18 +469,31 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Privacy/">
-                                <span class="chip bg-color">Privacy</span>
+                            <a href="/">
+                                <span class="chip bg-color"></span>
                             </a>
                         
-                            <a href="/tags/MiraiChat/">
-                                <span class="chip bg-color">MiraiChat</span>
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/" class="post-category">
+                                
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -489,7 +502,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2026-03-06
+                    2026-03-27
                 </div>
                 
 
@@ -510,13 +523,99 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>MiraiChat privacy policy page is available here:</p>
+                <h1 id="MiraiChat-後端自訂指南"><a href="#MiraiChat-後端自訂指南" class="headerlink" title="MiraiChat 後端自訂指南"></a>MiraiChat 後端自訂指南</h1><p><strong>Language &#x2F; 言語 &#x2F; 语言 &#x2F; 語言:</strong> <a href="/backend/">English</a> · <a href="/ja/backend/">日本語</a> · <a href="/zh-cn/backend/">简体中文</a> · <a href="/zh-tw/backend/">繁體中文</a></p>
+<p>這份指南面向有一定實作能力的使用者：會使用 Python、Docker，也能做基本伺服器設定，但不一定是專職後端工程師。</p>
+<p>MiraiChat 的後端就是為這種可逐步調整的使用情境而設計。</p>
+<h2 id="為什麼-MiraiChat-支援自訂後端"><a href="#為什麼-MiraiChat-支援自訂後端" class="headerlink" title="為什麼 MiraiChat 支援自訂後端"></a>為什麼 MiraiChat 支援自訂後端</h2><p>MiraiChat 以隱私優先為核心，但每位使用者的部署需求不同。</p>
 <ul>
-<li><a href="/privacy/">Open Privacy Policy</a></li>
-<li><a href="/ja/privacy/">日本語</a></li>
-<li><a href="/zh-cn/privacy/">简体中文</a></li>
-<li><a href="/zh-tw/privacy/">繁體中文</a></li>
+<li>有人希望資料完全由自己掌控</li>
+<li>有人需要依區域與網路條件調整策略</li>
+<li>有人想串接自家的自動化、審核或內部服務</li>
 </ul>
+<p>自訂後端的價值在於：在不改變整體 App 體驗的前提下，你可以自行決定</p>
+<ul>
+<li>資料儲存位置</li>
+<li>訊息路由方式</li>
+<li>安全與保存政策</li>
+<li>想新增的功能範圍</li>
+</ul>
+<h2 id="可以自訂哪些後端能力"><a href="#可以自訂哪些後端能力" class="headerlink" title="可以自訂哪些後端能力"></a>可以自訂哪些後端能力</h2><p>不需要一次改完整套系統，從單一模組開始即可。</p>
+<h3 id="1-訊息路由與投遞策略"><a href="#1-訊息路由與投遞策略" class="headerlink" title="1) 訊息路由與投遞策略"></a>1) 訊息路由與投遞策略</h3><p>可調整：</p>
+<ul>
+<li>線上投遞優先順序</li>
+<li>跨節點 fanout 行為</li>
+<li>離線佇列策略</li>
+<li>多裝置自同步規則</li>
+</ul>
+<p>效益：更容易平衡延遲、可靠度與多裝置體驗。</p>
+<h3 id="2-驗證與工作階段策略"><a href="#2-驗證與工作階段策略" class="headerlink" title="2) 驗證與工作階段策略"></a>2) 驗證與工作階段策略</h3><p>可調整：</p>
+<ul>
+<li>工作階段過期規則</li>
+<li>註冊模式（開放或註冊碼）</li>
+<li>管理端保護政策</li>
+<li>token 驗證嚴格度</li>
+</ul>
+<p>效益：可建立更嚴謹的私有部署，或更順暢的可信網路導入流程。</p>
+<h3 id="3-WebSocket-事件處理流程"><a href="#3-WebSocket-事件處理流程" class="headerlink" title="3) WebSocket 事件處理流程"></a>3) WebSocket 事件處理流程</h3><p>可調整：</p>
+<ul>
+<li>允許的事件型別</li>
+<li>事件驗證邏輯</li>
+<li>各事件的路由策略</li>
+<li>已讀&#x2F;刪除&#x2F;系統事件處理方式</li>
+</ul>
+<p>效益：可快速加入符合自家需求的新事件型別。</p>
+<h3 id="4-推播通知策略"><a href="#4-推播通知策略" class="headerlink" title="4) 推播通知策略"></a>4) 推播通知策略</h3><p>可調整：</p>
+<ul>
+<li>哪些訊息類型觸發推播</li>
+<li>同步&#x2F;非同步送出策略</li>
+<li>推播通道優先順序與回退路徑</li>
+<li>hub&#x2F;私服拓撲中的 relay 行為</li>
+</ul>
+<p>效益：在電量、網路成本與觸達率之間取得更合適的平衡。</p>
+<h3 id="5-儲存與保存策略"><a href="#5-儲存與保存策略" class="headerlink" title="5) 儲存與保存策略"></a>5) 儲存與保存策略</h3><p>可調整：</p>
+<ul>
+<li>使用者&#x2F;媒體容量上限</li>
+<li>檔案保存天數</li>
+<li>離線訊息保存策略</li>
+<li>清理排程規則</li>
+</ul>
+<p>效益：可從低保存隱私模式，擴展到較大型自託管歸檔。</p>
+<h3 id="6-基礎設施路徑（單機到多節點）"><a href="#6-基礎設施路徑（單機到多節點）" class="headerlink" title="6) 基礎設施路徑（單機到多節點）"></a>6) 基礎設施路徑（單機到多節點）</h3><p>可調整：</p>
+<ul>
+<li>以 SQLite 快速起步</li>
+<li>memory&#x2F;Redis 的 presence 與 fanout 切換</li>
+<li>後續擴充遷移路徑</li>
+</ul>
+<p>效益：先上線，再依需求擴充，維運成本更可控。</p>
+<h2 id="自建後端帶來的實際好處"><a href="#自建後端帶來的實際好處" class="headerlink" title="自建後端帶來的實際好處"></a>自建後端帶來的實際好處</h2><ul>
+<li>資料主權：伺服器、資料庫、保存規則由你決定</li>
+<li>在地化優化：依你的區域網路現實做調整</li>
+<li>迭代速度快：修改後可立即驗證</li>
+<li>整合自由：可接自家 API、身分系統、自動化與審核流程</li>
+<li>不被固定廠商綁定：模型與流程可持續演進</li>
+</ul>
+<h2 id="WebSocket-直連模式-vs-隧道模式"><a href="#WebSocket-直連模式-vs-隧道模式" class="headerlink" title="WebSocket 直連模式 vs 隧道模式"></a>WebSocket 直連模式 vs 隧道模式</h2><p>MiraiChat 同時支援兩種模式，因為實際網路環境差異很大。</p>
+<h3 id="直連模式-WS-CONNECTION-MODE-direct"><a href="#直連模式-WS-CONNECTION-MODE-direct" class="headerlink" title="直連模式 (WS_CONNECTION_MODE=direct)"></a>直連模式 (<code>WS_CONNECTION_MODE=direct</code>)</h3><p>適合情境：你可以提供穩定的公網入口。</p>
+<ul>
+<li>通常延遲更低</li>
+<li>路徑更短且可預期</li>
+<li>適合追求效能上限</li>
+</ul>
+<h3 id="隧道模式-WS-CONNECTION-MODE-tunnel"><a href="#隧道模式-WS-CONNECTION-MODE-tunnel" class="headerlink" title="隧道模式 (WS_CONNECTION_MODE=tunnel)"></a>隧道模式 (<code>WS_CONNECTION_MODE=tunnel</code>)</h3><p>適合情境：不方便直接暴露公網入站連線。</p>
+<ul>
+<li>適合嚴格 NAT 或家庭網路</li>
+<li>自託管遠端可達性通常更容易</li>
+<li>相較直連一般會增加少量延遲</li>
+</ul>
+<p>簡單建議：重視最低延遲用 direct，重視部署便利用 tunnel。</p>
+<h2 id="建議的第一步改造路徑"><a href="#建議的第一步改造路徑" class="headerlink" title="建議的第一步改造路徑"></a>建議的第一步改造路徑</h2><ol>
+<li>先以預設驗證&#x2F;工作階段策略跑通基線</li>
+<li>新增一個小型 endpoint 或一個 WS 事件</li>
+<li>只調整一項保存政策並觀察運行狀況</li>
+<li>當單節點出現瓶頸時再導入 Redis fanout</li>
+</ol>
+<h2 id="給實作者的一句話"><a href="#給實作者的一句話" class="headerlink" title="給實作者的一句話"></a>給實作者的一句話</h2><p>你不需要是後端專家，也能把 MiraiChat 後端調整成真正適合自己的樣子。</p>
+<p>從小改動開始，持續測試與迭代，就能很快看到成果。</p>
 
                 
             </div>
@@ -543,7 +642,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://cybest0608.github.io/2026/03/06/privacy-overview/">https://cybest0608.github.io/2026/03/06/privacy-overview/</a>
+                    <a href="https://cybest0608.github.io/zh-tw/backend/index.html">https://cybest0608.github.io/zh-tw/backend/index.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -581,12 +680,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Privacy/">
-                                    <span class="chip bg-color">Privacy</span>
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
                                 </a>
                             
-                                <a href="/tags/MiraiChat/">
-                                    <span class="chip bg-color">MiraiChat</span>
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
                                 </a>
                             
                         </div>
@@ -665,65 +768,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
-            <div class="card">
-                <a href="/2026/03/06/introduction-overview/">
-                    <div class="card-image">
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Introduction">
-                        
-                        <span class="card-title">Introduction</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Professional-grade private messaging for modern mobile and desktop environments. Learn about our core capabilities and secure architecture.
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            MiraiChat Team
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/MiraiChat/">
-                        <span class="chip bg-color">MiraiChat</span>
-                    </a>
-                    
-                    <a href="/tags/Introduction/">
-                        <span class="chip bg-color">Introduction</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2026/03/06/welcome/">
+                <a href="/zh-tw/backend/index.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/background/mirai-tech-1024.svg" class="responsive-img" alt="Welcome to MiraiChat">
+                        <img src="/medias/background/mirai-tech-1024.svg" class="responsive-img" alt="MiraiChat 後端自訂指南">
                         
-                        <span class="card-title">Welcome to MiraiChat</span>
+                        <span class="card-title">MiraiChat 後端自訂指南</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -734,25 +790,92 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-27
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            MiraiChat Team
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/" class="post-category">
+                                    
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MiraiChat/">
-                        <span class="chip bg-color">MiraiChat</span>
+                    <a href="/">
+                        <span class="chip bg-color"></span>
                     </a>
                     
-                    <a href="/tags/Welcome/">
-                        <span class="chip bg-color">Welcome</span>
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Current&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/zh-tw/backend/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/background/mirai-tech-1024.svg" class="responsive-img" alt="MiraiChat 後端自訂指南">
+                        
+                        <span class="card-title">MiraiChat 後端自訂指南</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/" class="post-category">
+                                    
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
                     </a>
                     
                 </div>
