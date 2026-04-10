@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Privacy Policy, app,introduction,privacy">
-    <meta name="description" content="Review how MiraiChat handles your data, ensures end-to-end encryption, and maintains our commitment to user privacy and security.">
+    <meta name="keywords" content="MiraiChat Security Audit Report (Professional Edition), app,introduction,privacy">
+    <meta name="description" content="MiraiChat website">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Privacy Policy | MiraiChat</title>
+    <title>MiraiChat Security Audit Report (Professional Edition) | MiraiChat</title>
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png">
@@ -440,12 +440,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Privacy Policy</h1>
+                    <h1 class="description center-align post-title">MiraiChat Security Audit Report (Professional Edition)</h1>
                 </div>
             </div>
         </div>
@@ -469,18 +469,31 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MiraiChat/">
-                                <span class="chip bg-color">MiraiChat</span>
+                            <a href="/">
+                                <span class="chip bg-color"></span>
                             </a>
                         
-                            <a href="/tags/Privacy/">
-                                <span class="chip bg-color">Privacy</span>
+                            <a href="/">
+                                <span class="chip bg-color"></span>
+                            </a>
+                        
+                            <a href="/">
+                                <span class="chip bg-color"></span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/" class="post-category">
+                                
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -489,7 +502,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2026-03-06
+                    2026-04-10
                 </div>
                 
 
@@ -510,13 +523,155 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>MiraiChat privacy policy page is available here:</p>
-<ul>
-<li><a href="/privacy/">Open Privacy Policy</a></li>
-<li><a href="/ja/privacy/">日本語</a></li>
-<li><a href="/zh-cn/privacy/">简体中文</a></li>
-<li><a href="/zh-tw/privacy/">繁體中文</a></li>
+                <h1 id="MiraiChat-Security-Audit-Report-Professional-Edition"><a href="#MiraiChat-Security-Audit-Report-Professional-Edition" class="headerlink" title="MiraiChat Security Audit Report (Professional Edition)"></a>MiraiChat Security Audit Report (Professional Edition)</h1><p><strong>Language &#x2F; 言語 &#x2F; 语言 &#x2F; 語言:</strong> <a href="/security-audit/">English</a> · <a href="/ja/security-audit/">日本語</a> · <a href="/zh-cn/security-audit/">简体中文</a> · <a href="/zh-tw/security-audit/">繁體中文</a></p>
+<p><strong>Date:</strong> 2026-04-10<br><strong>Assessment type:</strong> Read-only implementation audit (backend + client)<br><strong>Audience:</strong> Security engineers, technical product owners, infrastructure operators</p>
+<h2 id="1-Executive-Summary"><a href="#1-Executive-Summary" class="headerlink" title="1. Executive Summary"></a>1. Executive Summary</h2><p>MiraiChat implements a credible client-side encrypted messaging architecture with modern primitives (X25519, Ed25519, AES-GCM, HMAC-SHA256), secure mobile secret storage, certificate pinning logic, WebSocket ticketing, and per-message ephemeral authentication. The baseline posture is materially stronger than conventional plaintext chat systems and operationally suitable for privacy-sensitive consumer and SMB usage.</p>
+<p>However, MiraiChat is not a strict “zero server visibility” system in the strongest Signal-like sense across all paths. The backend still processes and stores meaningful metadata, stores session secrets server-side for validation, and supports push&#x2F;preview workflows that can expose limited human-readable context. Security outcomes also depend significantly on deployment choices (TLS termination, admin hardening, key management, and endpoint integrity).</p>
+<p><strong>Overall rating (implementation-level):</strong> Good practical privacy with bounded trust assumptions, not maximum-assurance secrecy under hostile-operator assumptions.</p>
+<h2 id="2-Scope-and-Method"><a href="#2-Scope-and-Method" class="headerlink" title="2. Scope and Method"></a>2. Scope and Method</h2><ul>
+<li>Reviewed current backend and client implementation behavior as present in the audited codebase.</li>
+<li>Performed architecture-to-implementation consistency checks for encryption, transport, auth&#x2F;session, storage, multi-device flows, and abuse surfaces.</li>
+<li>No code changes, no penetration testing, no dynamic exploit execution.</li>
 </ul>
+<h2 id="3-Threat-Model-Alignment"><a href="#3-Threat-Model-Alignment" class="headerlink" title="3. Threat Model Alignment"></a>3. Threat Model Alignment</h2><h3 id="3-1-Strongly-addressed-threats"><a href="#3-1-Strongly-addressed-threats" class="headerlink" title="3.1 Strongly addressed threats"></a>3.1 Strongly addressed threats</h3><ul>
+<li>Passive network interception&#x2F;MITM attempts (via HTTPS&#x2F;WSS + pinning controls + signed trust artifacts).</li>
+<li>Opportunistic message tampering in transit (AEAD integrity checks).</li>
+<li>Simple replay&#x2F;forgery of outbound messages (nonce&#x2F;timestamp&#x2F;HMAC ephemeral token checks).</li>
+<li>Exposure of private keys to server operators (private keys remain client-side).</li>
+</ul>
+<h3 id="3-2-Partially-addressed-threats"><a href="#3-2-Partially-addressed-threats" class="headerlink" title="3.2 Partially addressed threats"></a>3.2 Partially addressed threats</h3><ul>
+<li>Malicious&#x2F;curious server operator with metadata access.</li>
+<li>Notification-plane leakage (preview-oriented data and push context).</li>
+<li>Multi-device trust expansion (additional endpoint compromises increase blast radius).</li>
+</ul>
+<h3 id="3-3-Not-addressed-by-design-industry-standard-limitation"><a href="#3-3-Not-addressed-by-design-industry-standard-limitation" class="headerlink" title="3.3 Not addressed by design (industry-standard limitation)"></a>3.3 Not addressed by design (industry-standard limitation)</h3><ul>
+<li>Fully compromised endpoint&#x2F;OS, mobile malware, or hardware exfiltration.</li>
+<li>User-side weak authentication entropy beyond KDF slowing effects.</li>
+<li>Jurisdictional censorship&#x2F;availability controls (availability, not cipher break).</li>
+</ul>
+<h2 id="4-Cryptography-and-Key-Management"><a href="#4-Cryptography-and-Key-Management" class="headerlink" title="4. Cryptography and Key Management"></a>4. Cryptography and Key Management</h2><h3 id="4-1-Primitives-and-composition"><a href="#4-1-Primitives-and-composition" class="headerlink" title="4.1 Primitives and composition"></a>4.1 Primitives and composition</h3><ul>
+<li>Asymmetric agreement: <code>X25519</code></li>
+<li>Signatures: <code>Ed25519</code></li>
+<li>Symmetric encryption: <code>AES-GCM-256</code></li>
+<li>KDF and token derivations: <code>PBKDF2-HMAC-SHA256</code> + <code>HMAC-SHA256</code></li>
+</ul>
+<p>This is an industry-appropriate primitive set for modern secure messaging.</p>
+<h3 id="4-2-Identity-and-key-lifecycle-characteristics"><a href="#4-2-Identity-and-key-lifecycle-characteristics" class="headerlink" title="4.2 Identity and key lifecycle characteristics"></a>4.2 Identity and key lifecycle characteristics</h3><ul>
+<li>Client identity&#x2F;encryption key material is deterministically derived from username + PIN input via PBKDF2.</li>
+<li>Operational benefit: recoverable&#x2F;reproducible key identity under the same secret inputs.</li>
+<li>Security caveat: effective security floor still depends on PIN entropy; KDF only increases brute-force cost.</li>
+</ul>
+<h3 id="4-3-Message-protection-semantics"><a href="#4-3-Message-protection-semantics" class="headerlink" title="4.3 Message protection semantics"></a>4.3 Message protection semantics</h3><ul>
+<li>1:1 and group payload encryption occurs on client before transport&#x2F;routing.</li>
+<li>Ratchet&#x2F;state advancement logic exists for forward secrecy behavior in direct chat flows.</li>
+<li>Sealed-sender envelope path reduces server visibility of sender-side internals during routing.</li>
+</ul>
+<h2 id="5-Transport-and-Channel-Security"><a href="#5-Transport-and-Channel-Security" class="headerlink" title="5. Transport and Channel Security"></a>5. Transport and Channel Security</h2><h3 id="5-1-HTTPS-WSS-posture"><a href="#5-1-HTTPS-WSS-posture" class="headerlink" title="5.1 HTTPS&#x2F;WSS posture"></a>5.1 HTTPS&#x2F;WSS posture</h3><ul>
+<li>Normal operation is built around HTTPS for API and WSS for realtime channels.</li>
+<li>WS ticketing (short-lived) reduces exposure of long-lived session credentials in socket auth flows.</li>
+</ul>
+<h3 id="5-2-Certificate-trust-controls"><a href="#5-2-Certificate-trust-controls" class="headerlink" title="5.2 Certificate trust controls"></a>5.2 Certificate trust controls</h3><p>Mobile pinning path is implemented, including:</p>
+<ul>
+<li>official pin baselines,</li>
+<li>custom pin trust state,</li>
+<li>signed pin-list import,</li>
+<li>trust&#x2F;audit event tracking,</li>
+<li>key-rotation handling.</li>
+</ul>
+<h3 id="5-3-Operational-caveat"><a href="#5-3-Operational-caveat" class="headerlink" title="5.3 Operational caveat"></a>5.3 Operational caveat</h3><p>Effective transport assurances remain deployment-dependent:</p>
+<ul>
+<li>reverse proxy correctness,</li>
+<li>certificate lifecycle hygiene,</li>
+<li>secure defaults per environment,</li>
+<li>origin&#x2F;host policy compatibility.</li>
+</ul>
+<h2 id="6-Authentication-Session-and-Request-Integrity"><a href="#6-Authentication-Session-and-Request-Integrity" class="headerlink" title="6. Authentication, Session, and Request Integrity"></a>6. Authentication, Session, and Request Integrity</h2><h3 id="6-1-Authentication-model"><a href="#6-1-Authentication-model" class="headerlink" title="6.1 Authentication model"></a>6.1 Authentication model</h3><ul>
+<li>Password-verification backend model with bcrypt at rest.</li>
+<li>Session-secret issued at login and validated server-side.</li>
+</ul>
+<h3 id="6-2-Session-mechanics"><a href="#6-2-Session-mechanics" class="headerlink" title="6.2 Session mechanics"></a>6.2 Session mechanics</h3><ul>
+<li>Session records are maintained server-side (including device context).</li>
+<li>Session expiry and cleanup logic is present.</li>
+<li>WS ticket issuance and single-use validation harden websocket admission.</li>
+</ul>
+<h3 id="6-3-Per-message-anti-replay-authenticity"><a href="#6-3-Per-message-anti-replay-authenticity" class="headerlink" title="6.3 Per-message anti-replay&#x2F;authenticity"></a>6.3 Per-message anti-replay&#x2F;authenticity</h3><ul>
+<li>Outbound message paths include nonce + timestamp + HMAC token checks.</li>
+<li>Replay cache and timestamp windows are used to reduce replay viability.</li>
+</ul>
+<h3 id="6-4-Admin-surface-hardening"><a href="#6-4-Admin-surface-hardening" class="headerlink" title="6.4 Admin-surface hardening"></a>6.4 Admin-surface hardening</h3><ul>
+<li>Admin basic auth, optional TOTP, and optional IP allowlist controls exist.</li>
+<li>Destructive reset behavior is gated by explicit environment flag.</li>
+</ul>
+<h2 id="7-Server-Side-Data-Visibility-and-Storage-Reality"><a href="#7-Server-Side-Data-Visibility-and-Storage-Reality" class="headerlink" title="7. Server-Side Data Visibility and Storage Reality"></a>7. Server-Side Data Visibility and Storage Reality</h2><h3 id="7-1-What-is-stored"><a href="#7-1-What-is-stored" class="headerlink" title="7.1 What is stored"></a>7.1 What is stored</h3><ul>
+<li>Accounts: hashed credentials, identity&#x2F;public metadata.</li>
+<li>Sessions&#x2F;devices: session secrets, device IDs&#x2F;names, push tokens&#x2F;platforms.</li>
+<li>Message operations: offline queue payload objects, unread&#x2F;read state, delivery metadata.</li>
+<li>Files: uploaded binary objects plus metadata and tokenized download controls.</li>
+</ul>
+<h3 id="7-2-Confidentiality-boundary-important"><a href="#7-2-Confidentiality-boundary-important" class="headerlink" title="7.2 Confidentiality boundary (important)"></a>7.2 Confidentiality boundary (important)</h3><ul>
+<li>Main message bodies are encrypted client-side in normal encrypted paths.</li>
+<li>Server still sees substantial metadata needed for routing and state.</li>
+<li>Push&#x2F;preview features can expose limited content context (short text preview class), reducing strict confidentiality claims.</li>
+</ul>
+<h3 id="7-3-Operator-readability-conclusion"><a href="#7-3-Operator-readability-conclusion" class="headerlink" title="7.3 Operator-readability conclusion"></a>7.3 Operator-readability conclusion</h3><ul>
+<li>Full plaintext conversation reconstruction is not the default behavior.</li>
+<li>Partial context&#x2F;metadata visibility remains real and material.</li>
+<li>Therefore, MiraiChat should be modeled as <strong>metadata-visible E2EE</strong>, not metadata-minimized anonymous routing.</li>
+</ul>
+<h2 id="8-Multi-Device-Security-Evaluation"><a href="#8-Multi-Device-Security-Evaluation" class="headerlink" title="8. Multi-Device Security Evaluation"></a>8. Multi-Device Security Evaluation</h2><h3 id="8-1-Link-flow-posture"><a href="#8-1-Link-flow-posture" class="headerlink" title="8.1 Link flow posture"></a>8.1 Link flow posture</h3><ul>
+<li>Device-link exchange is encrypted end-to-end between devices using ephemeral key agreement.</li>
+<li>Main device authorization and local user interaction checks are present.</li>
+</ul>
+<h3 id="8-2-Risk-implications"><a href="#8-2-Risk-implications" class="headerlink" title="8.2 Risk implications"></a>8.2 Risk implications</h3><ul>
+<li>Linked-device onboarding transfers highly sensitive account material to bootstrap secondary device usability.</li>
+<li>This is operationally effective but raises endpoint trust requirements.</li>
+<li>Security guarantee remains as strong as the weakest linked endpoint.</li>
+</ul>
+<h3 id="8-3-Net-effect-on-E2EE-guarantees"><a href="#8-3-Net-effect-on-E2EE-guarantees" class="headerlink" title="8.3 Net effect on E2EE guarantees"></a>8.3 Net effect on E2EE guarantees</h3><ul>
+<li>Multi-device support does not inherently break E2EE transport semantics.</li>
+<li>It does enlarge the trusted endpoint perimeter and compromise surface.</li>
+</ul>
+<h2 id="9-Abuse-Misuse-and-Governance-Surface"><a href="#9-Abuse-Misuse-and-Governance-Surface" class="headerlink" title="9. Abuse, Misuse, and Governance Surface"></a>9. Abuse, Misuse, and Governance Surface</h2><ul>
+<li>User block&#x2F;report workflows and local block-list behavior are present.</li>
+<li>Strong centralized moderation&#x2F;governance controls are not a dominant architecture goal.</li>
+<li>Platform behavior aligns more with secure communication tooling than with heavily moderated social content platforms.</li>
+</ul>
+<h2 id="10-Comparative-Positioning-Conceptual"><a href="#10-Comparative-Positioning-Conceptual" class="headerlink" title="10. Comparative Positioning (Conceptual)"></a>10. Comparative Positioning (Conceptual)</h2><h3 id="Signal"><a href="#Signal" class="headerlink" title="Signal"></a>Signal</h3><p>Signal remains stronger in strict minimization posture and anti-operator confidentiality assumptions. MiraiChat is closer to practical privacy with greater operational flexibility (including self-hosting).</p>
+<h3 id="WhatsApp"><a href="#WhatsApp" class="headerlink" title="WhatsApp"></a>WhatsApp</h3><p>Similar high-level E2EE-at-content concept, but both retain meaningful metadata planes. MiraiChat differentiates by optional self-hosting control but shifts operator burden accordingly.</p>
+<h3 id="Telegram"><a href="#Telegram" class="headerlink" title="Telegram"></a>Telegram</h3><p>MiraiChat’s default encrypted chat path is stronger than Telegram cloud-chat defaults (where E2EE is not universal by default).</p>
+<h2 id="11-Residual-Risk-Register-Condensed"><a href="#11-Residual-Risk-Register-Condensed" class="headerlink" title="11. Residual Risk Register (Condensed)"></a>11. Residual Risk Register (Condensed)</h2><h3 id="High-relevance"><a href="#High-relevance" class="headerlink" title="High relevance"></a>High relevance</h3><ul>
+<li>Endpoint compromise (mobile malware &#x2F; rooted device &#x2F; local exfiltration).</li>
+<li>Weak user PIN entropy despite PBKDF2 work factor.</li>
+<li>Misconfigured TLS, pin trust workflows, or admin access controls in self-hosted deployments.</li>
+</ul>
+<h3 id="Medium-relevance"><a href="#Medium-relevance" class="headerlink" title="Medium relevance"></a>Medium relevance</h3><ul>
+<li>Metadata privacy leakage at routing and push layers.</li>
+<li>Multi-device trust sprawl without strict endpoint hygiene policies.</li>
+</ul>
+<h3 id="Lower-relevance-given-normal-assumptions"><a href="#Lower-relevance-given-normal-assumptions" class="headerlink" title="Lower relevance (given normal assumptions)"></a>Lower relevance (given normal assumptions)</h3><ul>
+<li>Primitive-level cryptographic weakness (no immediate primitive red flags observed).</li>
+</ul>
+<h2 id="12-Professional-Trust-Assessment"><a href="#12-Professional-Trust-Assessment" class="headerlink" title="12. Professional Trust Assessment"></a>12. Professional Trust Assessment</h2><p>A reasonably cautious organization or advanced user can trust MiraiChat for private communication where the threat model is:</p>
+<ul>
+<li>protection from passive interception and ordinary server-side plaintext handling,</li>
+<li>moderate resistance to replay&#x2F;tampering,</li>
+<li>controlled self-hosted or trusted-operator environment.</li>
+</ul>
+<p>MiraiChat is less suitable as-is for threat models requiring:</p>
+<ul>
+<li>near-zero metadata exposure,</li>
+<li>strict anti-operator confidentiality guarantees across all message-adjacent channels,</li>
+<li>high-assurance endpoint compromise resistance.</li>
+</ul>
+<h2 id="13-Deployment-and-Operations-Guidance-No-Feature-Speculation"><a href="#13-Deployment-and-Operations-Guidance-No-Feature-Speculation" class="headerlink" title="13. Deployment and Operations Guidance (No Feature Speculation)"></a>13. Deployment and Operations Guidance (No Feature Speculation)</h2><ul>
+<li>Treat endpoint hardening as first-order control (MDM, OS patching, jailbreak&#x2F;root detection policy, app-lock posture).</li>
+<li>Enforce strong admin controls (TOTP, strict allowlist, secret rotation discipline).</li>
+<li>Operate robust TLS lifecycle and monitor trust&#x2F;pin state transitions.</li>
+<li>Maintain retention minimization for offline queues&#x2F;files consistent with regulatory and threat requirements.</li>
+<li>Document user-facing expectation boundaries: encryption does not defeat compromised devices.</li>
+</ul>
+<h2 id="14-Final-Professional-Conclusion"><a href="#14-Final-Professional-Conclusion" class="headerlink" title="14. Final Professional Conclusion"></a>14. Final Professional Conclusion</h2><p>MiraiChat demonstrates a serious and technically grounded secure-messaging implementation with meaningful E2EE protections and modern trust controls. It is appropriate for many practical private-conversation use cases when deployed and operated carefully.</p>
+<p>The system should be positioned honestly as <strong>strong practical privacy with explicit operational and metadata caveats</strong>, rather than as absolute secrecy against all privileged infrastructure actors.</p>
 
                 
             </div>
@@ -543,7 +698,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://cybest0608.github.io/2026/03/06/privacy-overview/">https://cybest0608.github.io/2026/03/06/privacy-overview/</a>
+                    <a href="https://cybest0608.github.io/security-audit/index.html">https://cybest0608.github.io/security-audit/index.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -581,12 +736,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MiraiChat/">
-                                    <span class="chip bg-color">MiraiChat</span>
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
                                 </a>
                             
-                                <a href="/tags/Privacy/">
-                                    <span class="chip bg-color">Privacy</span>
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
+                                </a>
+                            
+                                <a href="/">
+                                    <span class="chip bg-color"></span>
                                 </a>
                             
                         </div>
@@ -665,65 +824,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
-            <div class="card">
-                <a href="/2026/03/06/introduction-overview/">
-                    <div class="card-image">
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Introduction">
-                        
-                        <span class="card-title">Introduction</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Professional-grade private messaging for modern mobile and desktop environments. Learn about our core capabilities and secure architecture.
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            MiraiChat Team
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/MiraiChat/">
-                        <span class="chip bg-color">MiraiChat</span>
-                    </a>
-                    
-                    <a href="/tags/Introduction/">
-                        <span class="chip bg-color">Introduction</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2026/03/06/welcome/">
+                <a href="/security-audit/index.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Welcome to MiraiChat">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="MiraiChat Security Audit Report (Professional Edition)">
                         
-                        <span class="card-title">Welcome to MiraiChat</span>
+                        <span class="card-title">MiraiChat Security Audit Report (Professional Edition)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -734,25 +846,92 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            MiraiChat Team
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/" class="post-category">
+                                    
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MiraiChat/">
-                        <span class="chip bg-color">MiraiChat</span>
+                    <a href="/">
+                        <span class="chip bg-color"></span>
                     </a>
                     
-                    <a href="/tags/Welcome/">
-                        <span class="chip bg-color">Welcome</span>
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Current&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/security-audit/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="MiraiChat Security Audit Report (Professional Edition)">
+                        
+                        <span class="card-title">MiraiChat Security Audit Report (Professional Edition)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/" class="post-category">
+                                    
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
+                    </a>
+                    
+                    <a href="/">
+                        <span class="chip bg-color"></span>
                     </a>
                     
                 </div>
