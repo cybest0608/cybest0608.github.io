@@ -58,15 +58,19 @@ $(function () {
     });
 
     /*初始化瀑布流布局*/
-    $('#articles').masonry({
-        itemSelector: '.article'
-    });
+    if (!document.body.classList.contains('mirai-home') && $.fn.masonry) {
+        $('#articles').masonry({
+            itemSelector: '.article'
+        });
+    }
 
-    AOS.init({
-        easing: 'ease-in-out-sine',
-        duration: 700,
-        delay: 100
-    });
+    if (window.AOS) {
+        AOS.init({
+            easing: 'ease-in-out-sine',
+            duration: 700,
+            delay: 100
+        });
+    }
 
     /*文章内容详情的一些初始化特性*/
     let articleInit = function () {
@@ -100,15 +104,17 @@ $(function () {
                 this.insertAdjacentElement('afterend', captionDiv)
             }
         });
-        $('#articleContent, #myGallery').lightGallery({
-            selector: '.img-item',
+        if ($.fn.lightGallery && $('#articleContent, #myGallery').length > 0) {
+            $('#articleContent, #myGallery').lightGallery({
+                selector: '.img-item',
             // 启用字幕
-            subHtmlSelectorRelative: true
-        });
+                subHtmlSelectorRelative: true
+            });
+        }
 
         // progress bar init
         const progressElement = window.document.querySelector('.progress-bar');
-        if (progressElement) {
+        if (progressElement && window.ScrollProgress) {
             new ScrollProgress((x, y) => {
                 progressElement.style.width = y * 100 + '%';
             });

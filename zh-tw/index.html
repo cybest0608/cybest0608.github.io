@@ -1,19 +1,20 @@
+
 <!DOCTYPE HTML>
-<html lang="en,ja,zh-CN,zh-TW,default">
+<html lang="zh-TW">
 
 
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Index, app,introduction,privacy">
-    <meta name="description" content="MiraiChat website">
+    <meta name="description" content="Secure, privacy-focused messaging for modern communication.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="theme-color" content="#0f9d58">
+    <meta name="theme-color" content="#07090c">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
@@ -24,116 +25,7 @@
         <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
         <link rel="manifest" href="/icons/site.webmanifest">
-        <script>
-            (function () {
-                try {
-                    var SUPPORTED_LANGS = ['en', 'ja', 'zh-cn', 'zh-tw'];
-
-                    function normalizeLang(rawLang) {
-                        var detected = (rawLang || '').toLowerCase();
-                        if (!detected) {
-                            return '';
-                        }
-                        if (detected.indexOf('ja') === 0) {
-                            return 'ja';
-                        }
-                        if (detected.indexOf('zh-tw') === 0 || detected.indexOf('zh-hant') === 0 || detected.indexOf('zh-hk') === 0 || detected.indexOf('zh-mo') === 0) {
-                            return 'zh-tw';
-                        }
-                        if (detected.indexOf('zh-cn') === 0 || detected.indexOf('zh-hans') === 0 || detected.indexOf('zh-sg') === 0 || detected.indexOf('zh') === 0) {
-                            return 'zh-cn';
-                        }
-                        if (detected.indexOf('en') === 0) {
-                            return 'en';
-                        }
-                        return 'en';
-                    }
-
-                    function detectLang(rawLang) {
-                        return normalizeLang(rawLang || 'en');
-                    }
-
-                    function normalizePath(pathname) {
-                        var normalized = (pathname || '/').replace(/\/+/g, '/');
-                        normalized = normalized.replace(/\/$/, '');
-                        return normalized || '/';
-                    }
-
-                    function getLocaleFromPath(pathname) {
-                        var match = normalizePath(pathname).match(/^\/(ja|zh-cn|zh-tw)(\/|$)/i);
-                        return match ? match[1].toLowerCase() : 'en';
-                    }
-
-                    function removeLocalePrefix(pathname) {
-                        var normalized = normalizePath(pathname);
-                        var withoutPrefix = normalized.replace(/^\/(ja|zh-cn|zh-tw)(?=\/|$)/i, '');
-                        return withoutPrefix || '/';
-                    }
-
-                    function withLocale(pathname, lang) {
-                        var targetLang = SUPPORTED_LANGS.indexOf(lang) >= 0 ? lang : 'en';
-                        var purePath = removeLocalePrefix(pathname);
-                        if (targetLang === 'en') {
-                            return purePath;
-                        }
-                        if (purePath === '/') {
-                            return '/' + targetLang + '/';
-                        }
-                        return '/' + targetLang + purePath;
-                    }
-
-                    function getLangFromSearch(search) {
-                        var query = search || '';
-                        var match = query.match(/[?&]lang=([^&]+)/i);
-                        if (!match || !match[1]) {
-                            return '';
-                        }
-                        try {
-                            return normalizeLang(decodeURIComponent(match[1]));
-                        } catch (e) {
-                            return normalizeLang(match[1]);
-                        }
-                    }
-
-                    window.switchLang = function (lang) {
-                        var targetLang = normalizeLang(lang);
-                        if (SUPPORTED_LANGS.indexOf(targetLang) < 0) {
-                            targetLang = 'en';
-                        }
-                        localStorage.setItem('preferredLang', targetLang);
-                        var nextPath = withLocale(window.location.pathname, targetLang) + (window.location.search || '') + (window.location.hash || '');
-                        if (targetLang === 'en' && removeLocalePrefix(window.location.pathname || '/') === '/') {
-                            nextPath = '/?lang=en' + (window.location.hash || '');
-                        }
-                        window.location.assign(nextPath);
-                    };
-
-                    var currentPath = normalizePath(window.location.pathname || '/');
-                    var localeFromPath = getLocaleFromPath(currentPath);
-                    var hasLocalePrefix = /^\/(ja|zh-cn|zh-tw)(\/|$)/i.test(currentPath);
-                    if (hasLocalePrefix) {
-                        localStorage.setItem('preferredLang', localeFromPath);
-                    }
-
-                    if (currentPath === '/' || currentPath === '/index.html') {
-                        var explicitLang = getLangFromSearch(window.location.search || '');
-                        if (explicitLang === 'en') {
-                            localStorage.setItem('preferredLang', 'en');
-                            if (window.history && typeof window.history.replaceState === 'function') {
-                                window.history.replaceState(null, '', window.location.pathname + (window.location.hash || ''));
-                            }
-                        }
-                        var preferred = normalizeLang(localStorage.getItem('preferredLang'));
-                        var browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-                        var targetLang = explicitLang || preferred || detectLang(browserLang);
-                        var targetPath = withLocale('/', targetLang);
-                        if (targetPath !== (window.location.pathname || '/')) {
-                            window.location.replace(targetPath);
-                        }
-                    }
-                } catch (e) {}
-            })();
-        </script>
+        <link rel="canonical" href="https://homepage.miraichat.net/zh-tw/">
     
     <style>
         body{
@@ -147,72 +39,16 @@
 
 
 
-    <!-- index cover -->
-    <!-- <link rel="stylesheet preload" type="text/css" href="/css/indexcover.css"> -->
-    <style>
-        .carousel-control {
-            width: 45px;
-            height: 45px;
-            line-height: 55px;
-            border-radius: 45px;
-            background: transparent;
-            cursor: pointer;
-            z-index: 100;
-        }
-        
-        #prev-cover {
-            position: absolute;
-            top: 48%;
-            left: 8px;
-        }
-        
-        #next-cover {
-            position: absolute;
-            top: 48%;
-            right: 8px;;
-        }
-        
-        #prev-cover i {
-            margin-right: 3px;
-        }
-        
-        #next-cover i {
-            margin-left: 3px;
-        }
-        
-        .carousel-control:hover {
-            background-color: rgba(0, 0, 0, .4);
-        }
-        
-        .carousel-control i {
-            color: #fff;
-            font-size: 2.4rem;
-        }
-    </style>
-
-
-
 <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
 <link rel="stylesheet" type="text/css" href="/css/my.css">
-<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+<link rel="stylesheet" type="text/css" href="/css/home.css">
 
 
 
-
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-    <link rel="stylesheet" href="/css/post.css">
-
-
-
-
-    
-        <link rel="stylesheet" type="text/css" href="/css/reward.css">
-    
 
 
 
@@ -221,28 +57,32 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 
-<body>
-    <header class="navbar-fixed">
-    <nav id="headNav" class="bg-color nav-transparent">
+<body class="mirai-home">
+    
+    <a class="mirai-skip-link" href="#main-content">跳至主要內容</a>
+    
+    
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent" aria-label="主導覽">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
-                <a href="/" class="waves-effect waves-light">
+                <a href="/zh-tw/" class="waves-effect waves-light">
                     
-                    <img src="/assets/icons/app-icon.png" class="logo-img" alt="LOGO">
+                    <img src="/assets/icons/app-icon.png" class="logo-img" alt="">
                     
                     <span class="logo-span">MiraiChat</span>
                 </a>
             </div>
             
 
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<a href="#mobile-nav" data-target="mobile-nav" class="sidenav-trigger button-collapse" aria-label="開啟導覽選單" aria-controls="mobile-nav"><i class="fas fa-bars" aria-hidden="true"></i></a>
 <ul class="right nav-menu">
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/" class="waves-effect waves-light">
+    <a href="/zh-tw/" class="waves-effect waves-light">
       
-      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      <i class="fas fa-home" style="zoom: 0.6;" aria-hidden="true"></i>
       
       <span>首頁</span>
     </a>
@@ -253,7 +93,7 @@
     
     <a href="/archives" class="waves-effect waves-light">
       
-      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      <i class="fas fa-archive" style="zoom: 0.6;" aria-hidden="true"></i>
       
       <span>歸檔</span>
     </a>
@@ -262,9 +102,9 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/privacy" class="waves-effect waves-light">
+    <a href="/zh-tw/privacy/" class="waves-effect waves-light">
       
-      <i class="fas fa-shield-alt" style="zoom: 0.6;"></i>
+      <i class="fas fa-shield-alt" style="zoom: 0.6;" aria-hidden="true"></i>
       
       <span>隱私政策</span>
     </a>
@@ -273,9 +113,9 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/introduction" class="waves-effect waves-light">
+    <a href="/zh-tw/introduction/" class="waves-effect waves-light">
       
-      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      <i class="fas fa-user-circle" style="zoom: 0.6;" aria-hidden="true"></i>
       
       <span>關於</span>
     </a>
@@ -284,9 +124,9 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/contact" class="waves-effect waves-light">
+    <a href="mailto:miraichat@hotmail.com" class="waves-effect waves-light">
       
-      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      <i class="fas fa-comments" style="zoom: 0.6;" aria-hidden="true"></i>
       
       <span>留言板</span>
     </a>
@@ -294,28 +134,19 @@
   </li>
   
   <li class="hide-on-med-and-down nav-item">
-    <a href="javascript:;" class="waves-effect waves-light">
-      <i class="fas fa-globe" style="zoom: 0.6;"></i>
+    <a href="#desktop-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="desktop-language-menu">
+      <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
       <span>語言</span>
       <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
     </a>
-    <ul class="sub-nav menus_item_child ">
-      <li><a href="javascript:;" onclick="switchLang('en')"><span>English</span></a></li>
-      <li><a href="javascript:;" onclick="switchLang('ja')"><span>日本語</span></a></li>
-      <li><a href="javascript:;" onclick="switchLang('zh-cn')"><span>简体中文</span></a></li>
-      <li><a href="javascript:;" onclick="switchLang('zh-tw')"><span>繁體中文</span></a></li>
+    <ul id="desktop-language-menu" class="sub-nav menus_item_child ">
+      <li><a href="/" lang="en"><span>English</span></a></li>
+      <li><a href="/ja/" lang="ja"><span>日本語</span></a></li>
+      <li><a href="/zh-cn/" lang="zh-CN"><span>简体中文</span></a></li>
+      <li><a href="/zh-tw/" lang="zh-TW" aria-current="page"><span>繁體中文</span></a></li>
     </ul>
   </li>
-  <li>
-    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
-    </a>
-  </li>
-  <li>
-    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
-      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
-    </a>
-  </li>
+  
 </ul>
 
 
@@ -323,12 +154,12 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/assets/icons/app-icon.png" class="logo-img circle responsive-img">
+        <img src="/assets/icons/app-icon.png" class="logo-img circle responsive-img" alt="">
         
         <div class="logo-name">MiraiChat</div>
         <div class="logo-desc">
             
-            MiraiChat website
+            Secure, privacy-focused messaging for modern communication.
             
         </div>
     </div>
@@ -337,9 +168,9 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/" class="waves-effect waves-light">
+		<a href="/zh-tw/" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-home"></i>
+			    <i class="fa-fw fas fa-home" aria-hidden="true"></i>
 			
 			首頁
 		</a>
@@ -350,7 +181,7 @@
 	  
 		<a href="/archives" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-archive"></i>
+			    <i class="fa-fw fas fa-archive" aria-hidden="true"></i>
 			
 			歸檔
 		</a>
@@ -359,9 +190,9 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/privacy" class="waves-effect waves-light">
+		<a href="/zh-tw/privacy/" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-shield-alt"></i>
+			    <i class="fa-fw fas fa-shield-alt" aria-hidden="true"></i>
 			
 			隱私政策
 		</a>
@@ -370,9 +201,9 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/introduction" class="waves-effect waves-light">
+		<a href="/zh-tw/introduction/" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-user-circle"></i>
+			    <i class="fa-fw fas fa-user-circle" aria-hidden="true"></i>
 			
 			關於
 		</a>
@@ -381,9 +212,9 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/contact" class="waves-effect waves-light">
+		<a href="mailto:miraichat@hotmail.com" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-comments"></i>
+			    <i class="fa-fw fas fa-comments" aria-hidden="true"></i>
 			
 			留言板
 		</a>
@@ -391,23 +222,16 @@
         </li>
         
         <li class="m-nav-item">
-          <a href="javascript:;" class="waves-effect waves-light">
-            <i class="fa-fw fas fa-globe"></i>
+          <a href="#mobile-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="mobile-language-menu">
+            <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
             語言
           </a>
-          <ul>
-            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('en')"><span>English</span></a></li>
-            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('ja')"><span>日本語</span></a></li>
-            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('zh-cn')"><span>简体中文</span></a></li>
-            <li><a href="javascript:;" style="margin-left:75px" onclick="switchLang('zh-tw')"><span>繁體中文</span></a></li>
+          <ul id="mobile-language-menu">
+            <li><a href="/" lang="en" style="margin-left:75px"><span>English</span></a></li>
+            <li><a href="/ja/" lang="ja" style="margin-left:75px"><span>日本語</span></a></li>
+            <li><a href="/zh-cn/" lang="zh-CN" style="margin-left:75px"><span>简体中文</span></a></li>
+            <li><a href="/zh-tw/" lang="zh-TW" style="margin-left:75px" aria-current="page"><span>繁體中文</span></a></li>
           </ul>
-        </li>
-        
-        <li><div class="divider"></div></li>
-        <li>
-            <a href="https://github.com/MiraichatTeam/MiraiChat_backend" class="waves-effect waves-light" target="_blank">
-                <i class="fab fa-github-square fa-fw"></i>Fork Me
-            </a>
         </li>
         
     </ul>
@@ -417,62 +241,6 @@
         </div>
 
         
-            <style>
-    .nav-transparent .github-corner {
-        display: none !important;
-    }
-
-    .github-corner {
-        position: absolute;
-        z-index: 10;
-        top: 0;
-        right: 0;
-        border: 0;
-        transform: scale(1.1);
-    }
-
-    .github-corner svg {
-        color: #000;
-        fill: #fff;
-        height: 64px;
-        width: 64px;
-    }
-
-    .github-corner:hover .octo-arm {
-        animation: a 0.56s ease-in-out;
-    }
-
-    .github-corner .octo-arm {
-        animation: none;
-    }
-
-    @keyframes a {
-        0%,
-        to {
-            transform: rotate(0);
-        }
-        20%,
-        60% {
-            transform: rotate(-25deg);
-        }
-        40%,
-        80% {
-            transform: rotate(10deg);
-        }
-    }
-</style>
-
-<a href="https://github.com/MiraichatTeam/MiraiChat_backend" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
-   data-tooltip="Fork Me" data-position="left" data-delay="50">
-    <svg viewBox="0 0 250 250" aria-hidden="true">
-        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-              fill="currentColor" class="octo-body"></path>
-    </svg>
-</a>
-        
     </nav>
 
 </header>
@@ -481,186 +249,72 @@
 
 
 
-<div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
-    
+<section class="mirai-home-hero" aria-labelledby="mirai-home-title">
+    <div class="container mirai-home-hero-inner">
+        
+        <img class="mirai-home-hero-mark" src="/assets/icons/app-icon.png" width="88" height="88" alt="">
+        
+        <p class="mirai-home-eyebrow">MiraiChat</p>
+        <h1 id="mirai-home-title">Mirai, Chat Freedomly</h1>
+        <p class="mirai-home-tagline">你值得擁有未來的聊天</p>
+        <p class="mirai-home-description">MiraiChat 是一款聊天應用，透過應用內購買與自願捐贈運作。</p>
 
-    <div class="carousel-item  white-text bg-cover about-cover">
+        <div class="mirai-home-actions">
+            <a href="#indexCard" class="btn mirai-home-action mirai-home-action-primary">
+                <i class="fa fa-angle-double-down" aria-hidden="true"></i>開始閱讀
+            </a>
+            
+            <a href="https://github.com/MiraichatTeam/MiraiChat_backend" class="btn mirai-home-action" target="_blank" rel="noreferrer">
+                <i class="fab fa-github-alt" aria-hidden="true"></i>Github
+            </a>
+            
+        </div>
+
+        <div class="mirai-home-social">
+    <a href="https://github.com/MiraichatTeam/MiraiChat_backend" class="tooltipped" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github" aria-hidden="true"></i>
+    </a>
+
+
+
+    <a href="mailto:miraichat@hotmail.com" class="tooltipped" aria-label="Email" data-tooltip="Email" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open" aria-hidden="true"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" aria-label="QQ" data-tooltip="QQ" data-position="top" data-delay="50">
+        <i class="fab fa-qq" aria-hidden="true"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</section>
+
+
+
+
+<main id="main-content" class="content mirai-home-main" tabindex="-1">
+    
+    <section id="indexCard" class="index-card mirai-home-feature" aria-label="夢想未來">
         <div class="container">
-            <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                Mirai, Chat Freedomly
-                
-            </div>
-
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "你值得拥有未来的聊天",
-                            
-                                "You deserve the chat of Mirai",
-                            
-                                "あなたはみらいのチャットを手にする価値がある",
-                            
-                                "你值得擁有未來的聊天",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-        var bannerUrl = "/medias/background/mirai-tech-1024.svg";
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-        $('.bg-cover.about-cover').css('background-image', 'url(' + bannerUrl + ')');
-</script>
-
-            
-            <div class="description center-align" style="max-width: 980px; margin: 12px auto 0;">
-                MiraiChat 是一款聊天應用，透過應用內購買與自願捐贈運作。
-            </div>
-
-            <div class="cover-btns">
-                <a href="#indexCard" class="waves-effect waves-light btn">
-                    <i class="fa fa-angle-double-down"></i>開始閱讀
-                </a>
-
-                
-                    <a href="https://github.com/MiraichatTeam/MiraiChat_backend" class="waves-effect waves-light btn" target="_blank">
-                        <i class="fab fa-github-alt"></i>Github
-                    </a>
-                
-            </div>
-            <div class="cover-social-link">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fab fa-github"></i>
-    </a>
-
-
-
-    <a href="mailto:miraichat@hotmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
-    </a>
-
-</div>
-        </div>
-    </div>
-
-    
-</div>
-
-<script>
-    $(function () {
-        let coverSlider = $('.carousel');
-
-        //用户触摸轮播自动 restartPlay 是否生效
-        let initUserPressedOrDraggedActive = false
-
-        //用户触摸轮播自动 restartPlay
-        function initUserPressedOrDragged(instance) {
-            setInterval(() => {
-                if (instance.pressed || instance.dragged) {
-                    // console.log('initUserPressedOrDragged: ',instance.pressed,instance.dragged)
-                    restartPlay()
-                }
-            }, 1000)
-        }
-
-        coverSlider.carousel({
-            duration: Number('120'),
-            fullWidth: true,
-            indicators: 'true' === 'true',
-            onCycleTo() {
-                if (!initUserPressedOrDraggedActive) {
-                    // console.log('initUserPressedOrDraggedActive')
-                    initUserPressedOrDragged(this)
-                    initUserPressedOrDraggedActive = true
-                }
-            },
-        })
-
-        let carouselIntervalId;
-        
-        // Loop to call the next cover article picture.
-        let autoCarousel = function () {
-            carouselIntervalId = setInterval(function () {
-                coverSlider.carousel('next');
-            }, 5000);
-        };
-        autoCarousel();
-        
-
-        function restartPlay() {
-            
-            clearInterval(carouselIntervalId);
-            autoCarousel();
-            
-        };
-
-        
-        // prev and next cover post.
-        $('#prev-cover').click(function () {
-            coverSlider.carousel('prev');
-            restartPlay();
-        });
-        $('#next-cover').click(function () {
-            coverSlider.carousel('next');
-            restartPlay();
-        });
-        
-    });
-</script>
-
-
-
-<main class="content">
-
-        
-    <div id="indexCard" class="index-card">
-        <div class="container ">
-            <div class="card">
+            <div class="card mirai-home-manifesto">
                 <div class="card-content">
                     
-                        <div class="dream">
+                    <div class="dream">
     
     <div class="title center-align">
-        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;夢想未來
+        <i class="far fa-lightbulb" aria-hidden="true"></i>&nbsp;&nbsp;夢想未來
     </div>
     
     <div class="row">
@@ -675,59 +329,45 @@
                     
 
                     
-
-                    
-                    <div id="recommend-sections" class="recommend">
-                        
-
-
-
-                    </div>
-                    
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     
 
     
 
-    <!-- 所有文章卡片 -->
-    
-    <article id="articles" class="container articles">
-        <div class="row article-row">
+    <section id="articles" class="container articles mirai-home-library" aria-labelledby="mirai-library-title">
+        <div class="mirai-home-section-heading">
+            <p>MiraiChat</p>
+            <h2 id="mirai-library-title">探索 MiraiChat</h2>
+        </div>
+
+        <div class="mirai-home-grid">
             
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
+            
+            <article class="article mirai-home-card">
                 <div class="card">
                     
-                    <a href="/zh-tw/backend/">
-                        <div class="card-image">
-                            
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="後端自訂概覽">
-                            
-                            <span class="card-title">後端自訂概覽</span>
-                        </div>
-                    </a>
 
                     <div class="card-content article-content">
+                        <span class="mirai-home-card-index">01</span>
+                        <h3 class="card-title"><a href="/zh-tw/backend/">後端自訂概覽</a></h3>
                         <div class="summary block-with-text">
                             
-                            
-                                了解 MiraiChat 為什麼支援自訂後端、可調整項目，以及如何在直連與隧道 WebSocket 模式之間選擇。
+                            了解 MiraiChat 為什麼支援自訂後端、可調整項目，以及如何在直連與隧道 WebSocket 模式之間選擇。
                             
                         </div>
+
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-27
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-27
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-bookmark fa-fw icon-category" aria-hidden="true"></i>
                                 
-                                <a href="/categories/Guides/" class="post-category">
-                                    Guides
-                                </a>
+                                <a href="/categories/Guides/" class="post-category">Guides</a>
                                 
                                 
                             </span>
@@ -737,52 +377,39 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Technical/">
-                            <span class="chip bg-color">Technical</span>
-                        </a>
+                        <a href="/tags/Technical/"><span class="chip bg-color">Technical</span></a>
                         
-                        <a href="/tags/Backend/">
-                            <span class="chip bg-color">Backend</span>
-                        </a>
+                        <a href="/tags/Backend/"><span class="chip bg-color">Backend</span></a>
                         
-                        <a href="/tags/MiraiChat/">
-                            <span class="chip bg-color">MiraiChat</span>
-                        </a>
+                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
                         
                     </div>
                     
                 </div>
-            </div>
-              <!-- 隐藏某个文章 -->
+            </article>
             
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
+            
+            
+            <article class="article mirai-home-card">
                 <div class="card">
                     
-                    <a href="/zh-tw/introduction/">
-                        <div class="card-image">
-                            
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="MiraiChat">
-                            
-                            <span class="card-title">MiraiChat</span>
-                        </div>
-                    </a>
 
                     <div class="card-content article-content">
+                        <span class="mirai-home-card-index">02</span>
+                        <h3 class="card-title"><a href="/zh-tw/encryption/">加密技術參考</a></h3>
                         <div class="summary block-with-text">
                             
-                            
-                                面向現代行動與桌面場景的專業級私密通訊平台。了解我們的核心能力與安全架構。
+                            MiraiChat 密碼學設計的詳細技術概述，包括 X25519、Ed25519 和 AES-GCM-256 的實現。
                             
                         </div>
+
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-user fa-fw"></i>
-                                MiraiChat Team
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
                                 
                             </span>
                         </div>
@@ -791,48 +418,39 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/MiraiChat/">
-                            <span class="chip bg-color">MiraiChat</span>
-                        </a>
+                        <a href="/tags/Technical/"><span class="chip bg-color">Technical</span></a>
                         
-                        <a href="/tags/Introduction/">
-                            <span class="chip bg-color">Introduction</span>
-                        </a>
+                        <a href="/tags/Security/"><span class="chip bg-color">Security</span></a>
+                        
+                        <a href="/tags/Encryption/"><span class="chip bg-color">Encryption</span></a>
                         
                     </div>
                     
                 </div>
-            </div>
-              <!-- 隐藏某个文章 -->
+            </article>
             
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
+            
+            
+            <article class="article mirai-home-card">
                 <div class="card">
                     
-                    <a href="/zh-tw/encryption/">
-                        <div class="card-image">
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="加密技術參考">
-                            
-                            <span class="card-title">加密技術參考</span>
-                        </div>
-                    </a>
 
                     <div class="card-content article-content">
+                        <span class="mirai-home-card-index">03</span>
+                        <h3 class="card-title"><a href="/zh-tw/privacy/">隱私政策</a></h3>
                         <div class="summary block-with-text">
                             
-                            
-                                MiraiChat 密碼學設計的詳細技術概述，包括 X25519、Ed25519 和 AES-GCM-256 的實現。
+                            了解 MiraiChat 如何處理您的數據、確保端到端加密，並履行我們對用戶隱私和安全的承諾。
                             
                         </div>
+
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-user fa-fw"></i>
-                                MiraiChat Team
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
                                 
                             </span>
                         </div>
@@ -841,52 +459,37 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Technical/">
-                            <span class="chip bg-color">Technical</span>
-                        </a>
+                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
                         
-                        <a href="/tags/Security/">
-                            <span class="chip bg-color">Security</span>
-                        </a>
-                        
-                        <a href="/tags/Encryption/">
-                            <span class="chip bg-color">Encryption</span>
-                        </a>
+                        <a href="/tags/Privacy/"><span class="chip bg-color">Privacy</span></a>
                         
                     </div>
                     
                 </div>
-            </div>
-              <!-- 隐藏某个文章 -->
+            </article>
             
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
+            
+            
+            <article class="article mirai-home-card">
                 <div class="card">
                     
-                    <a href="/zh-tw/privacy/">
-                        <div class="card-image">
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="隱私政策">
-                            
-                            <span class="card-title">隱私政策</span>
-                        </div>
-                    </a>
 
                     <div class="card-content article-content">
+                        <span class="mirai-home-card-index">04</span>
+                        <h3 class="card-title"><a href="/zh-tw/introduction/">MiraiChat</a></h3>
                         <div class="summary block-with-text">
                             
-                            
-                                了解 MiraiChat 如何處理您的數據、確保端到端加密，並履行我們對用戶隱私和安全的承諾。
+                            面向現代行動與桌面場景的專業級私密通訊平台。了解我們的核心能力與安全架構。
                             
                         </div>
+
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-user fa-fw"></i>
-                                MiraiChat Team
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
                                 
                             </span>
                         </div>
@@ -895,51 +498,119 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/MiraiChat/">
-                            <span class="chip bg-color">MiraiChat</span>
-                        </a>
+                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
                         
-                        <a href="/tags/Privacy/">
-                            <span class="chip bg-color">Privacy</span>
-                        </a>
+                        <a href="/tags/Introduction/"><span class="chip bg-color">Introduction</span></a>
                         
                     </div>
                     
                 </div>
-            </div>
-              <!-- 隐藏某个文章 -->
+            </article>
             
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
+            
+            
+            <article class="article mirai-home-card">
                 <div class="card">
                     
-                    <a href="/zh-tw/security-audit/">
-                        <div class="card-image">
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="安全稽核報告（專業版）">
-                            
-                            <span class="card-title">安全稽核報告（專業版）</span>
-                        </div>
-                    </a>
 
                     <div class="card-content article-content">
+                        <span class="mirai-home-card-index">05</span>
+                        <h3 class="card-title"><a href="/zh-tw/tokushoho/">特定商取引法下的法律聲明</a></h3>
                         <div class="summary block-with-text">
                             
-                            
-                                對 MiraiChat 安全架構的獨立唯讀實作稽核，涵蓋密碼學、傳輸、認證、工作階段管理與殘余風險。
+                            MiraiChat在日本特定商取引法下的法定披露信息，包括事業者、地址、聯絡方式和付款政策。
                             
                         </div>
+
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-09
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-04-21
                             </span>
                             <span class="publish-author">
                                 
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
                                 
-                                <a href="/categories/Guides/" class="post-category">
-                                    Guides
-                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Legal/"><span class="chip bg-color">Legal</span></a>
+                        
+                        <a href="/tags/Compliance/"><span class="chip bg-color">Compliance</span></a>
+                        
+                        <a href="/tags/Policy/"><span class="chip bg-color">Policy</span></a>
+                        
+                    </div>
+                    
+                </div>
+            </article>
+            
+            
+            
+            <article class="article mirai-home-card">
+                <div class="card">
+                    
+
+                    <div class="card-content article-content">
+                        <span class="mirai-home-card-index">06</span>
+                        <h3 class="card-title"><a href="/2026/03/06/welcome/">歡迎來到 MiraiChat</a></h3>
+                        <div class="summary block-with-text">
+                            
+                            歡迎來到 MiraiChat 社區。探索為現代通訊而設計的安全訊息傳遞平台。
+                            
+                        </div>
+
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
+                        
+                        <a href="/tags/Welcome/"><span class="chip bg-color">Welcome</span></a>
+                        
+                    </div>
+                    
+                </div>
+            </article>
+            
+            
+            
+            <article class="article mirai-home-card">
+                <div class="card">
+                    
+
+                    <div class="card-content article-content">
+                        <span class="mirai-home-card-index">07</span>
+                        <h3 class="card-title"><a href="/zh-tw/security-audit/">安全稽核報告（專業版）</a></h3>
+                        <div class="summary block-with-text">
+                            
+                            對 MiraiChat 安全架構的獨立唯讀實作稽核，涵蓋密碼學、傳輸、認證、工作階段管理與殘余風險。
+                            
+                        </div>
+
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-04-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category" aria-hidden="true"></i>
+                                
+                                <a href="/categories/Guides/" class="post-category">Guides</a>
                                 
                                 
                             </span>
@@ -949,133 +620,20 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Technical/">
-                            <span class="chip bg-color">Technical</span>
-                        </a>
+                        <a href="/tags/Technical/"><span class="chip bg-color">Technical</span></a>
                         
-                        <a href="/tags/MiraiChat/">
-                            <span class="chip bg-color">MiraiChat</span>
-                        </a>
+                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
                         
-                        <a href="/tags/Security/">
-                            <span class="chip bg-color">Security</span>
-                        </a>
+                        <a href="/tags/Security/"><span class="chip bg-color">Security</span></a>
                         
                     </div>
                     
                 </div>
-            </div>
-              <!-- 隐藏某个文章 -->
+            </article>
             
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    
-                    <a href="/zh-tw/welcome/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg?v=20260327" class="responsive-img" alt="歡迎來到 MiraiChat">
-                            
-                            <span class="card-title">歡迎來到 MiraiChat</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            
-                                歡迎來到 MiraiChat 社區。探索為現代通訊而設計的安全訊息傳遞平台。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                MiraiChat Team
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/MiraiChat/">
-                            <span class="chip bg-color">MiraiChat</span>
-                        </a>
-                        
-                        <a href="/tags/Welcome/">
-                            <span class="chip bg-color">Welcome</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-              <!-- 隐藏某个文章 -->
-            
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    
-                    <a href="/zh-tw/tokushoho/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg?v=20260327" class="responsive-img" alt="特定商取引法下的法律聲明">
-                            
-                            <span class="card-title">特定商取引法下的法律聲明</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            
-                                MiraiChat在日本特定商取引法下的法定披露信息，包括事業者、地址、聯絡方式和付款政策。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                MiraiChat Team
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Legal/">
-                            <span class="chip bg-color">Legal</span>
-                        </a>
-                        
-                        <a href="/tags/Compliance/">
-                            <span class="chip bg-color">Compliance</span>
-                        </a>
-                        
-                        <a href="/tags/Policy/">
-                            <span class="chip bg-color">Policy</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-              <!-- 隐藏某个文章 -->
             
         </div>
-    </article>
-
+    </section>
 </main>
 
 
@@ -1091,17 +649,14 @@
             
                 <span id="year">2019-2026</span>
             
-            <a href="/about" target="_blank">MiraiChat Team</a>
-            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/MiraichatTeam/MiraiChat_backend" target="_blank">Matery</a>
+            <a href="/about">MiraiChat Team</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank" rel="noreferrer">Hexo</a>
             |&nbsp;<a href="/ja/tokushoho">特定商取引法に基づく表記</a>
             |&nbsp;<a href="/privacy/">Privacy Policy</a>
             
             <br>
             
             
-            
-                
             
             
                 <span id="busuanzi_container_site_pv">
@@ -1122,25 +677,15 @@
             <br>
             
         </div>
-        <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
-        <i class="fab fa-github"></i>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/MiraichatTeam/MiraiChat_backend" class="tooltipped" target="_blank" rel="noreferrer" aria-label="GitHub" data-tooltip="GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github" aria-hidden="true"></i>
     </a>
 
 
 
-    <a href="mailto:miraichat@hotmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
+    <a href="mailto:miraichat@hotmail.com" class="tooltipped" aria-label="Email" data-tooltip="Email" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open" aria-hidden="true"></i>
     </a>
 
 
@@ -1149,9 +694,15 @@
 
 
 
-    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
-        <i class="fas fa-rss"></i>
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" aria-label="QQ" data-tooltip="QQ" data-position="top" data-delay="50">
+        <i class="fab fa-qq" aria-hidden="true"></i>
     </a>
+
+
+
+
+
+
 
 </div>
     </div>
@@ -1160,147 +711,17 @@
 <div class="progress-bar"></div>
 
 
-    <!-- 搜索遮罩框 -->
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
-                   class="search-input">
-        </div>
-        <div id="searchResult"></div>
-    </div>
-</div>
-
-<script type="text/javascript">
-$(function () {
-    var searchFunc = function (path, search_id, content_id) {
-        'use strict';
-        $.ajax({
-            url: path,
-            dataType: "xml",
-            success: function (xmlResponse) {
-                // get the contents from search data
-                var datas = $("entry", xmlResponse).map(function () {
-                    return {
-                        title: $("title", this).text(),
-                        content: $("content", this).text(),
-                        url: $("url", this).text()
-                    };
-                }).get();
-                var $input = document.getElementById(search_id);
-                var $resultContent = document.getElementById(content_id);
-                $input.addEventListener('input', function () {
-                    var str = '<ul class=\"search-result-list\">';
-                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
-                    if (this.value.trim().length <= 0) {
-                        return;
-                    }
-                    // perform local searching
-                    datas.forEach(function (data) {
-                        var isMatch = true;
-                        var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-                        var data_url = data.url;
-                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
-                        var index_title = -1;
-                        var index_content = -1;
-                        var first_occur = -1;
-                        // only match artiles with not empty titles and contents
-                        if (data_title !== '' && data_content !== '') {
-                            keywords.forEach(function (keyword, i) {
-                                index_title = data_title.indexOf(keyword);
-                                index_content = data_content.indexOf(keyword);
-                                if (index_title < 0 && index_content < 0) {
-                                    isMatch = false;
-                                } else {
-                                    if (index_content < 0) {
-                                        index_content = 0;
-                                    }
-                                    if (i === 0) {
-                                        first_occur = index_content;
-                                    }
-                                }
-                            });
-                        }
-                        // show search results
-                        if (isMatch) {
-                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
-                            var content = data.content.trim().replace(/<[^>]+>/g, "");
-                            if (first_occur >= 0) {
-                                // cut out 100 characters
-                                var start = first_occur - 20;
-                                var end = first_occur + 80;
-                                if (start < 0) {
-                                    start = 0;
-                                }
-                                if (start === 0) {
-                                    end = 100;
-                                }
-                                if (end > content.length) {
-                                    end = content.length;
-                                }
-                                var match_content = content.substr(start, end);
-                                // highlight all keywords
-                                keywords.forEach(function (keyword) {
-                                    var regS = new RegExp(keyword, "gi");
-                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
-                                });
-
-                                str += "<p class=\"search-result\">" + match_content + "...</p>"
-                            }
-                            str += "</li>";
-                        }
-                    });
-                    str += "</ul>";
-                    $resultContent.innerHTML = str;
-                });
-            }
-        });
-    };
-
-    searchFunc('/search.xml', 'searchInput', 'searchResult');
-});
-</script>
-
-    <!-- 白天和黑夜主题 -->
-<div class="stars-con">
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>  
-</div>
-
-<script>
-    function switchNightMode() {
-        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
-        setTimeout(function () {
-            $('body').hasClass('DarkMode') 
-            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
-            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
-            
-            setTimeout(function () {
-            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
-                $(this).remove()
-            })
-            }, 2e3)
-        })
-    }
-</script>
-
+    
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fas fa-arrow-up"></i>
+    <a class="btn-floating btn-large waves-effect waves-light" href="#" aria-label="返回頂端">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </a>
 </div>
 
 
     <script src="/libs/materialize/materialize.min.js"></script>
-    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="/libs/aos/aos.js"></script>
-    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    
     <script src="/js/matery.js"></script>
 
     
@@ -1315,35 +736,13 @@ $(function () {
     <!-- 鼠标星星特效 -->
     
 
-     
-        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-        <script src="/libs/others/TencentCaptcha.js"></script>
-        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
     
 
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
 
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
-
     
-    <script src="/libs/others/clicklove.js" async="async"></script>
-    
-    
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
     
 
     
@@ -1358,8 +757,6 @@ $(function () {
 
     
 
-    
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
 </body>

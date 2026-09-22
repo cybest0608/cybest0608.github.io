@@ -1,0 +1,630 @@
+/* Miraichat homepage system: Society-aligned geometry with a dark product skin. */
+body.mirai-home {
+    --mirai-bg: #07090c;
+    --mirai-surface: #101319;
+    --mirai-surface-raised: #151922;
+    --mirai-ink: #f7f7f4;
+    --mirai-muted: #a6acb8;
+    --mirai-line: rgba(255, 255, 255, 0.11);
+    --mirai-accent: #f5a000;
+    --mirai-accent-soft: rgba(245, 160, 0, 0.14);
+    --mirai-radius: 20px;
+    --mirai-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+    min-width: 0;
+    overflow-x: hidden;
+    color: var(--mirai-ink);
+    background-color: var(--mirai-bg) !important;
+    background-image:
+        radial-gradient(circle at 50% 17%, rgba(245, 160, 0, 0.08), transparent 27rem),
+        linear-gradient(rgba(7, 9, 12, 0.78), rgba(7, 9, 12, 0.94)),
+        url('/medias/background/mirai-tech-1024.svg') !important;
+    background-repeat: no-repeat, no-repeat, repeat-y !important;
+    background-size: auto, auto, 100% auto !important;
+    background-position: center top, center top, center top !important;
+    background-attachment: scroll !important;
+}
+
+body.mirai-home .container {
+    width: min(1160px, calc(100% - 40px));
+    max-width: none;
+}
+
+body.mirai-home a:focus-visible,
+body.mirai-home button:focus-visible,
+body.mirai-home [tabindex]:focus-visible {
+    outline: 3px solid var(--mirai-accent);
+    outline-offset: 4px;
+}
+
+.mirai-skip-link {
+    position: fixed;
+    z-index: 2000;
+    top: 12px;
+    left: 16px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--mirai-accent);
+    color: #17120a !important;
+    font-weight: 750;
+    transform: translateY(calc(-100% - 24px));
+    transition: transform 140ms ease;
+}
+
+.mirai-skip-link:focus {
+    transform: translateY(0);
+}
+
+body.mirai-home #main-content:focus {
+    outline: none;
+}
+
+/* Homepage header */
+body.mirai-home .navbar-fixed,
+body.mirai-home .navbar-fixed nav {
+    height: 72px;
+}
+
+body.mirai-home #headNav {
+    border-bottom: 1px solid var(--mirai-line);
+    background: rgba(7, 9, 12, 0.88) !important;
+    box-shadow: none;
+    backdrop-filter: blur(18px);
+}
+
+body.mirai-home #navContainer {
+    min-height: 72px;
+}
+
+body.mirai-home #headNav .brand-logo,
+body.mirai-home #headNav .brand-logo a,
+body.mirai-home #headNav .nav-menu > li > a {
+    height: 72px;
+    line-height: 72px;
+}
+
+body.mirai-home #headNav .brand-logo a {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--mirai-ink);
+    font-size: 1.2rem;
+    font-weight: 720;
+    letter-spacing: -0.025em;
+}
+
+body.mirai-home #headNav .logo-img {
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    border-radius: 10px;
+}
+
+body.mirai-home #headNav .nav-menu > li > a {
+    padding-inline: 12px;
+    color: #d8dbe2;
+    font-size: 0.84rem;
+}
+
+body.mirai-home #headNav .nav-menu > li > a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.mirai-home #headNav .sidenav-trigger {
+    width: 48px;
+    height: 48px;
+    margin-top: 12px;
+    color: var(--mirai-ink);
+    line-height: 48px;
+}
+
+body.mirai-home #headNav .nav-menu li:focus-within > .sub-nav {
+    display: block !important;
+}
+
+body.mirai-home #headNav .menus_item_child {
+    border: 1px solid var(--mirai-line);
+    background: rgba(16, 19, 25, 0.98);
+    box-shadow: var(--mirai-shadow);
+}
+
+body.mirai-home #headNav .menus_item_child::before {
+    border-bottom-color: rgba(16, 19, 25, 0.98);
+}
+
+body.mirai-home #headNav .nav-menu li .sub-nav li a {
+    color: var(--mirai-muted);
+}
+
+body.mirai-home #headNav .nav-menu li .sub-nav li a:hover,
+body.mirai-home #headNav .nav-menu li .sub-nav li a:focus-visible,
+body.mirai-home #headNav .nav-menu li .sub-nav li a[aria-current='page'] {
+    background: var(--mirai-accent-soft);
+    color: var(--mirai-ink);
+}
+
+/* Homepage hero */
+.mirai-home-hero {
+    position: relative;
+    isolation: isolate;
+    border-bottom: 1px solid var(--mirai-line);
+}
+
+.mirai-home-hero::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: '';
+    background:
+        radial-gradient(circle at 50% 38%, rgba(245, 160, 0, 0.11), transparent 20rem),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 70%);
+}
+
+.mirai-home-hero-inner {
+    max-width: 860px !important;
+    padding-block: 88px 76px;
+    text-align: center;
+}
+
+.mirai-home-hero-mark {
+    display: block;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto;
+    border-radius: 22px;
+    box-shadow: 0 20px 55px rgba(245, 160, 0, 0.2);
+}
+
+.mirai-home-eyebrow {
+    margin: 16px 0 0;
+    color: var(--mirai-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.mirai-home-hero h1 {
+    max-width: 800px;
+    margin: 18px auto 0;
+    color: var(--mirai-ink);
+    font-size: clamp(3rem, 6.2vw, 4.8rem);
+    font-weight: 750;
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+}
+
+.mirai-home-tagline {
+    margin: 28px auto 0;
+    color: #e8e9ed;
+    font-size: clamp(1.06rem, 2vw, 1.32rem);
+}
+
+.mirai-home-description {
+    max-width: 690px;
+    margin: 12px auto 0;
+    color: var(--mirai-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.mirai-home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.mirai-home-actions .mirai-home-action {
+    min-width: 142px;
+    height: 46px;
+    border: 1px solid var(--mirai-line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.035);
+    box-shadow: none;
+    color: var(--mirai-ink);
+    line-height: 44px;
+}
+
+.mirai-home-actions .mirai-home-action:hover {
+    border-color: rgba(245, 160, 0, 0.58);
+    background: var(--mirai-accent-soft);
+    box-shadow: none;
+}
+
+.mirai-home-actions .mirai-home-action-primary {
+    border-color: var(--mirai-accent);
+    background: var(--mirai-accent);
+    color: #17120a;
+}
+
+.mirai-home-actions .mirai-home-action i {
+    margin-right: 8px;
+}
+
+.mirai-home-social {
+    margin-top: 35px;
+}
+
+.mirai-home-social > a {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    margin: 0 2px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #c4c8d1 !important;
+    line-height: 44px;
+}
+
+.mirai-home-social > a:hover {
+    color: var(--mirai-accent) !important;
+    transform: none;
+}
+
+.mirai-home-social > a i {
+    color: inherit !important;
+}
+
+/* Main homepage rhythm */
+body.mirai-home main.content {
+    background: transparent !important;
+}
+
+body.mirai-home .mirai-home-feature {
+    margin: 0;
+    padding: 72px 0 22px;
+}
+
+body.mirai-home .mirai-home-feature .container {
+    margin-top: 0;
+}
+
+body.mirai-home .mirai-home-manifesto {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--mirai-line);
+    border-radius: var(--mirai-radius);
+    background:
+        linear-gradient(135deg, rgba(245, 160, 0, 0.12), transparent 42%),
+        rgba(16, 19, 25, 0.9) !important;
+    box-shadow: var(--mirai-shadow);
+}
+
+body.mirai-home .mirai-home-manifesto .card-content {
+    padding: 46px 38px 44px;
+    color: var(--mirai-ink) !important;
+}
+
+body.mirai-home .mirai-home-manifesto .dream {
+    margin: 0;
+}
+
+body.mirai-home .mirai-home-manifesto .dream .title {
+    margin-bottom: 18px;
+    color: var(--mirai-ink);
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+    font-weight: 720;
+    letter-spacing: -0.035em;
+}
+
+body.mirai-home .mirai-home-manifesto .dream .text {
+    max-width: 760px;
+    margin-inline: auto;
+    color: var(--mirai-muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+body.mirai-home .mirai-home-library {
+    padding-top: 58px;
+    padding-bottom: 100px;
+}
+
+.mirai-home-section-heading {
+    position: static !important;
+    z-index: auto;
+    display: block;
+    margin-bottom: 28px;
+    opacity: 1;
+}
+
+.mirai-home-section-heading p {
+    margin: 0 0 6px;
+    color: var(--mirai-accent) !important;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.mirai-home-section-heading h2 {
+    margin: 0;
+    color: var(--mirai-ink) !important;
+    font-size: clamp(1.9rem, 3vw, 2.45rem);
+    font-weight: 720;
+    letter-spacing: -0.045em;
+}
+
+.mirai-home-grid {
+    display: grid;
+    height: auto !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+body.mirai-home .mirai-home-card {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    min-width: 0;
+    transform: none !important;
+}
+
+body.mirai-home #articles .mirai-home-card .card {
+    display: flex;
+    min-height: 330px;
+    margin: 0;
+    overflow: hidden;
+    flex-direction: column;
+    border: 1px solid var(--mirai-line);
+    border-radius: var(--mirai-radius);
+    background: rgba(16, 19, 25, 0.86) !important;
+    box-shadow: none;
+    transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+body.mirai-home #articles .mirai-home-card:nth-child(3n + 1) .card {
+    background: linear-gradient(145deg, rgba(16, 19, 25, 0.96) 42%, rgba(245, 160, 0, 0.1)) !important;
+}
+
+body.mirai-home #articles .mirai-home-card:nth-child(3n + 2) .card {
+    background: linear-gradient(145deg, rgba(16, 19, 25, 0.96) 42%, rgba(115, 82, 170, 0.11)) !important;
+}
+
+body.mirai-home #articles .mirai-home-card .card:hover {
+    border-color: rgba(245, 160, 0, 0.38);
+    box-shadow: var(--mirai-shadow);
+    transform: translateY(-3px);
+}
+
+body.mirai-home #articles .mirai-home-card .card:focus-within {
+    border-color: rgba(245, 160, 0, 0.72);
+    box-shadow: var(--mirai-shadow);
+    transform: translateY(-3px);
+}
+
+body.mirai-home #articles .mirai-home-card .card-content {
+    display: flex;
+    min-width: 0;
+    padding: 28px 28px 18px;
+    flex: 1;
+    flex-direction: column;
+    color: var(--mirai-ink) !important;
+}
+
+.mirai-home-card-index {
+    color: var(--mirai-accent);
+    font: 750 0.78rem/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+body.mirai-home #articles .mirai-home-card .card-title {
+    margin: auto 0 13px;
+    padding-top: 52px;
+    color: var(--mirai-ink) !important;
+    font-size: 1.55rem;
+    font-weight: 720;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+body.mirai-home #articles .mirai-home-card .card-title a {
+    color: inherit !important;
+}
+
+body.mirai-home #articles .mirai-home-card .summary {
+    min-height: 4.8em;
+    margin: 0;
+    padding: 0;
+    color: var(--mirai-muted) !important;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+body.mirai-home #articles .mirai-home-card .summary::before,
+body.mirai-home #articles .mirai-home-card .summary::after {
+    content: none;
+}
+
+body.mirai-home #articles .mirai-home-card .publish-info {
+    display: flex;
+    min-width: 0;
+    margin-top: 22px;
+    justify-content: space-between;
+    gap: 10px;
+    color: #838a98 !important;
+    font-size: 0.75rem;
+}
+
+body.mirai-home #articles .mirai-home-card .publish-info a {
+    color: #aeb4bf !important;
+}
+
+body.mirai-home #articles .mirai-home-card .card-action {
+    min-height: 53px;
+    padding: 13px 28px;
+    border-top: 1px solid var(--mirai-line);
+    background: rgba(255, 255, 255, 0.018) !important;
+}
+
+body.mirai-home #articles .mirai-home-card .chip {
+    height: 26px;
+    margin-bottom: 0;
+    border: 1px solid var(--mirai-line);
+    background: transparent !important;
+    color: #b9bec8;
+    font-size: 0.7rem;
+    line-height: 24px;
+}
+
+/* Homepage footer */
+body.mirai-home footer.page-footer {
+    margin: 0;
+    padding-top: 0;
+    border-top: 1px solid var(--mirai-line);
+    background: #090b0f !important;
+}
+
+body.mirai-home footer.page-footer > .container {
+    display: grid;
+    min-height: 132px;
+    margin-bottom: 0 !important;
+    align-items: center;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 34px;
+    color: var(--mirai-muted);
+    text-align: left;
+}
+
+body.mirai-home footer.page-footer .copy-right,
+body.mirai-home footer.page-footer .social-link {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    float: none;
+    color: var(--mirai-muted);
+}
+
+body.mirai-home footer.page-footer .social-link {
+    text-align: right;
+}
+
+body.mirai-home footer.page-footer a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+    .mirai-home-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    body.mirai-home .container {
+        width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .mirai-home-hero-inner {
+        padding-block: 64px 58px;
+    }
+
+    .mirai-home-hero-mark {
+        width: 76px;
+        height: 76px;
+        border-radius: 19px;
+    }
+
+    .mirai-home-hero h1 {
+        width: 100%;
+        max-width: 100%;
+        font-size: clamp(2.45rem, 13vw, 3.2rem);
+        white-space: normal !important;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .mirai-home-tagline,
+    .mirai-home-description {
+        width: 100%;
+        max-width: 100%;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+    }
+
+    .mirai-home-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .mirai-home-actions .mirai-home-action {
+        width: 100%;
+    }
+
+    body.mirai-home .mirai-home-feature {
+        padding-top: 44px;
+    }
+
+    body.mirai-home .mirai-home-manifesto .card-content {
+        padding: 34px 22px;
+    }
+
+    body.mirai-home .mirai-home-library {
+        padding-top: 42px;
+        padding-bottom: 72px;
+    }
+
+    .mirai-home-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.mirai-home #articles .mirai-home-card .card {
+        min-height: 300px;
+    }
+
+    body.mirai-home #articles .mirai-home-card .card-title {
+        padding-top: 38px;
+    }
+
+    body.mirai-home #articles .mirai-home-card .publish-info {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    body.mirai-home footer.page-footer > .container {
+        min-height: 0;
+        padding-block: 38px;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.mirai-home footer.page-footer .social-link {
+        text-align: left;
+    }
+}
+
+@media (max-width: 420px) {
+    body.mirai-home #headNav .logo-span {
+        display: none;
+    }
+
+    body.mirai-home #headNav .brand-logo a {
+        gap: 0;
+    }
+}
+
+@media (prefers-contrast: more) {
+    body.mirai-home {
+        --mirai-line: rgba(255, 255, 255, 0.32);
+        --mirai-muted: #c7cbd3;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.mirai-home *,
+    body.mirai-home *::before,
+    body.mirai-home *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
