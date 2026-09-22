@@ -77,7 +77,9 @@ body.mirai-home #navContainer {
 
 body.mirai-home #headNav .brand-logo,
 body.mirai-home #headNav .brand-logo a,
-body.mirai-home #headNav .nav-menu > li > a {
+body.mirai-home #headNav .nav-menu > li > a,
+body.mirai-home #headNav .language-menu,
+body.mirai-home #headNav .language-menu > summary {
     height: 72px;
     line-height: 72px;
 }
@@ -99,13 +101,16 @@ body.mirai-home #headNav .logo-img {
     border-radius: 10px;
 }
 
-body.mirai-home #headNav .nav-menu > li > a {
+body.mirai-home #headNav .nav-menu > li > a,
+body.mirai-home #headNav .language-menu > summary {
     padding-inline: 12px;
     color: #d8dbe2;
     font-size: 0.84rem;
 }
 
-body.mirai-home #headNav .nav-menu > li > a:hover {
+body.mirai-home #headNav .nav-menu > li > a:hover,
+body.mirai-home #headNav .language-menu > summary:hover,
+body.mirai-home #headNav .language-menu[open] > summary {
     color: #fff;
     background: rgba(255, 255, 255, 0.05);
 }
@@ -116,10 +121,6 @@ body.mirai-home #headNav .sidenav-trigger {
     margin-top: 12px;
     color: var(--mirai-ink);
     line-height: 48px;
-}
-
-body.mirai-home #headNav .nav-menu li:focus-within > .sub-nav {
-    display: block !important;
 }
 
 body.mirai-home #headNav .menus_item_child {
@@ -305,7 +306,11 @@ body.mirai-home .mirai-home-manifesto .dream {
 }
 
 body.mirai-home .mirai-home-manifesto .dream .title {
+    display: flex;
+    width: 100%;
     margin-bottom: 18px;
+    align-items: center;
+    justify-content: center;
     color: var(--mirai-ink);
     font-size: clamp(1.65rem, 3vw, 2.25rem);
     font-weight: 720;
@@ -313,11 +318,21 @@ body.mirai-home .mirai-home-manifesto .dream .title {
 }
 
 body.mirai-home .mirai-home-manifesto .dream .text {
+    width: 100%;
     max-width: 760px;
-    margin-inline: auto;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    float: none;
     color: var(--mirai-muted);
     font-size: 1.05rem;
     line-height: 1.75;
+    text-align: center !important;
+}
+
+body.mirai-home .mirai-home-manifesto .dream-copy-row {
+    display: flex;
+    margin: 0;
+    justify-content: center;
 }
 
 body.mirai-home .mirai-home-library {
@@ -473,6 +488,126 @@ body.mirai-home #articles .mirai-home-card .chip {
     line-height: 24px;
 }
 
+/* Static download page */
+body.mirai-download .mirai-download-main {
+    display: grid;
+    min-height: calc(100vh - 72px - 132px);
+    margin: 0;
+    place-items: center;
+    background: transparent !important;
+}
+
+.mirai-download-panel {
+    width: 100%;
+    padding: 78px 0 88px;
+}
+
+body.mirai-download .mirai-download-inner {
+    max-width: 760px;
+    text-align: center;
+}
+
+.mirai-download-logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 28px;
+    box-shadow: 0 22px 64px rgba(245, 160, 0, 0.22);
+}
+
+.mirai-download-eyebrow {
+    margin: 20px 0 0;
+    color: var(--mirai-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.mirai-download-inner h1 {
+    margin: 16px 0 0;
+    color: var(--mirai-ink);
+    font-size: clamp(2.45rem, 6vw, 4.2rem);
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: -0.055em;
+}
+
+.mirai-download-description {
+    max-width: 600px;
+    margin: 20px auto 0;
+    color: var(--mirai-muted);
+    font-size: 1.04rem;
+    line-height: 1.7;
+}
+
+.mirai-download-actions {
+    display: grid;
+    width: 100%;
+    max-width: 620px;
+    margin: 42px auto 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.mirai-store-button {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 68px;
+    padding: 14px 20px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    border: 1px solid var(--mirai-line);
+    border-radius: 16px;
+    background: rgba(16, 19, 25, 0.9);
+    box-shadow: none;
+    color: var(--mirai-ink) !important;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+    box-sizing: border-box;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.mirai-store-button:hover,
+.mirai-store-button:focus-visible {
+    border-color: rgba(245, 160, 0, 0.62);
+    background: var(--mirai-accent-soft);
+    transform: translateY(-2px);
+}
+
+.mirai-store-button i {
+    width: 30px;
+    color: var(--mirai-accent);
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.mirai-store-button.is-coming-soon {
+    color: #c5cad3 !important;
+}
+
+.mirai-coming-soon {
+    min-height: 24px;
+    margin: 24px 0 0;
+    color: var(--mirai-accent);
+    font-weight: 700;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mirai-coming-soon:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mirai-coming-soon i {
+    margin-right: 8px;
+}
+
 /* Homepage footer */
 body.mirai-home footer.page-footer {
     margin: 0;
@@ -574,6 +709,20 @@ body.mirai-home footer.page-footer a {
     }
 
     .mirai-home-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mirai-download-panel {
+        padding: 56px 0 68px;
+    }
+
+    .mirai-download-logo {
+        width: 96px;
+        height: 96px;
+        border-radius: 23px;
+    }
+
+    .mirai-download-actions {
         grid-template-columns: minmax(0, 1fr);
     }
 

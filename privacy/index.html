@@ -147,18 +147,20 @@
     
   </li>
   
-  <li class="hide-on-med-and-down nav-item">
-    <a href="#desktop-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="desktop-language-menu">
-      <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
-      <span>Language</span>
-      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
-    </a>
-    <ul id="desktop-language-menu" class="sub-nav menus_item_child ">
-      <li><a href="/privacy/" lang="en" aria-current="page"><span>English</span></a></li>
-      <li><a href="/ja/privacy/" lang="ja"><span>日本語</span></a></li>
-      <li><a href="/zh-cn/privacy/" lang="zh-CN"><span>简体中文</span></a></li>
-      <li><a href="/zh-tw/privacy/" lang="zh-TW"><span>繁體中文</span></a></li>
-    </ul>
+  <li class="hide-on-med-and-down nav-item language-nav-item">
+    <details class="language-menu">
+      <summary class="waves-effect waves-light" aria-controls="desktop-language-menu">
+        <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
+        <span>Language</span>
+        <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true" style="zoom: 0.6;"></i>
+      </summary>
+      <ul id="desktop-language-menu" class="sub-nav menus_item_child">
+        <li><a href="/privacy/" lang="en" aria-current="page"><span>English</span></a></li>
+        <li><a href="/ja/privacy/" lang="ja"><span>日本語</span></a></li>
+        <li><a href="/zh-cn/privacy/" lang="zh-CN"><span>简体中文</span></a></li>
+        <li><a href="/zh-tw/privacy/" lang="zh-TW"><span>繁體中文</span></a></li>
+      </ul>
+    </details>
   </li>
   
   <li>
@@ -241,17 +243,20 @@
           
         </li>
         
-        <li class="m-nav-item">
-          <a href="#mobile-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="mobile-language-menu">
-            <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
-            Language
-          </a>
-          <ul id="mobile-language-menu">
+        <li class="m-nav-item mobile-language-nav-item">
+          <details class="mobile-language-menu">
+            <summary class="waves-effect waves-light" aria-controls="mobile-language-menu">
+              <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
+              Language
+              <span class="m-icon"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+            </summary>
+            <ul id="mobile-language-menu">
             <li><a href="/privacy/" lang="en" style="margin-left:75px" aria-current="page"><span>English</span></a></li>
             <li><a href="/ja/privacy/" lang="ja" style="margin-left:75px"><span>日本語</span></a></li>
             <li><a href="/zh-cn/privacy/" lang="zh-CN" style="margin-left:75px"><span>简体中文</span></a></li>
             <li><a href="/zh-tw/privacy/" lang="zh-TW" style="margin-left:75px"><span>繁體中文</span></a></li>
-          </ul>
+            </ul>
+          </details>
         </li>
         
     </ul>
@@ -368,8 +373,8 @@
 <h2 id="4-Data-Storage-and-Retention"><a href="#4-Data-Storage-and-Retention" class="headerlink" title="4. Data Storage and Retention"></a>4. Data Storage and Retention</h2><p>MiraiChat stores required data in secure device storage and app-local databases, and retention is tied to usage, local settings, and deletion workflows.</p>
 <h2 id="5-Data-Deletion"><a href="#5-Data-Deletion" class="headerlink" title="5. Data Deletion"></a>5. Data Deletion</h2><p>Deletion can be triggered via logout&#x2F;reset&#x2F;deregister flows and remote file deletion APIs where available.</p>
 <h2 id="6-Contact-Information"><a href="#6-Contact-Information" class="headerlink" title="6. Contact Information"></a>6. Contact Information</h2><ul>
-<li><strong>Privacy Contact:</strong> <a href="mailto:&#109;&#x69;&#x72;&#x61;&#x69;&#x63;&#104;&#x61;&#x74;&#x40;&#x68;&#111;&#x74;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">miraichat@hotmail.com</a></li>
-<li><strong>Support Contact:</strong> <a href="mailto:&#109;&#105;&#x72;&#97;&#105;&#99;&#x68;&#97;&#x74;&#64;&#x68;&#111;&#116;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">miraichat@hotmail.com</a></li>
+<li><strong>Privacy Contact:</strong> <a href="mailto:&#109;&#x69;&#x72;&#97;&#x69;&#x63;&#x68;&#x61;&#x74;&#x40;&#104;&#111;&#116;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">miraichat@hotmail.com</a></li>
+<li><strong>Support Contact:</strong> <a href="mailto:&#109;&#105;&#x72;&#97;&#105;&#99;&#104;&#97;&#x74;&#x40;&#x68;&#111;&#x74;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">miraichat@hotmail.com</a></li>
 </ul>
 <p>For the complete policy wording, use this page as the canonical source.</p>
 
@@ -456,7 +461,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="twitter,facebook,google,weibo,douban,linkedin"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -771,12 +776,6 @@ Effective Date: March 4, 2026Applicati
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" aria-label="QQ" data-tooltip="QQ" data-position="top" data-delay="50">
-        <i class="fab fa-qq" aria-hidden="true"></i>
-    </a>
-
-
-
 
 
 
@@ -856,8 +855,6 @@ Effective Date: March 4, 2026Applicati
 
     
 
-    <!--腾讯兔小巢-->
-    
     
 
     

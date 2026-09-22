@@ -2042,6 +2042,37 @@ p.search-result-summary{
     display: none;
 }
 
+.nav-menu .language-menu {
+    position: relative;
+    height: 64px;
+}
+
+.nav-menu .language-menu > summary {
+    height: 64px;
+    padding: 0 15px;
+    color: #fff;
+    cursor: pointer;
+    line-height: 64px;
+    list-style: none;
+    user-select: none;
+}
+
+.nav-menu .language-menu > summary::-webkit-details-marker {
+    display: none;
+}
+
+.nav-menu .language-menu[open] > .sub-nav {
+    display: block !important;
+}
+
+.nav-menu .language-menu-chevron {
+    transition: transform 160ms ease;
+}
+
+.nav-menu .language-menu[open] .language-menu-chevron {
+    transform: rotate(180deg);
+}
+
 .nav-menu li .sub-nav li {
     text-align: center;
     clear: left;
@@ -2106,6 +2137,31 @@ p.search-result-summary{
 
 .m-nav-item ul {
     display: none;
+}
+
+.m-nav-item .mobile-language-menu > summary {
+    position: relative;
+    display: block;
+    height: 48px;
+    padding: 0 32px;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 48px;
+    list-style: none;
+}
+
+.m-nav-item .mobile-language-menu > summary::-webkit-details-marker {
+    display: none;
+}
+
+.m-nav-item .mobile-language-menu[open] > ul {
+    display: block;
+}
+
+.m-nav-item .mobile-language-menu[open] .m-icon {
+    transform: rotate(90deg);
 }
 
 .m-nav-item ul li {

@@ -147,18 +147,20 @@
     
   </li>
   
-  <li class="hide-on-med-and-down nav-item">
-    <a href="#desktop-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="desktop-language-menu">
-      <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
-      <span>Language</span>
-      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
-    </a>
-    <ul id="desktop-language-menu" class="sub-nav menus_item_child ">
-      <li><a href="/" lang="en" aria-current="page"><span>English</span></a></li>
-      <li><a href="/ja/" lang="ja"><span>日本語</span></a></li>
-      <li><a href="/zh-cn/" lang="zh-CN"><span>简体中文</span></a></li>
-      <li><a href="/zh-tw/" lang="zh-TW"><span>繁體中文</span></a></li>
-    </ul>
+  <li class="hide-on-med-and-down nav-item language-nav-item">
+    <details class="language-menu">
+      <summary class="waves-effect waves-light" aria-controls="desktop-language-menu">
+        <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
+        <span>Language</span>
+        <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true" style="zoom: 0.6;"></i>
+      </summary>
+      <ul id="desktop-language-menu" class="sub-nav menus_item_child">
+        <li><a href="/" lang="en" aria-current="page"><span>English</span></a></li>
+        <li><a href="/ja/" lang="ja"><span>日本語</span></a></li>
+        <li><a href="/zh-cn/" lang="zh-CN"><span>简体中文</span></a></li>
+        <li><a href="/zh-tw/" lang="zh-TW"><span>繁體中文</span></a></li>
+      </ul>
+    </details>
   </li>
   
   <li>
@@ -241,17 +243,20 @@
           
         </li>
         
-        <li class="m-nav-item">
-          <a href="#mobile-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="mobile-language-menu">
-            <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
-            Language
-          </a>
-          <ul id="mobile-language-menu">
+        <li class="m-nav-item mobile-language-nav-item">
+          <details class="mobile-language-menu">
+            <summary class="waves-effect waves-light" aria-controls="mobile-language-menu">
+              <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
+              Language
+              <span class="m-icon"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+            </summary>
+            <ul id="mobile-language-menu">
             <li><a href="/" lang="en" style="margin-left:75px" aria-current="page"><span>English</span></a></li>
             <li><a href="/ja/" lang="ja" style="margin-left:75px"><span>日本語</span></a></li>
             <li><a href="/zh-cn/" lang="zh-CN" style="margin-left:75px"><span>简体中文</span></a></li>
             <li><a href="/zh-tw/" lang="zh-TW" style="margin-left:75px"><span>繁體中文</span></a></li>
-          </ul>
+            </ul>
+          </details>
         </li>
         
     </ul>
@@ -894,12 +899,6 @@
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" aria-label="QQ" data-tooltip="QQ" data-position="top" data-delay="50">
-        <i class="fab fa-qq" aria-hidden="true"></i>
-    </a>
-
-
-
 
 
 
@@ -979,8 +978,6 @@
 
     
 
-    <!--腾讯兔小巢-->
-    
     
 
     

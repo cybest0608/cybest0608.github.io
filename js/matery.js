@@ -153,7 +153,7 @@ $(function () {
     }
 
     	
-	$(".nav-menu>li").hover(function(){
+	$(".nav-menu>li:not(.language-nav-item)").hover(function(){
 		$(this).children('ul').stop(true,true).show();
 		 $(this).addClass('nav-show').siblings('li').removeClass('nav-show');
 		

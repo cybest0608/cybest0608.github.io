@@ -147,18 +147,20 @@
     
   </li>
   
-  <li class="hide-on-med-and-down nav-item">
-    <a href="#desktop-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="desktop-language-menu">
-      <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
-      <span>Language</span>
-      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
-    </a>
-    <ul id="desktop-language-menu" class="sub-nav menus_item_child ">
-      <li><a href="/privacy/" lang="en" aria-current="page"><span>English</span></a></li>
-      <li><a href="/ja/privacy/" lang="ja"><span>日本語</span></a></li>
-      <li><a href="/zh-cn/privacy/" lang="zh-CN"><span>简体中文</span></a></li>
-      <li><a href="/zh-tw/privacy/" lang="zh-TW"><span>繁體中文</span></a></li>
-    </ul>
+  <li class="hide-on-med-and-down nav-item language-nav-item">
+    <details class="language-menu">
+      <summary class="waves-effect waves-light" aria-controls="desktop-language-menu">
+        <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
+        <span>Language</span>
+        <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true" style="zoom: 0.6;"></i>
+      </summary>
+      <ul id="desktop-language-menu" class="sub-nav menus_item_child">
+        <li><a href="/privacy/" lang="en" aria-current="page"><span>English</span></a></li>
+        <li><a href="/ja/privacy/" lang="ja"><span>日本語</span></a></li>
+        <li><a href="/zh-cn/privacy/" lang="zh-CN"><span>简体中文</span></a></li>
+        <li><a href="/zh-tw/privacy/" lang="zh-TW"><span>繁體中文</span></a></li>
+      </ul>
+    </details>
   </li>
   
   <li>
@@ -241,17 +243,20 @@
           
         </li>
         
-        <li class="m-nav-item">
-          <a href="#mobile-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="mobile-language-menu">
-            <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
-            Language
-          </a>
-          <ul id="mobile-language-menu">
+        <li class="m-nav-item mobile-language-nav-item">
+          <details class="mobile-language-menu">
+            <summary class="waves-effect waves-light" aria-controls="mobile-language-menu">
+              <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
+              Language
+              <span class="m-icon"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+            </summary>
+            <ul id="mobile-language-menu">
             <li><a href="/privacy/" lang="en" style="margin-left:75px" aria-current="page"><span>English</span></a></li>
             <li><a href="/ja/privacy/" lang="ja" style="margin-left:75px"><span>日本語</span></a></li>
             <li><a href="/zh-cn/privacy/" lang="zh-CN" style="margin-left:75px"><span>简体中文</span></a></li>
             <li><a href="/zh-tw/privacy/" lang="zh-TW" style="margin-left:75px"><span>繁體中文</span></a></li>
-          </ul>
+            </ul>
+          </details>
         </li>
         
     </ul>
@@ -390,8 +395,8 @@
 <h2 id="8-兒少隱私"><a href="#8-兒少隱私" class="headerlink" title="8. 兒少隱私"></a>8. 兒少隱私</h2><p>本應用並非以法律定義之兒童為主要對象。</p>
 <h2 id="9-您的權利"><a href="#9-您的權利" class="headerlink" title="9. 您的權利"></a>9. 您的權利</h2><p>依適用法規，您可能享有查詢、更正、刪除、限制處理等權利。</p>
 <h2 id="10-聯絡方式"><a href="#10-聯絡方式" class="headerlink" title="10. 聯絡方式"></a>10. 聯絡方式</h2><ul>
-<li>Privacy Contact: <a href="mailto:&#x6d;&#x69;&#x72;&#x61;&#105;&#99;&#104;&#x61;&#x74;&#x40;&#x68;&#111;&#116;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">miraichat@hotmail.com</a></li>
-<li>Support Contact: <a href="mailto:&#109;&#x69;&#114;&#97;&#x69;&#x63;&#x68;&#x61;&#116;&#x40;&#x68;&#x6f;&#116;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">miraichat@hotmail.com</a></li>
+<li>Privacy Contact: <a href="mailto:&#x6d;&#105;&#x72;&#x61;&#105;&#99;&#x68;&#x61;&#116;&#64;&#x68;&#x6f;&#x74;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">miraichat@hotmail.com</a></li>
+<li>Support Contact: <a href="mailto:&#109;&#x69;&#x72;&#x61;&#105;&#99;&#x68;&#97;&#x74;&#x40;&#x68;&#x6f;&#x74;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">miraichat@hotmail.com</a></li>
 </ul>
 <h2 id="11-政策更新"><a href="#11-政策更新" class="headerlink" title="11. 政策更新"></a>11. 政策更新</h2><p>本政策可能因產品、法規或營運調整而更新。</p>
 
@@ -466,7 +471,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="twitter,facebook,google,weibo,douban,linkedin"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -747,12 +752,6 @@
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" aria-label="QQ" data-tooltip="QQ" data-position="top" data-delay="50">
-        <i class="fab fa-qq" aria-hidden="true"></i>
-    </a>
-
-
-
 
 
 
@@ -832,8 +831,6 @@
 
     
 
-    <!--腾讯兔小巢-->
-    
     
 
     

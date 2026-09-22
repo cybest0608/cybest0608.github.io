@@ -147,18 +147,20 @@
     
   </li>
   
-  <li class="hide-on-med-and-down nav-item">
-    <a href="#desktop-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="desktop-language-menu">
-      <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
-      <span>言語</span>
-      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
-    </a>
-    <ul id="desktop-language-menu" class="sub-nav menus_item_child ">
-      <li><a href="/tokushoho/" lang="en"><span>English</span></a></li>
-      <li><a href="/ja/tokushoho/" lang="ja" aria-current="page"><span>日本語</span></a></li>
-      <li><a href="/zh-cn/tokushoho/" lang="zh-CN"><span>简体中文</span></a></li>
-      <li><a href="/zh-tw/tokushoho/" lang="zh-TW"><span>繁體中文</span></a></li>
-    </ul>
+  <li class="hide-on-med-and-down nav-item language-nav-item">
+    <details class="language-menu">
+      <summary class="waves-effect waves-light" aria-controls="desktop-language-menu">
+        <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
+        <span>言語</span>
+        <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true" style="zoom: 0.6;"></i>
+      </summary>
+      <ul id="desktop-language-menu" class="sub-nav menus_item_child">
+        <li><a href="/tokushoho/" lang="en"><span>English</span></a></li>
+        <li><a href="/ja/tokushoho/" lang="ja" aria-current="page"><span>日本語</span></a></li>
+        <li><a href="/zh-cn/tokushoho/" lang="zh-CN"><span>简体中文</span></a></li>
+        <li><a href="/zh-tw/tokushoho/" lang="zh-TW"><span>繁體中文</span></a></li>
+      </ul>
+    </details>
   </li>
   
   <li>
@@ -241,17 +243,20 @@
           
         </li>
         
-        <li class="m-nav-item">
-          <a href="#mobile-language-menu" class="waves-effect waves-light" aria-haspopup="true" aria-controls="mobile-language-menu">
-            <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
-            言語
-          </a>
-          <ul id="mobile-language-menu">
+        <li class="m-nav-item mobile-language-nav-item">
+          <details class="mobile-language-menu">
+            <summary class="waves-effect waves-light" aria-controls="mobile-language-menu">
+              <i class="fa-fw fas fa-globe" aria-hidden="true"></i>
+              言語
+              <span class="m-icon"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+            </summary>
+            <ul id="mobile-language-menu">
             <li><a href="/tokushoho/" lang="en" style="margin-left:75px"><span>English</span></a></li>
             <li><a href="/ja/tokushoho/" lang="ja" style="margin-left:75px" aria-current="page"><span>日本語</span></a></li>
             <li><a href="/zh-cn/tokushoho/" lang="zh-CN" style="margin-left:75px"><span>简体中文</span></a></li>
             <li><a href="/zh-tw/tokushoho/" lang="zh-TW" style="margin-left:75px"><span>繁體中文</span></a></li>
-          </ul>
+            </ul>
+          </details>
         </li>
         
     </ul>
@@ -338,7 +343,7 @@
 <h2 id="1-事業者名"><a href="#1-事業者名" class="headerlink" title="1. 事業者名"></a>1. 事業者名</h2><p>Liu Yan（屋号：MiraiChat Team）</p>
 <h2 id="2-所在地"><a href="#2-所在地" class="headerlink" title="2. 所在地"></a>2. 所在地</h2><p>大阪府茨木市南春日丘 3-8-25 ヒルズ春日丘 202号室</p>
 <h2 id="3-連絡先"><a href="#3-連絡先" class="headerlink" title="3. 連絡先"></a>3. 連絡先</h2><ul>
-<li>サポートメール: <a href="mailto:&#x6d;&#105;&#114;&#97;&#x69;&#99;&#104;&#x61;&#x74;&#64;&#104;&#x6f;&#x74;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">miraichat@hotmail.com</a></li>
+<li>サポートメール: <a href="mailto:&#x6d;&#105;&#x72;&#x61;&#x69;&#99;&#104;&#x61;&#x74;&#64;&#104;&#x6f;&#x74;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">miraichat@hotmail.com</a></li>
 <li>電話でのサポートは行っていません。</li>
 </ul>
 <h2 id="4-運営責任者"><a href="#4-運営責任者" class="headerlink" title="4. 運営責任者"></a>4. 運営責任者</h2><p>Liu Yan</p>
@@ -430,7 +435,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="twitter,facebook,google,weibo,douban,linkedin"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -711,12 +716,6 @@
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" aria-label="QQ" data-tooltip="QQ" data-position="top" data-delay="50">
-        <i class="fab fa-qq" aria-hidden="true"></i>
-    </a>
-
-
-
 
 
 
@@ -796,8 +795,6 @@
 
     
 
-    <!--腾讯兔小巢-->
-    
     
 
     
