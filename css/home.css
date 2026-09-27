@@ -115,9 +115,10 @@ body.mirai-home #headNav .language-menu-toggle {
 
 body.mirai-home #headNav .nav-menu > li > a:hover,
 body.mirai-home #headNav .language-menu-toggle:hover,
-body.mirai-home #headNav .language-nav-item.is-open > .language-menu-toggle {
+body.mirai-home #headNav .desktop-language-menu[open] > .language-menu-toggle {
     color: #fff;
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
 body.mirai-home #headNav .sidenav-trigger {
@@ -143,10 +144,15 @@ body.mirai-home #headNav .nav-menu li .sub-nav li a {
 }
 
 body.mirai-home #headNav .nav-menu li .sub-nav li a:hover,
-body.mirai-home #headNav .nav-menu li .sub-nav li a:focus-visible,
-body.mirai-home #headNav .nav-menu li .sub-nav li a[aria-current='page'] {
+body.mirai-home #headNav .nav-menu li .sub-nav li a:focus-visible {
     background: var(--mirai-accent-soft);
     color: var(--mirai-ink);
+}
+
+body.mirai-home #headNav .nav-menu li .sub-nav li a[aria-current='page'] {
+    background: transparent;
+    color: var(--mirai-accent);
+    font-weight: 750;
 }
 
 /* Homepage hero */
@@ -1095,5 +1101,159 @@ body.mirai-home footer.page-footer a {
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
         transition: none !important;
+    }
+}
+
+/* Team page mirrors the MAS prose hierarchy while keeping MiraiChat's dark skin. */
+body.mirai-team .team-page {
+    width: min(850px, calc(100% - 40px));
+    padding: 95px 0 120px;
+}
+
+body.mirai-team .team-page > .eyebrow {
+    margin: 0 0 12px;
+    color: var(--mirai-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+body.mirai-team .team-page > h1 {
+    margin: 0;
+    color: var(--mirai-ink);
+    font-size: clamp(2.3rem, 5vw, 4.2rem);
+    font-weight: 760;
+    line-height: 1.04;
+    letter-spacing: -0.055em;
+}
+
+body.mirai-team .team-page > .lead {
+    max-width: 780px;
+    margin: 28px 0 0;
+    color: var(--mirai-muted);
+    font-size: 1.3rem;
+    line-height: 1.55;
+}
+
+body.mirai-team .team-page section {
+    max-width: 100%;
+    padding-top: 30px;
+    margin-top: 44px;
+    border-top: 1px solid var(--mirai-line);
+}
+
+body.mirai-team .team-page section h2 {
+    margin: 0 0 18px;
+    color: var(--mirai-ink);
+    font-size: 1.45rem;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+}
+
+body.mirai-team .team-page section h3 {
+    margin: 30px 0 16px;
+    color: var(--mirai-ink);
+    font-size: 1.17rem;
+    line-height: 1.4;
+}
+
+body.mirai-team .team-page section p {
+    max-width: 780px;
+    margin: 0;
+    color: var(--mirai-muted);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+body.mirai-team .team-page section p strong {
+    color: var(--mirai-ink);
+    font-weight: 750;
+}
+
+body.mirai-team .team-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+body.mirai-team .team-links a {
+    max-width: 100%;
+    color: var(--mirai-accent);
+    font-weight: 650;
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-color: rgba(245, 160, 0, 0.45);
+    text-underline-offset: 4px;
+}
+
+body.mirai-team .team-links a:hover {
+    color: #ffc451;
+    text-decoration-color: currentColor;
+}
+
+body.mirai-team .donation-qr {
+    display: block;
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    margin: 25px 0;
+    border: 1px solid var(--mirai-line);
+    background: #fff;
+}
+
+body.mirai-team .donation-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+body.mirai-team .donation-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--mirai-ink);
+    font-size: 0.88rem;
+    text-align: left;
+}
+
+body.mirai-team .donation-table th,
+body.mirai-team .donation-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--mirai-line);
+    vertical-align: top;
+}
+
+body.mirai-team .donation-table th {
+    color: var(--mirai-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+body.mirai-team .donation-table code {
+    padding: 0;
+    background: transparent;
+    color: #d9dce3;
+    font-size: 0.84em;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+}
+
+@media (max-width: 600px) {
+    body.mirai-team .team-page {
+        width: calc(100vw - 32px) !important;
+        padding: 62px 0 76px;
+    }
+
+    body.mirai-team .team-page > h1 {
+        font-size: clamp(2.6rem, 14vw, 3.8rem);
+    }
+
+    body.mirai-team .team-page section {
+        margin-top: 38px;
+    }
+
+    body.mirai-team .donation-table {
+        min-width: 650px;
     }
 }

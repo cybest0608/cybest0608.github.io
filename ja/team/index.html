@@ -132,17 +132,19 @@
   </li>
   
   <li class="hide-on-med-and-down nav-item language-nav-item">
-    <button type="button" class="language-menu-toggle waves-effect waves-light" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-language-menu">
-      <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
-      <span>言語</span>
-      <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true"></i>
-    </button>
-    <ul id="desktop-language-menu" class="sub-nav menus_item_child">
-      <li><a href="/team/" lang="en"><span>English</span></a></li>
-      <li><a href="/ja/team/" lang="ja" aria-current="page"><span>日本語</span></a></li>
-      <li><a href="/zh-cn/team/" lang="zh-CN"><span>简体中文</span></a></li>
-      <li><a href="/zh-tw/team/" lang="zh-TW"><span>繁體中文</span></a></li>
-    </ul>
+    <details class="desktop-language-menu">
+      <summary class="language-menu-toggle" aria-controls="desktop-language-menu">
+        <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
+        <span>言語</span>
+        <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true"></i>
+      </summary>
+      <ul id="desktop-language-menu" class="sub-nav menus_item_child">
+        <li><a href="/team/" lang="en"><span>English</span></a></li>
+        <li><a href="/ja/team/" lang="ja" aria-current="page"><span>日本語</span></a></li>
+        <li><a href="/zh-cn/team/" lang="zh-CN"><span>简体中文</span></a></li>
+        <li><a href="/zh-tw/team/" lang="zh-TW"><span>繁體中文</span></a></li>
+      </ul>
+    </details>
   </li>
 </ul>
 
@@ -246,86 +248,46 @@
 </header>
 
     <main id="main-content" class="content mirai-team-main" tabindex="-1">
-    <article class="container mirai-team-page" aria-labelledby="team-title">
-        <header class="mirai-team-hero">
-            <p class="mirai-team-eyebrow">MiraiChat</p>
-            <h1 id="team-title">MiraiChat Team</h1>
-            <p class="mirai-team-lead">Mirai Agent Societyは、より広いMiraiChatプロジェクトの一環として、MiraiChat Teamが開発・運営しています。</p>
-        </header>
+    <article class="container prose-page team-page mirai-team-page" aria-labelledby="team-title">
+        <p class="eyebrow">Mirai Agent Society</p>
+        <h1 id="team-title">MiraiChat Team</h1>
+        <p class="lead">Mirai Agent Societyは、より広いMiraiChatプロジェクトの一環として、MiraiChat Teamが開発・運営しています。</p>
 
-        <section class="mirai-team-section mirai-team-leader" aria-labelledby="team-leader-title">
-            <div class="mirai-team-section-heading">
-                <span class="mirai-team-section-icon" aria-hidden="true"><i class="fas fa-user-astronaut"></i></span>
-                <div>
-                    <p>メンバー</p>
-                    <h2 id="team-leader-title">チームリーダー</h2>
-                </div>
-            </div>
-            <div class="mirai-team-leader-copy">
-                <h3>Vincent Lau, M.D., Ph.D.</h3>
-                <p>主な専門分野は脳神経外科です。侵襲型の言語ブレイン・コンピュータ・インターフェースと関連する大規模言語モデルを研究しています。</p>
-            </div>
+        <section>
+            <h2>チームリーダー</h2>
+            <p><strong>Vincent Lau, M.D., Ph.D.</strong><br>主な専門分野は脳神経外科です。侵襲型の言語ブレイン・コンピュータ・インターフェースと関連する大規模言語モデルを研究しています。</p>
         </section>
 
-        <section class="mirai-team-section" aria-labelledby="team-contact-title">
-            <div class="mirai-team-section-heading">
-                <span class="mirai-team-section-icon" aria-hidden="true"><i class="fas fa-link"></i></span>
-                <div>
-                    <p>リンク</p>
-                    <h2 id="team-contact-title">連絡先とプロジェクトリンク</h2>
-                </div>
-            </div>
-            <div class="mirai-team-links">
-                <a href="mailto:miraichat@hotmail.com">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                    <span><strong>メール</strong><small>miraichat@hotmail.com</small></span>
-                </a>
-                <a href="https://github.com/MiraiChatTeam" target="_blank" rel="noreferrer">
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <span><strong>MiraiChat Team · GitHub</strong><small>github.com/MiraiChatTeam</small></span>
-                </a>
-                <a href="/">
-                    <i class="fas fa-comment-dots" aria-hidden="true"></i>
-                    <span><strong>MiraiChat</strong><small>独自のバックエンドを備えたエンドツーエンド暗号化チャットアプリ。</small></span>
-                </a>
-            </div>
+        <section>
+            <h2>連絡先とプロジェクトリンク</h2>
+            <p class="team-links">
+                <a href="mailto:miraichat@hotmail.com">miraichat@hotmail.com</a>
+                <a href="https://github.com/MiraiChatTeam" target="_blank" rel="noreferrer">MiraiChat Team · GitHub</a>
+                <a href="/">MiraiChat — 独自のバックエンドを備えたエンドツーエンド暗号化チャットアプリ。</a>
+            </p>
         </section>
 
-        <section class="mirai-team-section mirai-team-support" aria-labelledby="team-support-title">
-            <div class="mirai-team-section-heading">
-                <span class="mirai-team-section-icon" aria-hidden="true"><i class="fas fa-heart"></i></span>
-                <div>
-                    <p>サポート</p>
-                    <h2 id="team-support-title">プロジェクトへの支援</h2>
-                </div>
-            </div>
-            <p class="mirai-team-support-note">以下から支援方法を選べます。暗号資産で送金する際は、ネットワークとアドレスを確認してください。</p>
-
-            <div class="mirai-team-support-grid">
-                <div class="mirai-team-qr-card">
-                    <h3>カードまたは Apple Pay で支援（Stripe 決済）</h3>
-                    <img src="/assets/team/donation.png" width="220" height="220" alt="Stripe 経由のカード・Apple Pay 支援用 QR コード">
-                </div>
-
-                <div class="mirai-team-crypto-card">
-                    <h3>暗号資産で支援</h3>
-                    <div class="mirai-team-table-wrap">
-                        <table class="mirai-team-table">
-                            <thead>
-                                <tr><th scope="col">資産</th><th scope="col">ネットワーク</th><th scope="col">アドレス</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>USDT</td><td>TRC20</td><td><code>TEt8ww5Z76EmbRriLc6aNWwWFsjGFmgrLm</code></td></tr>
-                                <tr><td>USDT</td><td>Solana</td><td><code>7Ae74b9TAi5ue3dTe1d9PpH154JwEZZ8rwxnojVJVR8Q</code></td></tr>
-                                <tr><td>USDC</td><td>TRC20</td><td><code>TEt8ww5Z76EmbRriLc6aNWwWFsjGFmgrLm</code></td></tr>
-                                <tr><td>USDC</td><td>Solana</td><td><code>7Ae74b9TAi5ue3dTe1d9PpH154JwEZZ8rwxnojVJVR8Q</code></td></tr>
-                                <tr><td>BTC</td><td>Bitcoin</td><td><code>bc1qjfevw4v005yzxtncaeh4z2us2p7jnpz3kz4qqe</code></td></tr>
-                                <tr><td>ETH</td><td>ERC20</td><td><code>0xf1f8177fA841D38d086ddba78A930C655eC76792</code></td></tr>
-                                <tr><td>SOL</td><td>Solana</td><td><code>7Ae74b9TAi5ue3dTe1d9PpH154JwEZZ8rwxnojVJVR8Q</code></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <section>
+            <h2>プロジェクトへの支援</h2>
+            <p>以下から支援方法を選べます。暗号資産で送金する際は、ネットワークとアドレスを確認してください。</p>
+            <h3>カードまたは Apple Pay で支援（Stripe 決済）</h3>
+            <img class="donation-qr" src="/assets/team/donation.png" width="220" height="220" alt="Stripe 経由のカード・Apple Pay 支援用 QR コード">
+            <h3>暗号資産で支援</h3>
+            <div class="donation-table-wrap">
+                <table class="donation-table">
+                    <thead>
+                        <tr><th scope="col">資産</th><th scope="col">ネットワーク</th><th scope="col">アドレス</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>USDT</td><td>TRC20</td><td><code>TEt8ww5Z76EmbRriLc6aNWwWFsjGFmgrLm</code></td></tr>
+                        <tr><td>USDT</td><td>Solana</td><td><code>7Ae74b9TAi5ue3dTe1d9PpH154JwEZZ8rwxnojVJVR8Q</code></td></tr>
+                        <tr><td>USDC</td><td>TRC20</td><td><code>TEt8ww5Z76EmbRriLc6aNWwWFsjGFmgrLm</code></td></tr>
+                        <tr><td>USDC</td><td>Solana</td><td><code>7Ae74b9TAi5ue3dTe1d9PpH154JwEZZ8rwxnojVJVR8Q</code></td></tr>
+                        <tr><td>BTC</td><td>Bitcoin</td><td><code>bc1qjfevw4v005yzxtncaeh4z2us2p7jnpz3kz4qqe</code></td></tr>
+                        <tr><td>ETH</td><td>ERC20</td><td><code>0xf1f8177fA841D38d086ddba78A930C655eC76792</code></td></tr>
+                        <tr><td>SOL</td><td>Solana</td><td><code>7Ae74b9TAi5ue3dTe1d9PpH154JwEZZ8rwxnojVJVR8Q</code></td></tr>
+                    </tbody>
+                </table>
             </div>
         </section>
     </article>

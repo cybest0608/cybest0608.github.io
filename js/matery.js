@@ -162,33 +162,6 @@ $(function () {
 		$('.nav-item.nav-show').removeClass('nav-show');
 	})
 
-    const closeDesktopLanguageMenu = function () {
-        const $languageItem = $('.language-nav-item');
-        $languageItem.removeClass('is-open');
-        $languageItem.children('.language-menu-toggle').attr('aria-expanded', 'false');
-    };
-
-    $('.language-menu-toggle').on('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        const $languageItem = $(this).closest('.language-nav-item');
-        const willOpen = !$languageItem.hasClass('is-open');
-        closeDesktopLanguageMenu();
-        if (willOpen) {
-            $languageItem.addClass('is-open');
-            $(this).attr('aria-expanded', 'true');
-        }
-    });
-
-    $('.language-nav-item .sub-nav').on('click', function (event) {
-        event.stopPropagation();
-    });
-
-    $(document).on('click', closeDesktopLanguageMenu);
-    $(document).on('keydown', function (event) {
-        if (event.key === 'Escape') closeDesktopLanguageMenu();
-    });
-	
     $('.m-nav-item>a').on('click',function(){
             if ($(this).next('ul').css('display') == "none") {
                 $('.m-nav-item').children('ul').slideUp(300);

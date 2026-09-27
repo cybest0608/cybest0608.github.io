@@ -1,5 +1,17 @@
 /* Here is your custom css styles. */
 
+:root {
+	--mirai-bg: #07090c;
+	--mirai-surface: #101319;
+	--mirai-surface-raised: #151922;
+	--mirai-ink: #f7f7f4;
+	--mirai-muted: #a6acb8;
+	--mirai-line: rgba(255, 255, 255, 0.11);
+	--mirai-accent: #f5a000;
+	--mirai-accent-soft: rgba(245, 160, 0, 0.14);
+	--mirai-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
 #headNav {
 	background-color: #000 !important;
 	background-image: none !important;
@@ -11,16 +23,263 @@ footer.page-footer {
 }
 
 body {
-	background-color: #000 !important;
-	background-image: url('/medias/background/mirai-tech-1024.svg') !important;
-	background-repeat: no-repeat !important;
-	background-size: cover !important;
-	background-attachment: fixed !important;
+	color: var(--mirai-ink);
+	background-color: var(--mirai-bg) !important;
+	background-image:
+		radial-gradient(circle at 50% 17%, rgba(245, 160, 0, 0.07), transparent 27rem),
+		linear-gradient(rgba(7, 9, 12, 0.82), rgba(7, 9, 12, 0.95)),
+		url('/medias/background/mirai-tech-1024.svg') !important;
+	background-repeat: no-repeat, no-repeat, repeat-y !important;
+	background-size: auto, auto, 100% auto !important;
+	background-attachment: scroll !important;
 	background-position: center top !important;
 }
 
 main.content {
 	background: transparent !important;
+}
+
+/* One permanent dark theme for every route. */
+.card,
+.card-panel,
+#artDetail .card,
+.about-container .card {
+	border: 1px solid var(--mirai-line);
+	background: rgba(16, 19, 25, 0.96) !important;
+	box-shadow: var(--mirai-shadow) !important;
+	color: var(--mirai-ink);
+}
+
+body:not(.mirai-home) .card h1,
+body:not(.mirai-home) .card h2,
+body:not(.mirai-home) .card h3,
+body:not(.mirai-home) .card h4,
+body:not(.mirai-home) .card h5,
+body:not(.mirai-home) .card h6,
+body:not(.mirai-home) .card p,
+body:not(.mirai-home) .card li,
+body:not(.mirai-home) .card span,
+body:not(.mirai-home) .card td,
+body:not(.mirai-home) .card th,
+body:not(.mirai-home) .card .card-title {
+	color: var(--mirai-ink);
+}
+
+body:not(.mirai-home) .card a {
+	color: var(--mirai-accent);
+}
+
+#artDetail .card .card-content,
+#aboutme .card-content,
+#aboutme .article-content,
+#articleContent,
+#articleContent p,
+#articleContent li,
+#articleContent td,
+#articleContent strong,
+#articleContent h1,
+#articleContent h2,
+#articleContent h3,
+#articleContent h4,
+#articleContent h5,
+#articleContent h6,
+.about-container h1,
+.about-container h2,
+.about-container h3,
+.about-container p,
+.about-container li {
+	color: var(--mirai-ink) !important;
+}
+
+#artDetail .post-info,
+#artDetail .post-info .post-category,
+#artDetail .post-info .post-date,
+#artDetail .post-cate,
+#artDetail .post-cate a,
+#articleContent figcaption,
+#articleContent .caption,
+.about-container .caption {
+	color: var(--mirai-muted) !important;
+}
+
+#articleContent a,
+#artDetail .reprint a,
+.about-container a {
+	color: var(--mirai-accent) !important;
+	text-decoration-color: rgba(245, 160, 0, 0.45);
+	text-underline-offset: 3px;
+}
+
+#articleContent hr,
+#artDetail hr,
+.about-container hr,
+#artDetail .reprint {
+	border-color: var(--mirai-line) !important;
+}
+
+#articleContent blockquote,
+.about-container blockquote {
+	border-left-color: var(--mirai-accent);
+	background: var(--mirai-accent-soft);
+	color: var(--mirai-muted);
+}
+
+#articleContent code:not([class*='language-']),
+.about-container code:not([class*='language-']) {
+	background: var(--mirai-surface-raised);
+	color: #ffc451;
+}
+
+#articleContent table tr,
+#articleContent table tr:nth-child(2n),
+#articleContent table th,
+#articleContent table td {
+	border-color: var(--mirai-line) !important;
+	background: var(--mirai-surface) !important;
+	color: var(--mirai-ink) !important;
+}
+
+.toc-widget,
+.toc-widget .card-content,
+.toc-widget .toc-title {
+	color: var(--mirai-ink) !important;
+}
+
+.toc-widget .toc-link {
+	color: #d8dbe2 !important;
+}
+
+.toc-widget .toc-link:hover,
+.toc-widget .toc-link.active {
+	color: var(--mirai-accent) !important;
+}
+
+.pagination li a,
+.pagination li span,
+.archive-container .card,
+.category-container .card,
+.tag-container .card {
+	color: var(--mirai-ink) !important;
+}
+
+.bg-cover.post-cover::before,
+.bg-cover.post-cover::after {
+	position: absolute;
+	z-index: 1;
+	inset: 0;
+	content: '';
+}
+
+.bg-cover.post-cover::before {
+	background: linear-gradient(180deg, rgba(7, 9, 12, 0.44), rgba(7, 9, 12, 0.86));
+}
+
+.bg-cover.post-cover::after {
+	background: radial-gradient(circle at 50% 45%, rgba(245, 160, 0, 0.14), transparent 28rem);
+}
+
+.bg-cover.post-cover .container {
+	z-index: 2;
+}
+
+.bg-color,
+.progress-bar {
+	background-color: var(--mirai-accent) !important;
+	background-image: linear-gradient(90deg, #f5a000, #ffc451) !important;
+}
+
+.text-color {
+	color: var(--mirai-accent) !important;
+}
+
+#artDetail .article-tag .chip,
+#artDetail .tag_share .article-tag .chip {
+	color: #17120a !important;
+}
+
+#artDetail .article-tag .chip:empty,
+#artDetail .tag_share .article-tag .chip:empty {
+	display: none;
+}
+
+footer.page-footer,
+footer.page-footer .copy-right,
+footer.page-footer .social-link,
+footer.page-footer a {
+	color: var(--mirai-muted) !important;
+}
+
+/* Shared 72px navigation and reliable native language menu. */
+.navbar-fixed,
+.navbar-fixed nav,
+#headNav,
+#navContainer {
+	height: 72px;
+}
+
+#headNav {
+	border-bottom: 1px solid var(--mirai-line);
+	box-shadow: none;
+}
+
+#headNav .brand-logo,
+#headNav .brand-logo a,
+#headNav .nav-menu > li > a,
+#headNav .language-nav-item,
+#headNav .language-menu-toggle {
+	height: 72px;
+}
+
+#headNav .brand-logo,
+#headNav .brand-logo a,
+#headNav .nav-menu > li > a {
+	line-height: 72px;
+}
+
+#headNav .brand-logo a,
+#headNav .nav-menu > li > a,
+#headNav .sidenav-trigger {
+	color: #d8dbe2 !important;
+}
+
+#headNav .language-menu-toggle {
+	color: #d8dbe2;
+}
+
+#headNav .desktop-language-menu[open] > .language-menu-toggle,
+#headNav .language-menu-toggle:hover {
+	background: transparent !important;
+	box-shadow: none !important;
+	color: #fff;
+}
+
+#headNav .language-nav-item .sub-nav {
+	top: 72px;
+	z-index: 1200;
+	margin-left: -20px;
+	border: 1px solid var(--mirai-line);
+	background: rgba(16, 19, 25, 0.99);
+	box-shadow: var(--mirai-shadow);
+}
+
+#headNav .language-nav-item .sub-nav::before {
+	border-bottom-color: rgba(16, 19, 25, 0.99);
+}
+
+#headNav .language-nav-item .sub-nav a {
+	color: var(--mirai-muted);
+}
+
+#headNav .language-nav-item .sub-nav a:hover,
+#headNav .language-nav-item .sub-nav a:focus-visible {
+	background: var(--mirai-accent-soft);
+	color: var(--mirai-ink);
+}
+
+#headNav .language-nav-item .sub-nav a[aria-current='page'] {
+	background: transparent;
+	color: var(--mirai-accent);
+	font-weight: 750;
 }
 
 .index-card .card,

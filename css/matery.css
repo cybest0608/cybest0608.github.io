@@ -2066,7 +2066,19 @@ p.search-result-summary{
     user-select: none;
 }
 
-.nav-menu .language-nav-item.is-open > .sub-nav {
+.nav-menu .desktop-language-menu {
+    height: 100%;
+}
+
+.nav-menu .desktop-language-menu > summary::-webkit-details-marker {
+    display: none;
+}
+
+.nav-menu .desktop-language-menu > summary {
+    list-style: none;
+}
+
+.nav-menu .desktop-language-menu[open] > .sub-nav {
     display: block !important;
 }
 
@@ -2076,7 +2088,7 @@ p.search-result-summary{
     transition: transform 160ms ease;
 }
 
-.nav-menu .language-nav-item.is-open .language-menu-chevron {
+.nav-menu .desktop-language-menu[open] .language-menu-chevron {
     transform: rotate(180deg);
 }
 
