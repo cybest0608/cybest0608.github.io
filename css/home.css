@@ -1108,10 +1108,11 @@ body.mirai-home footer.page-footer a {
 body.mirai-team .team-page {
     width: min(850px, calc(100% - 40px));
     padding: 95px 0 120px;
+    line-height: 1.55;
 }
 
 body.mirai-team .team-page > .eyebrow {
-    margin: 0 0 12px;
+    margin: 0 0 1em;
     color: var(--mirai-accent);
     font-size: 0.76rem;
     font-weight: 800;
@@ -1120,7 +1121,7 @@ body.mirai-team .team-page > .eyebrow {
 }
 
 body.mirai-team .team-page > h1 {
-    margin: 0;
+    margin: 0 0 0.67em;
     color: var(--mirai-ink);
     font-size: clamp(2.3rem, 5vw, 4.2rem);
     font-weight: 760;
@@ -1130,7 +1131,7 @@ body.mirai-team .team-page > h1 {
 
 body.mirai-team .team-page > .lead {
     max-width: 780px;
-    margin: 28px 0 0;
+    margin: 0 0 1em;
     color: var(--mirai-muted);
     font-size: 1.3rem;
     line-height: 1.55;
@@ -1144,23 +1145,23 @@ body.mirai-team .team-page section {
 }
 
 body.mirai-team .team-page section h2 {
-    margin: 0 0 18px;
+    margin: 0 0 0.83em;
     color: var(--mirai-ink);
     font-size: 1.45rem;
-    line-height: 1.25;
+    line-height: 1.55;
     letter-spacing: -0.03em;
 }
 
 body.mirai-team .team-page section h3 {
-    margin: 30px 0 16px;
+    margin: 1em 0;
     color: var(--mirai-ink);
     font-size: 1.17rem;
-    line-height: 1.4;
+    line-height: 1.55;
 }
 
 body.mirai-team .team-page section p {
     max-width: 780px;
-    margin: 0;
+    margin: 0 0 1em;
     color: var(--mirai-muted);
     font-size: 1rem;
     line-height: 1.55;
@@ -1172,16 +1173,19 @@ body.mirai-team .team-page section p strong {
 }
 
 body.mirai-team .team-links {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    width: 100%;
     gap: 8px;
 }
 
 body.mirai-team .team-links a {
+    display: block !important;
+    width: fit-content;
     max-width: 100%;
-    color: var(--mirai-accent);
-    font-weight: 650;
+    color: #e7e9ee !important;
+    font-weight: 500;
     overflow-wrap: anywhere;
     text-decoration: underline;
     text-decoration-color: rgba(245, 160, 0, 0.45);
@@ -1189,7 +1193,7 @@ body.mirai-team .team-links a {
 }
 
 body.mirai-team .team-links a:hover {
-    color: #ffc451;
+    color: #fff !important;
     text-decoration-color: currentColor;
 }
 
@@ -1206,11 +1210,16 @@ body.mirai-team .donation-qr {
 body.mirai-team .donation-table-wrap {
     max-width: 100%;
     overflow-x: auto;
+    border: 1px solid var(--mirai-line);
+    border-radius: 14px;
+    background: rgba(16, 19, 25, 0.72);
 }
 
 body.mirai-team .donation-table {
     width: 100%;
     border-collapse: collapse;
+    margin: 0;
+    background: transparent !important;
     color: var(--mirai-ink);
     font-size: 0.88rem;
     text-align: left;
@@ -1220,20 +1229,44 @@ body.mirai-team .donation-table th,
 body.mirai-team .donation-table td {
     padding: 12px 10px;
     border-bottom: 1px solid var(--mirai-line);
+    background: transparent !important;
+    color: var(--mirai-ink) !important;
     vertical-align: top;
 }
 
+body.mirai-team .donation-table thead {
+    background: rgba(245, 160, 0, 0.08) !important;
+}
+
+body.mirai-team .donation-table tbody,
+body.mirai-team .donation-table tr,
+body.mirai-team .donation-table tr:nth-child(2n) {
+    background: transparent !important;
+}
+
+body.mirai-team .donation-table tbody tr:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.025) !important;
+}
+
+body.mirai-team .donation-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
 body.mirai-team .donation-table th {
-    color: var(--mirai-muted);
+    color: var(--mirai-muted) !important;
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
 body.mirai-team .donation-table code {
+    position: static;
+    top: auto !important;
+    display: block;
     padding: 0;
-    background: transparent;
-    color: #d9dce3;
+    border: 0;
+    background: transparent !important;
+    color: #d9dce3 !important;
     font-size: 0.84em;
     overflow-wrap: anywhere;
     word-break: break-all;
