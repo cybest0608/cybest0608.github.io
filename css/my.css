@@ -236,6 +236,19 @@ footer.page-footer a {
 	line-height: 72px;
 }
 
+/* Keep every page header typographically identical to the homepage. */
+#headNav .brand-logo a {
+	font-size: 1.2rem;
+	font-weight: 720;
+	letter-spacing: -0.025em;
+}
+
+#headNav .nav-menu > li > a,
+#headNav .language-menu-toggle {
+	padding-inline: 12px;
+	font-size: 0.84rem;
+}
+
 #headNav .brand-logo a,
 #headNav .nav-menu > li > a,
 #headNav .sidenav-trigger {
