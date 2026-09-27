@@ -2042,34 +2042,41 @@ p.search-result-summary{
     display: none;
 }
 
-.nav-menu .language-menu {
+.nav-menu .language-nav-item {
     position: relative;
     height: 64px;
 }
 
-.nav-menu .language-menu > summary {
+.nav-menu .language-menu-toggle {
+    display: inline-flex;
     height: 64px;
+    margin: 0;
     padding: 0 15px;
+    align-items: center;
+    gap: 4px;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
     color: #fff;
     cursor: pointer;
-    line-height: 64px;
-    list-style: none;
+    font: inherit;
+    line-height: 1;
+    text-transform: none;
     user-select: none;
 }
 
-.nav-menu .language-menu > summary::-webkit-details-marker {
-    display: none;
-}
-
-.nav-menu .language-menu[open] > .sub-nav {
+.nav-menu .language-nav-item.is-open > .sub-nav {
     display: block !important;
 }
 
 .nav-menu .language-menu-chevron {
+    margin-left: 1px;
+    font-size: 0.6em;
     transition: transform 160ms ease;
 }
 
-.nav-menu .language-menu[open] .language-menu-chevron {
+.nav-menu .language-nav-item.is-open .language-menu-chevron {
     transform: rotate(180deg);
 }
 

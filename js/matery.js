@@ -161,6 +161,33 @@ $(function () {
 		$(this).children('ul').stop(true,true).hide();
 		$('.nav-item.nav-show').removeClass('nav-show');
 	})
+
+    const closeDesktopLanguageMenu = function () {
+        const $languageItem = $('.language-nav-item');
+        $languageItem.removeClass('is-open');
+        $languageItem.children('.language-menu-toggle').attr('aria-expanded', 'false');
+    };
+
+    $('.language-menu-toggle').on('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const $languageItem = $(this).closest('.language-nav-item');
+        const willOpen = !$languageItem.hasClass('is-open');
+        closeDesktopLanguageMenu();
+        if (willOpen) {
+            $languageItem.addClass('is-open');
+            $(this).attr('aria-expanded', 'true');
+        }
+    });
+
+    $('.language-nav-item .sub-nav').on('click', function (event) {
+        event.stopPropagation();
+    });
+
+    $(document).on('click', closeDesktopLanguageMenu);
+    $(document).on('keydown', function (event) {
+        if (event.key === 'Escape') closeDesktopLanguageMenu();
+    });
 	
     $('.m-nav-item>a').on('click',function(){
             if ($(this).next('ul').css('display') == "none") {
@@ -176,31 +203,3 @@ $(function () {
     // 初始化加载 tooltipped.
     $('.tooltipped').tooltip();
 });
-
-//黑夜模式提醒开启功能
-setTimeout(function () {
-    if ((new Date().getHours() >= 19 || new Date().getHours() < 7) && !$('body').hasClass('DarkMode')) {
-        let toastHTML = '<span style="color:#97b8b2;border-radius: 10px;>' + '<i class="fa fa-bellaria-hidden="true"></i>晚上使用深色模式阅读更好哦。(ﾟ▽ﾟ)</span>'
-        M.toast({ html: toastHTML })
-    }
-}, 2200);
-
-//黑夜模式判断
-if (localStorage.getItem('isDark') === '1') {
-    document.body.classList.add('DarkMode');
-    $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
-} else {
-    document.body.classList.remove('DarkMode');
-    $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')
-}
-
-function switchNightMode() {
-    document.body.classList.toggle('DarkMode');
-    if (document.body.classList.contains('DarkMode')) {
-        localStorage.setItem('isDark', '1');
-        $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon');
-    } else {
-        localStorage.setItem('isDark', '0');
-        $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon');
-    }
-}

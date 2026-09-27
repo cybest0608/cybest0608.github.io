@@ -78,9 +78,14 @@ body.mirai-home #navContainer {
 body.mirai-home #headNav .brand-logo,
 body.mirai-home #headNav .brand-logo a,
 body.mirai-home #headNav .nav-menu > li > a,
-body.mirai-home #headNav .language-menu,
-body.mirai-home #headNav .language-menu > summary {
+body.mirai-home #headNav .language-nav-item,
+body.mirai-home #headNav .language-menu-toggle {
     height: 72px;
+}
+
+body.mirai-home #headNav .brand-logo,
+body.mirai-home #headNav .brand-logo a,
+body.mirai-home #headNav .nav-menu > li > a {
     line-height: 72px;
 }
 
@@ -102,15 +107,15 @@ body.mirai-home #headNav .logo-img {
 }
 
 body.mirai-home #headNav .nav-menu > li > a,
-body.mirai-home #headNav .language-menu > summary {
+body.mirai-home #headNav .language-menu-toggle {
     padding-inline: 12px;
     color: #d8dbe2;
     font-size: 0.84rem;
 }
 
 body.mirai-home #headNav .nav-menu > li > a:hover,
-body.mirai-home #headNav .language-menu > summary:hover,
-body.mirai-home #headNav .language-menu[open] > summary {
+body.mirai-home #headNav .language-menu-toggle:hover,
+body.mirai-home #headNav .language-nav-item.is-open > .language-menu-toggle {
     color: #fff;
     background: rgba(255, 255, 255, 0.05);
 }
@@ -608,6 +613,253 @@ body.mirai-download .mirai-download-inner {
     margin-right: 8px;
 }
 
+/* Team page */
+.mirai-team-main {
+    background: transparent !important;
+}
+
+.mirai-team-page {
+    padding-top: 94px;
+    padding-bottom: 104px;
+}
+
+.mirai-team-page,
+.mirai-team-page * {
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.mirai-team-hero {
+    max-width: 860px;
+    padding-bottom: 76px;
+}
+
+.mirai-team-eyebrow,
+.mirai-team-section-heading p {
+    margin: 0 0 10px;
+    color: var(--mirai-accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.mirai-team-hero h1 {
+    margin: 0;
+    color: var(--mirai-ink);
+    font-size: clamp(3rem, 7vw, 5.6rem);
+    font-weight: 760;
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+}
+
+.mirai-team-lead {
+    max-width: 750px;
+    margin: 26px 0 0;
+    color: var(--mirai-muted);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.75;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.mirai-team-section {
+    display: grid;
+    padding: 52px 0;
+    border-top: 1px solid var(--mirai-line);
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.6fr);
+    gap: 64px;
+}
+
+.mirai-team-section-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.mirai-team-section-icon {
+    display: inline-grid;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border: 1px solid rgba(245, 160, 0, 0.35);
+    border-radius: 14px;
+    place-items: center;
+    background: var(--mirai-accent-soft);
+    color: var(--mirai-accent);
+}
+
+.mirai-team-section-heading h2 {
+    margin: 0;
+    color: var(--mirai-ink);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+}
+
+.mirai-team-leader-copy {
+    padding: 30px;
+    border: 1px solid var(--mirai-line);
+    border-radius: var(--mirai-radius);
+    background: linear-gradient(145deg, rgba(245, 160, 0, 0.07), transparent 45%), var(--mirai-surface);
+    box-shadow: var(--mirai-shadow);
+}
+
+.mirai-team-leader-copy h3,
+.mirai-team-support-grid h3 {
+    margin: 0;
+    color: var(--mirai-ink);
+    font-size: 1.15rem;
+    line-height: 1.4;
+}
+
+.mirai-team-leader-copy p,
+.mirai-team-support-note {
+    margin: 15px 0 0;
+    color: var(--mirai-muted);
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.mirai-team-links {
+    display: grid;
+    gap: 12px;
+}
+
+.mirai-team-links > a {
+    display: flex;
+    min-width: 0;
+    padding: 18px 20px;
+    border: 1px solid var(--mirai-line);
+    border-radius: 16px;
+    align-items: center;
+    gap: 16px;
+    background: var(--mirai-surface);
+    color: var(--mirai-ink);
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.mirai-team-links > a:hover {
+    border-color: rgba(245, 160, 0, 0.5);
+    background: var(--mirai-accent-soft);
+    transform: translateY(-2px);
+}
+
+.mirai-team-links > a > i {
+    width: 24px;
+    flex: 0 0 24px;
+    color: var(--mirai-accent);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.mirai-team-links span,
+.mirai-team-links strong,
+.mirai-team-links small {
+    display: block;
+    min-width: 0;
+}
+
+.mirai-team-links small {
+    margin-top: 3px;
+    color: var(--mirai-muted);
+    font-size: 0.86rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.mirai-team-support {
+    grid-template-areas:
+        'heading note'
+        'content content';
+}
+
+.mirai-team-support .mirai-team-section-heading {
+    grid-area: heading;
+}
+
+.mirai-team-support-note {
+    grid-area: note;
+    margin-top: 0;
+}
+
+.mirai-team-support-grid {
+    display: grid;
+    margin-top: 6px;
+    grid-area: content;
+    grid-template-columns: 288px minmax(0, 1fr);
+    gap: 20px;
+}
+
+.mirai-team-qr-card,
+.mirai-team-crypto-card {
+    min-width: 0;
+    padding: 26px;
+    border: 1px solid var(--mirai-line);
+    border-radius: var(--mirai-radius);
+    background: var(--mirai-surface);
+}
+
+.mirai-team-qr-card img {
+    display: block;
+    width: min(220px, 100%);
+    height: auto;
+    margin: 22px auto 0;
+    border: 8px solid #fff;
+    border-radius: 14px;
+    background: #fff;
+}
+
+.mirai-team-table-wrap {
+    max-width: 100%;
+    margin-top: 12px;
+    overflow-x: auto;
+}
+
+.mirai-team-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: var(--mirai-ink);
+    font-size: 0.82rem;
+    text-align: left;
+}
+
+.mirai-team-table th,
+.mirai-team-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--mirai-line);
+    vertical-align: top;
+}
+
+.mirai-team-table th:first-child,
+.mirai-team-table td:first-child {
+    width: 72px;
+}
+
+.mirai-team-table th:nth-child(2),
+.mirai-team-table td:nth-child(2) {
+    width: 86px;
+}
+
+.mirai-team-table th {
+    color: var(--mirai-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.mirai-team-table code {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #d9dce3;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+}
+
 /* Homepage footer */
 body.mirai-home footer.page-footer {
     margin: 0;
@@ -648,6 +900,22 @@ body.mirai-home footer.page-footer a {
 @media (max-width: 900px) {
     .mirai-home-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mirai-team-section {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .mirai-team-support {
+        grid-template-areas:
+            'heading'
+            'note'
+            'content';
+    }
+
+    .mirai-team-support-grid {
+        grid-template-columns: minmax(240px, 0.65fr) minmax(0, 1.35fr);
     }
 }
 
@@ -724,6 +992,58 @@ body.mirai-home footer.page-footer a {
 
     .mirai-download-actions {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mirai-team-page {
+        padding-top: 62px;
+        padding-bottom: 72px;
+    }
+
+    .mirai-team-hero {
+        padding-bottom: 54px;
+    }
+
+    .mirai-team-hero h1 {
+        font-size: clamp(2.65rem, 14vw, 4rem);
+        overflow-wrap: anywhere;
+    }
+
+    .mirai-team-section {
+        padding: 40px 0;
+        gap: 24px;
+    }
+
+    .mirai-team-leader-copy,
+    .mirai-team-qr-card,
+    .mirai-team-crypto-card {
+        padding: 22px;
+    }
+
+    .mirai-team-support-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mirai-team-qr-card img {
+        width: min(220px, 82vw);
+    }
+
+    .mirai-team-table {
+        font-size: 0.78rem;
+    }
+
+    .mirai-team-table th,
+    .mirai-team-table td {
+        padding: 11px 6px;
+    }
+
+    .mirai-team-table th:first-child,
+    .mirai-team-table td:first-child {
+        width: 56px;
+    }
+
+    .mirai-team-table th:nth-child(2),
+    .mirai-team-table td:nth-child(2) {
+        width: 68px;
     }
 
     body.mirai-home #articles .mirai-home-card .card {

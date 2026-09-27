@@ -50,8 +50,6 @@
 
 
 
-
-
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 7.3.0"></head>
@@ -91,11 +89,11 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/archives" class="waves-effect waves-light">
+    <a href="/ja/team/" class="waves-effect waves-light">
       
-      <i class="fas fa-archive" style="zoom: 0.6;" aria-hidden="true"></i>
+      <i class="fas fa-users" style="zoom: 0.6;" aria-hidden="true"></i>
       
-      <span>アーカイブ</span>
+      <span>MiraiChat チーム</span>
     </a>
     
   </li>
@@ -134,21 +132,18 @@
   </li>
   
   <li class="hide-on-med-and-down nav-item language-nav-item">
-    <details class="language-menu">
-      <summary class="waves-effect waves-light" aria-controls="desktop-language-menu">
-        <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
-        <span>言語</span>
-        <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true" style="zoom: 0.6;"></i>
-      </summary>
-      <ul id="desktop-language-menu" class="sub-nav menus_item_child">
-        <li><a href="/" lang="en"><span>English</span></a></li>
-        <li><a href="/ja/" lang="ja" aria-current="page"><span>日本語</span></a></li>
-        <li><a href="/zh-cn/" lang="zh-CN"><span>简体中文</span></a></li>
-        <li><a href="/zh-tw/" lang="zh-TW"><span>繁體中文</span></a></li>
-      </ul>
-    </details>
+    <button type="button" class="language-menu-toggle waves-effect waves-light" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-language-menu">
+      <i class="fas fa-globe" style="zoom: 0.6;" aria-hidden="true"></i>
+      <span>言語</span>
+      <i class="fas fa-chevron-down language-menu-chevron" aria-hidden="true"></i>
+    </button>
+    <ul id="desktop-language-menu" class="sub-nav menus_item_child">
+      <li><a href="/" lang="en"><span>English</span></a></li>
+      <li><a href="/ja/" lang="ja" aria-current="page"><span>日本語</span></a></li>
+      <li><a href="/zh-cn/" lang="zh-CN"><span>简体中文</span></a></li>
+      <li><a href="/zh-tw/" lang="zh-TW"><span>繁體中文</span></a></li>
+    </ul>
   </li>
-  
 </ul>
 
 
@@ -181,11 +176,11 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/archives" class="waves-effect waves-light">
+		<a href="/ja/team/" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-archive" aria-hidden="true"></i>
+			    <i class="fa-fw fas fa-users" aria-hidden="true"></i>
 			
-			アーカイブ
+			MiraiChat チーム
 		</a>
           
         </li>
@@ -349,6 +344,86 @@
 
                     <div class="card-content article-content">
                         <span class="mirai-home-card-index">01</span>
+                        <h3 class="card-title"><a href="/ja/encryption/">暗号化技術リファレンス</a></h3>
+                        <div class="summary block-with-text">
+                            
+                            MiraiChatの暗号化設計の詳細なテクニカルオーバービュー。X25519、Ed25519、AES-GCM-256の実装について。
+                            
+                        </div>
+
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Security/"><span class="chip bg-color">Security</span></a>
+                        
+                        <a href="/tags/Encryption/"><span class="chip bg-color">Encryption</span></a>
+                        
+                        <a href="/tags/Technical/"><span class="chip bg-color">Technical</span></a>
+                        
+                    </div>
+                    
+                </div>
+            </article>
+            
+            
+            
+            <article class="article mirai-home-card">
+                <div class="card">
+                    
+
+                    <div class="card-content article-content">
+                        <span class="mirai-home-card-index">02</span>
+                        <h3 class="card-title"><a href="/ja/introduction/">MiraiChat</a></h3>
+                        <div class="summary block-with-text">
+                            
+                            モダンなモバイル・デスクトップ環境向けに設計された、プロフェッショナルなプライベートメッセージング基盤です。主要機能とセキュリティ設計について。
+                            
+                        </div>
+
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Introduction/"><span class="chip bg-color">Introduction</span></a>
+                        
+                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
+                        
+                    </div>
+                    
+                </div>
+            </article>
+            
+            
+            
+            <article class="article mirai-home-card">
+                <div class="card">
+                    
+
+                    <div class="card-content article-content">
+                        <span class="mirai-home-card-index">03</span>
                         <h3 class="card-title"><a href="/ja/backend/">バックエンドカスタマイズ概要</a></h3>
                         <div class="summary block-with-text">
                             
@@ -376,89 +451,9 @@
                         
                         <a href="/tags/Technical/"><span class="chip bg-color">Technical</span></a>
                         
+                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
+                        
                         <a href="/tags/Backend/"><span class="chip bg-color">Backend</span></a>
-                        
-                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
-                        
-                    </div>
-                    
-                </div>
-            </article>
-            
-            
-            
-            <article class="article mirai-home-card">
-                <div class="card">
-                    
-
-                    <div class="card-content article-content">
-                        <span class="mirai-home-card-index">02</span>
-                        <h3 class="card-title"><a href="/ja/encryption/">暗号化技術リファレンス</a></h3>
-                        <div class="summary block-with-text">
-                            
-                            MiraiChatの暗号化設計の詳細なテクニカルオーバービュー。X25519、Ed25519、AES-GCM-256の実装について。
-                            
-                        </div>
-
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Technical/"><span class="chip bg-color">Technical</span></a>
-                        
-                        <a href="/tags/Security/"><span class="chip bg-color">Security</span></a>
-                        
-                        <a href="/tags/Encryption/"><span class="chip bg-color">Encryption</span></a>
-                        
-                    </div>
-                    
-                </div>
-            </article>
-            
-            
-            
-            <article class="article mirai-home-card">
-                <div class="card">
-                    
-
-                    <div class="card-content article-content">
-                        <span class="mirai-home-card-index">03</span>
-                        <h3 class="card-title"><a href="/ja/introduction/">MiraiChat</a></h3>
-                        <div class="summary block-with-text">
-                            
-                            モダンなモバイル・デスクトップ環境向けに設計された、プロフェッショナルなプライベートメッセージング基盤です。主要機能とセキュリティ設計について。
-                            
-                        </div>
-
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-03-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
-                        
-                        <a href="/tags/Introduction/"><span class="chip bg-color">Introduction</span></a>
                         
                     </div>
                     
@@ -473,6 +468,47 @@
 
                     <div class="card-content article-content">
                         <span class="mirai-home-card-index">04</span>
+                        <h3 class="card-title"><a href="/ja/tokushoho/">特定商取引法に基づく表記</a></h3>
+                        <div class="summary block-with-text">
+                            
+                            MiraiChatの特定商取引法上の法定開示情報。事業者、住所、連絡先、支払いポリシーを含む。
+                            
+                        </div>
+
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-04-21
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Legal/"><span class="chip bg-color">Legal</span></a>
+                        
+                        <a href="/tags/Compliance/"><span class="chip bg-color">Compliance</span></a>
+                        
+                        <a href="/tags/Policy/"><span class="chip bg-color">Policy</span></a>
+                        
+                    </div>
+                    
+                </div>
+            </article>
+            
+            
+            
+            <article class="article mirai-home-card">
+                <div class="card">
+                    
+
+                    <div class="card-content article-content">
+                        <span class="mirai-home-card-index">05</span>
                         <h3 class="card-title"><a href="/ja/privacy/">プライバシーポリシー</a></h3>
                         <div class="summary block-with-text">
                             
@@ -511,7 +547,7 @@
                     
 
                     <div class="card-content article-content">
-                        <span class="mirai-home-card-index">05</span>
+                        <span class="mirai-home-card-index">06</span>
                         <h3 class="card-title"><a href="/ja/security-audit/">セキュリティ監査レポート（プロフェッショナル版）</a></h3>
                         <div class="summary block-with-text">
                             
@@ -537,11 +573,11 @@
                     
                     <div class="card-action article-tags">
                         
+                        <a href="/tags/Security/"><span class="chip bg-color">Security</span></a>
+                        
                         <a href="/tags/Technical/"><span class="chip bg-color">Technical</span></a>
                         
                         <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
-                        
-                        <a href="/tags/Security/"><span class="chip bg-color">Security</span></a>
                         
                     </div>
                     
@@ -555,7 +591,7 @@
                     
 
                     <div class="card-content article-content">
-                        <span class="mirai-home-card-index">06</span>
+                        <span class="mirai-home-card-index">07</span>
                         <h3 class="card-title"><a href="/2026/03/06/welcome/">MiraiChat へようこそ</a></h3>
                         <div class="summary block-with-text">
                             
@@ -581,47 +617,6 @@
                         <a href="/tags/MiraiChat/"><span class="chip bg-color">MiraiChat</span></a>
                         
                         <a href="/tags/Welcome/"><span class="chip bg-color">Welcome</span></a>
-                        
-                    </div>
-                    
-                </div>
-            </article>
-            
-            
-            
-            <article class="article mirai-home-card">
-                <div class="card">
-                    
-
-                    <div class="card-content article-content">
-                        <span class="mirai-home-card-index">07</span>
-                        <h3 class="card-title"><a href="/ja/tokushoho/">特定商取引法に基づく表記</a></h3>
-                        <div class="summary block-with-text">
-                            
-                            MiraiChatの特定商取引法上の法定開示情報。事業者、住所、連絡先、支払いポリシーを含む。
-                            
-                        </div>
-
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date" aria-hidden="true"></i>2026-04-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw" aria-hidden="true"></i>MiraiChat Team
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Legal/"><span class="chip bg-color">Legal</span></a>
-                        
-                        <a href="/tags/Compliance/"><span class="chip bg-color">Compliance</span></a>
-                        
-                        <a href="/tags/Policy/"><span class="chip bg-color">Policy</span></a>
                         
                     </div>
                     
@@ -702,7 +697,6 @@
 <div class="progress-bar"></div>
 
 
-    
     <!-- 回到顶部按钮 -->
 <div id="backTop" class="top-scroll">
     <a class="btn-floating btn-large waves-effect waves-light" href="#" aria-label="ページ上部へ戻る">

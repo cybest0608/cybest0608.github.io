@@ -10,17 +10,7 @@ footer.page-footer {
 	background-image: none !important;
 }
 
-body.DarkMode #headNav {
-	background-color: #000 !important;
-	background-image: none !important;
-}
-
-body.DarkMode footer.page-footer {
-	background-color: #000 !important;
-	background-image: none !important;
-}
-
-body:not(.DarkMode) {
+body {
 	background-color: #000 !important;
 	background-image: url('/medias/background/mirai-tech-1024.svg') !important;
 	background-repeat: no-repeat !important;
@@ -52,29 +42,89 @@ main.content {
 	color: #fff !important;
 }
 
-body.DarkMode,
-body.DarkMode p,
-body.DarkMode li,
-body.DarkMode td,
-body.DarkMode span,
-body.DarkMode a,
-body.DarkMode h1,
-body.DarkMode h2,
-body.DarkMode h3,
-body.DarkMode h4,
-body.DarkMode h5,
-body.DarkMode h6,
-body.DarkMode .copy-right,
-body.DarkMode .publish-info .post-category,
-body.DarkMode .publish-info .publish-date,
-body.DarkMode .nav-menu li a,
-body.DarkMode .menu-list a,
-body.DarkMode .card .card-content p,
-body.DarkMode .card .card-image .card-title,
-body.DarkMode article .article-content .summary,
-body.DarkMode footer a,
-body.DarkMode .fas,
-body.DarkMode .far,
-body.DarkMode .fab {
-	color: #fff !important;
+
+/* Materialize surfaces use the same graphite-and-amber language as MiraiChat. */
+.modal,
+.modal .modal-footer,
+.dropdown-content,
+.select-dropdown.dropdown-content {
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: #11151c !important;
+	color: #f7f7f4;
+}
+
+.modal a,
+.modal .modal-close,
+.dropdown-content li > a,
+.dropdown-content li > span {
+	color: #f5a000 !important;
+}
+
+.modal-overlay,
+.sidenav-overlay {
+	background: rgba(3, 5, 8, 0.82) !important;
+	backdrop-filter: blur(5px);
+}
+
+#toast-container .toast {
+	border: 1px solid rgba(245, 160, 0, 0.42);
+	border-radius: 12px;
+	background: #11151c;
+	box-shadow: 0 18px 55px rgba(0, 0, 0, 0.42);
+	color: #f7f7f4;
+}
+
+@media only screen and (max-width: 992px) {
+	header .side-nav.sidenav {
+		width: min(86vw, 320px);
+		border-right: 1px solid rgba(245, 160, 0, 0.28);
+		background: #0b0e13 !important;
+		box-shadow: 24px 0 70px rgba(0, 0, 0, 0.55);
+	}
+
+	header .side-nav .mobile-head.bg-color {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		background: radial-gradient(circle at 24% 25%, rgba(245, 160, 0, 0.2), transparent 54%), #11151c !important;
+	}
+
+	header .side-nav .mobile-head .logo-name,
+	header .side-nav .mobile-head .logo-desc {
+		color: #f7f7f4 !important;
+	}
+
+	header .side-nav .menu-list a,
+	header .side-nav .mobile-language-menu > summary,
+	.mobile-menu-list a i {
+		color: #d8dbe2 !important;
+	}
+
+	header .side-nav .menu-list a:hover,
+	header .side-nav .menu-list a:focus-visible,
+	header .side-nav .mobile-language-menu > summary:hover,
+	header .side-nav .mobile-language-menu > summary:focus-visible,
+	header .side-nav .mobile-language-menu a[aria-current='page'] {
+		background: rgba(245, 160, 0, 0.14) !important;
+		color: #fff !important;
+	}
+
+	header .side-nav .mobile-language-menu > ul {
+		margin: 0 12px 10px 15px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		background: #11151c;
+		overflow: hidden;
+	}
+
+	header .side-nav .mobile-language-menu > ul li {
+		width: 100%;
+	}
+
+	header .side-nav .mobile-language-menu > ul a {
+		margin-left: 0 !important;
+		padding-left: 60px;
+	}
+
+	header .side-nav .divider {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
 }
